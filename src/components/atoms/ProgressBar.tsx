@@ -12,7 +12,7 @@ const ProgressBar = ({ duration, onComplete, isActive = true }: ProgressBarProps
 
   useEffect(() => {
     if (!isActive) return;
-    let start = Date.now();
+    const start = Date.now();
     const interval = setInterval(() => {
       const elapsed = Date.now() - start;
       const pct = Math.min((elapsed / duration) * 100, 100);

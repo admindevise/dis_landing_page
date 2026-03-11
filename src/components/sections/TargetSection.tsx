@@ -1,4 +1,4 @@
-import { Box, Grid, Typography, Paper } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { TrendingUp, AccountBalance, Domain, BusinessCenter, People } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import SectionTitle from "../atoms/SectionTitle";

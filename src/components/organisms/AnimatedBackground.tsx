@@ -92,7 +92,7 @@ const AnimatedBackground = ({
       }
 
       // Nodos
-      for (let node of nodes) {
+      for (const node of nodes) {
         if (mouse.x !== null && mouse.y !== null) {
           const dx = mouse.x - node.x;
           const dy = mouse.y - node.y;

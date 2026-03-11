@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, ReactNode, RefObject } from 'react';
+import React, { useEffect, useRef, ReactNode, RefObject } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -10,24 +10,20 @@ interface ScrollFloatProps {
   children: ReactNode;
   scrollContainerRef?: RefObject<HTMLElement>;
   containerClassName?: string;
-  textClassName?: string;
   animationDuration?: number;
   ease?: string;
   scrollStart?: string;
   scrollEnd?: string;
-  stagger?: number;
 }
 
 const ScrollFloat: React.FC<ScrollFloatProps> = ({
   children,
   scrollContainerRef,
   containerClassName = '',
-  textClassName = '',
   animationDuration = 1,
   ease = 'back.inOut(2)',
   scrollStart = 'top 90%',
-  scrollEnd = 'bottom 60%',
-  stagger = 0.03
+  scrollEnd = 'bottom 60%'
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 

@@ -1,14 +1,10 @@
-import { Box, Typography, Button, Stack, Grid, useTheme, Paper } from "@mui/material";
-import { Mail, MapPin, Calendar } from "lucide-react";
+import { Box, Typography, Stack, Grid, useTheme, Paper } from "@mui/material";
+import { Mail, MapPin } from "lucide-react";
 import AnimatedBackground from "../organisms/AnimatedBackground";
 import SEO from "../atoms/SEO";
 
 const Contact = () => {
   const theme = useTheme();
-
-  const handleAgendarCita = () => {
-    window.open('https://outlook.office.com/book/DIS1@gruposantarosa.co/', '_blank');
-  };
 
   return (
     <>

@@ -12,9 +12,9 @@ const ConsultingCTA = () => {
   return (
     <Box
       data-consulting-cta
-      sx={(theme) => ({
+      sx={{
         py: 12,
-      })}
+      }}
     >
       <Container maxWidth="lg">
         <Box
