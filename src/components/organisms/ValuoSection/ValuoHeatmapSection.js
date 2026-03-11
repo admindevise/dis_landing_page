@@ -1,0 +1,97 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { Box, Container, Grid, Typography, Stack } from "@mui/material";
+const ValuoHeatmapSection = () => {
+    return (_jsx(Box, { sx: { background: "hsl(210, 27%, 12%)" }, children: _jsx(Container, { maxWidth: "lg", sx: { py: 12 }, children: _jsxs(Grid, { container: true, spacing: 6, alignItems: "center", children: [_jsxs(Grid, { size: { xs: 12, md: 6 }, children: [_jsx(Typography, { variant: "h3", fontWeight: 700, sx: { mb: 2, color: "hsl(216, 33%, 97%)" }, children: "Visualiza el potencial." }), _jsx(Typography, { variant: "body1", sx: {
+                                    mb: 5,
+                                    maxWidth: 540,
+                                    color: "rgba(255,255,255,0.7)",
+                                }, children: "Nuestros mapas de calor te muestran d\u00F3nde est\u00E1 la valorizaci\u00F3n antes que nadie. Identifica zonas emergentes y oportunidades ocultas." }), _jsxs(Stack, { spacing: 3, children: [_jsxs(Stack, { direction: "row", spacing: 2, alignItems: "center", children: [_jsx(Box, { sx: {
+                                                    width: 52,
+                                                    height: 52,
+                                                    borderRadius: 2,
+                                                    display: "flex",
+                                                    alignItems: "center",
+                                                    justifyContent: "center",
+                                                    background: "linear-gradient(135deg, hsl(210, 27%, 12%), hsl(212, 48%, 45%), hsl(212, 48%, 55%))",
+                                                    boxShadow: "0 12px 30px rgba(0,0,0,0.6)",
+                                                    flexShrink: 0,
+                                                }, children: _jsx(Box, { sx: {
+                                                        width: 20,
+                                                        height: 14,
+                                                        borderRadius: 1,
+                                                        border: "2px solid rgba(255,255,255,0.9)",
+                                                        position: "relative",
+                                                        "&::before, &::after": {
+                                                            content: '""',
+                                                            position: "absolute",
+                                                            left: "50%",
+                                                            transform: "translateX(-50%)",
+                                                            width: "90%",
+                                                            height: "100%",
+                                                            borderRadius: 1,
+                                                            border: "2px solid rgba(255,255,255,0.5)",
+                                                        },
+                                                        "&::before": { top: -6 },
+                                                        "&::after": { bottom: -6 },
+                                                    } }) }), _jsxs(Box, { children: [_jsx(Typography, { variant: "subtitle1", sx: { color: "hsl(216, 33%, 97%)", fontWeight: 700 }, children: "Capas de Informaci\u00F3n" }), _jsx(Typography, { variant: "body2", sx: { color: "rgba(255,255,255,0.7)" }, children: "Tr\u00E1fico, seguridad, comercio y m\u00E1s." })] })] }), _jsxs(Stack, { direction: "row", spacing: 2, alignItems: "center", children: [_jsx(Box, { sx: {
+                                                    width: 52,
+                                                    height: 52,
+                                                    borderRadius: 2,
+                                                    display: "flex",
+                                                    alignItems: "center",
+                                                    justifyContent: "center",
+                                                    background: "linear-gradient(135deg, hsl(212, 48%, 45%), hsl(212, 48%, 55%), hsl(212, 48%, 65%))",
+                                                    boxShadow: "0 12px 30px rgba(0,0,0,0.6)",
+                                                    flexShrink: 0,
+                                                }, children: _jsx(Box, { sx: {
+                                                        width: 24,
+                                                        height: 18,
+                                                        borderRadius: 1,
+                                                        border: "2px solid rgba(255,255,255,0.8)",
+                                                        borderTop: "none",
+                                                        position: "relative",
+                                                        overflow: "hidden",
+                                                        "&::before": {
+                                                            content: '""',
+                                                            position: "absolute",
+                                                            left: 4,
+                                                            bottom: 4,
+                                                            width: 18,
+                                                            height: 12,
+                                                            borderBottom: "2px solid rgba(255,255,255,0.9)",
+                                                            borderLeft: "2px solid rgba(255,255,255,0.9)",
+                                                            transform: "skewX(-20deg)",
+                                                        },
+                                                    } }) }), _jsxs(Box, { children: [_jsx(Typography, { variant: "subtitle1", sx: { color: "hsl(216, 33%, 97%)", fontWeight: 700 }, children: "Proyecci\u00F3n a 5 a\u00F1os" }), _jsx(Typography, { variant: "body2", sx: { color: "rgba(255,255,255,0.7)" }, children: "Modelos predictivos de valorizaci\u00F3n." })] })] })] })] }), _jsx(Grid, { size: { xs: 12, md: 6 }, children: _jsxs(Box, { sx: {
+                                borderRadius: "32px",
+                                p: 3,
+                                height: { xs: 320, md: 380 },
+                                position: "relative",
+                                overflow: "hidden",
+                                boxShadow: "0 35px 80px rgba(0,0,0,0.8)",
+                                backgroundColor: "hsl(210, 76%, 17%)",
+                                border: "1px solid hsla(212, 48%, 55%, 0.3)",
+                                backgroundImage: `
+                linear-gradient(hsla(212, 48%, 55%, 0.12) 1px, transparent 1px),
+                linear-gradient(90deg, hsla(212, 48%, 55%, 0.12) 1px, transparent 1px)
+              `,
+                                backgroundSize: "40px 40px",
+                            }, children: [_jsx(Box, { sx: {
+                                        position: "absolute",
+                                        inset: 32,
+                                        borderRadius: "20px",
+                                        overflow: "hidden",
+                                    }, children: _jsxs(Box, { component: "svg", viewBox: "0 0 100 60", sx: { width: "100%", height: "100%" }, children: [_jsx("polyline", { points: "5,50 25,46 45,40 65,32 85,27", fill: "none", stroke: "hsl(212, 48%, 55%)", strokeWidth: "2.5", strokeLinecap: "round", strokeLinejoin: "round", style: { filter: "drop-shadow(0 0 8px hsl(212, 48%, 55%))" } }), _jsx("circle", { cx: "5", cy: "50", r: "3", fill: "hsl(212, 48%, 45%)" }), _jsx("circle", { cx: "25", cy: "46", r: "3", fill: "hsl(212, 48%, 45%)" }), _jsx("circle", { cx: "45", cy: "40", r: "3", fill: "hsl(212, 48%, 55%)" }), _jsx("circle", { cx: "65", cy: "32", r: "3", fill: "hsl(212, 48%, 55%)" }), _jsx("circle", { cx: "85", cy: "27", r: "3", fill: "hsl(212, 48%, 65%)" }), _jsx("text", { x: "5", y: "58", fontSize: "3", fill: "rgba(255,255,255,0.5)", textAnchor: "middle", children: "2024" }), _jsx("text", { x: "25", y: "58", fontSize: "3", fill: "rgba(255,255,255,0.5)", textAnchor: "middle", children: "2025" }), _jsx("text", { x: "45", y: "58", fontSize: "3", fill: "rgba(255,255,255,0.5)", textAnchor: "middle", children: "2026" }), _jsx("text", { x: "65", y: "58", fontSize: "3", fill: "rgba(255,255,255,0.5)", textAnchor: "middle", children: "2027" }), _jsx("text", { x: "85", y: "58", fontSize: "3", fill: "rgba(255,255,255,0.5)", textAnchor: "middle", children: "2028" })] }) }), _jsxs(Box, { sx: {
+                                        position: "absolute",
+                                        right: 28,
+                                        bottom: 28,
+                                        px: 3,
+                                        py: 2,
+                                        borderRadius: "18px",
+                                        bgcolor: "rgba(11,42,74,0.75)",
+                                        border: "1px solid rgba(59,110,168,0.5)",
+                                        backdropFilter: "blur(12px)",
+                                        minWidth: 170,
+                                    }, children: [_jsx(Typography, { variant: "caption", sx: { color: "rgba(200,220,240,0.9)", mb: 0.5, display: "block" }, children: "Valorizaci\u00F3n estimada 5 a\u00F1os" }), _jsx(Typography, { variant: "h6", sx: { color: "#B084CC", fontWeight: 700 }, children: "+12.5%" }), _jsx(Typography, { variant: "caption", sx: { color: "rgba(200,220,240,0.75)" }, children: "sobre \u00EDndice actual de la zona" })] })] }) })] }) }) }));
+};
+export default ValuoHeatmapSection;
