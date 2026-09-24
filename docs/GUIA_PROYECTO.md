@@ -7,23 +7,23 @@ Su objetivo es presentar las soluciones, rutas comerciales y secciones informati
 ## Stack principal
 - React 19
 - TypeScript 5
-- Vite 7
+- Vite 8
 - React Router DOM 7
 - Material UI 7
-- Tailwind CSS 3
+- Tailwind CSS 4
 
 ## Scripts de trabajo
-- `npm run dev`: inicia entorno local.
-- `npm run build`: genera build de produccion.
-- `npm run preview`: previsualiza el build.
-- `npm run lint`: ejecuta validaciones de ESLint.
+- `pnpm dev`: inicia entorno local.
+- `pnpm build`: genera build de produccion.
+- `pnpm preview`: previsualiza el build.
+- `pnpm lint`: ejecuta validaciones de ESLint.
 
 ## Flujo recomendado de desarrollo
-1. Instalar dependencias con `npm install`.
-2. Levantar local con `npm run dev`.
+1. Instalar dependencias con `pnpm install`.
+2. Levantar local con `pnpm dev`.
 3. Implementar cambios en componentes/paginas.
-4. Validar con `npm run lint`.
-5. Generar build con `npm run build` antes de publicar.
+4. Validar con `pnpm lint`.
+5. Generar build con `pnpm build` antes de publicar.
 
 ## Estructura del proyecto
 - `src/`: codigo principal de la aplicacion.
@@ -61,7 +61,7 @@ Se recomienda consolidar gradualmente en TypeScript para reducir deuda tecnica y
 - Centralizar helpers compartidos en `src/lib/`.
 
 ## Checklist antes de merge/deploy
-- `npm run lint` sin errores.
-- `npm run build` exitoso.
+- `pnpm lint` sin errores.
+- `pnpm build` exitoso.
 - Verificacion de rutas clave en local.
 - Revision visual de responsive basico (desktop y mobile).

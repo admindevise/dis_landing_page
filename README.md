@@ -5,20 +5,20 @@ Aplicación web corporativa desarrollada con React + TypeScript + Vite para pres
 ## Stack
 - React 19
 - TypeScript 5
-- Vite 7
+- Vite 8
 - React Router DOM 7
 - Material UI 7
-- Tailwind CSS 3
+- Tailwind CSS 4
 
 ## Scripts
-- `npm run dev`: entorno local.
-- `npm run build`: build de producción.
-- `npm run preview`: previsualización del build.
-- `npm run lint`: validación ESLint.
+- `pnpm dev`: entorno local.
+- `pnpm build`: build de producción.
+- `pnpm preview`: previsualización del build.
+- `pnpm lint`: validación ESLint.
 
 ## Inicio rápido
-1. `npm install`
-2. `npm run dev`
+1. `pnpm install`
+2. `pnpm dev`
 
 ## Documentación
 - Guía completa del proyecto: [docs/GUIA_PROYECTO.md](docs/GUIA_PROYECTO.md)

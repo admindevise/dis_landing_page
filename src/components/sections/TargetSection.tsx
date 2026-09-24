@@ -1,6 +1,7 @@
 import { Box, Grid } from "@mui/material";
 import { TrendingUp, AccountBalance, Domain, BusinessCenter, People } from "@mui/icons-material";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import SectionTitle from "../atoms/SectionTitle";
 import ProblemCard from "../molecules/ProblemCard";
 
@@ -33,9 +34,11 @@ const personas = [
 ];
 
 const AnimatedCube = ({ delay }: { delay: number }) => {
-  const size = Math.random() * 50 + 40;
-  const left = Math.random() * 100;
-  const duration = 20 + Math.random() * 15;
+  const [{ size, left, duration }] = useState(() => ({
+    size: Math.random() * 50 + 40,
+    left: Math.random() * 100,
+    duration: 20 + Math.random() * 15,
+  }));
 
   return (
     <motion.div
