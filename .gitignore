@@ -27,3 +27,6 @@ src/**/*.jsx
 *.njsproj
 *.sln
 *.sw?
+
+# Local issue drafting
+ISSUES.md
