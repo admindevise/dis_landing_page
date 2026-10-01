@@ -30,20 +30,24 @@ export const DISTheme = createTheme({
     }
   },
   typography: {
-    fontFamily: "'Baloo 2', cursive",
+    fontFamily: "var(--font-body)",
     h1: {
+      fontFamily: "var(--font-display)",
       fontWeight: 700
     },
     h2: {
+      fontFamily: "var(--font-display)",
       fontWeight: 600
     },
     h3: {
+      fontFamily: "var(--font-display)",
       fontWeight: 600
     },
     body1: {
       fontWeight: 400
     },
     button: {
+      fontFamily: "var(--font-ui)",
       fontWeight: 600,
       textTransform: "none"
     }
