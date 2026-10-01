@@ -16,6 +16,17 @@ Aplicación web corporativa desarrollada con React + TypeScript + Vite para pres
 - `pnpm preview`: previsualización del build.
 - `pnpm lint`: validación ESLint.
 
+## Despliegue en Railway
+
+El proyecto incluye `Dockerfile`, `nginx.conf` y `railway.toml`. Railway detectará el `Dockerfile`, ejecutará `pnpm build` y servirá `dist` en el puerto `8080`. Nginx también redirige las rutas de React Router a `index.html`.
+
+1. Sube el repositorio a GitHub.
+2. En Railway, selecciona **New Project** > **Deploy from GitHub repo** y elige este repositorio.
+3. En **Settings** > **Networking**, genera un dominio público.
+4. Cada push a la rama conectada desplegará una nueva versión automáticamente.
+
+Para probar la imagen localmente, inicia Docker Desktop y ejecuta `docker build -t dishub-web . && docker run --rm -p 8080:8080 dishub-web`; después abre `http://localhost:8080`.
+
 ## Inicio rápido
 1. `pnpm install`
 2. `pnpm dev`

@@ -21,46 +21,29 @@
 - `index.css`: estilos globales.
 - `global.d.ts`: declaraciones de tipos globales.
 
-## `src/components/atoms`
-Componentes basicos reutilizables.
-- `Loading.tsx`: estados de carga.
-- `ProgressBar.tsx`: barra de progreso.
-- `ScrollToTop.tsx`: manejo de scroll al cambiar ruta.
-- `SectionTitle.tsx`: titulos de seccion.
-- `SEO.tsx`: metadatos SEO por pagina.
-- `IconTextProps.tsx`: elemento icono + texto.
-
-## `src/components/molecules`
-Componentes compuestos con logica ligera.
-- `ProblemCard.tsx`, `ProblemList.tsx`: bloques de problemas.
-- `SolutionCard.tsx`, `SolutionTabs.tsx`, `SolutionImageDisplay.tsx`: bloques de soluciones.
-- `HistoriaDIS.tsx`: seccion narrativa/institucional.
-
-## `src/components/organisms`
-Bloques grandes para construir paginas.
+## `src/components/global`
+Componentes compartidos entre paginas.
 - `Header.tsx`, `HeaderDevise.tsx`, `HeaderValuo.tsx`: variantes de header.
-- `AnimatedBackground.tsx`: fondo animado.
-- `PlatformModules.tsx`: modulos de plataforma.
-- Subcarpetas por dominio (`BusinessSection/`, `ConsultingSection/`, `MarketPlaceSection/`, `ValuoSection/`).
+- `Footer.tsx`, `SEO.tsx`, `Loading.tsx`: estructura y estados comunes.
+- `PlatformModules.tsx`, `SolutionTabs.tsx`: controles reutilizables.
 
-## `src/components/pages`
+## `src/pages`
 Paginas asociadas a rutas.
 - `Home.tsx`, `Nosotros.tsx`, `Soluciones.tsx`, `Contact.tsx`.
 - `DeviseBusiness.tsx`, `DeviseMarketplace.tsx`.
 - `Valuo.tsx`, `Consulting.tsx`.
 - `NotFound.tsx`.
 
-## `src/components/sections`
-Secciones reutilizables para armado de paginas.
-- `Hero.tsx`, `CTASection.tsx`, `ProblemSection.tsx`, `TargetSection.tsx`, `PriceSection.tsx`.
-- Subcarpetas especializadas: `BenefitsSection/`, `SolutionsSection/`.
+## `src/sections`
+Secciones organizadas por pagina o producto.
+- `home/`: `Hero`, `Challenge`, `Solutions`, `CTA`, `BenefitsSection` y demas secciones del inicio.
+- `devise-business/`, `devise-marketplace/`, `valuo/`, `consulting/`: bloques propios de cada pagina.
 
-## `src/components/templates`
-Layouts o plantillas comunes.
-- `HeaderSwitcher.tsx`: selecciona encabezado segun contexto/ruta.
-- `Footer.tsx`: pie de pagina compartido.
+## `src/hooks`, `src/constants` y `src/lib`
+Capas aisladas para hooks de React, constantes/contenido y utilidades generales.
 
 ## Soporte
+- `src/constants/content.ts`: contenido y constantes de la aplicacion.
 - `src/lib/utils.ts`: utilidades varias.
 - `src/theme/theme.ts`: configuracion de tema visual.
 

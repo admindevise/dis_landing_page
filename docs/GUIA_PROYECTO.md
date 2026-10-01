@@ -31,14 +31,14 @@ Su objetivo es presentar las soluciones, rutas comerciales y secciones informati
 - `docs/`: documentacion tecnica y funcional.
 
 ## Organizacion interna de `src/`
-- `components/atoms`: piezas UI basicas reutilizables.
-- `components/molecules`: combinaciones de atoms con logica simple.
-- `components/organisms`: bloques grandes de interfaz.
-- `components/pages`: pantallas de rutas.
-- `components/sections`: secciones reutilizables de paginas.
-- `components/templates`: estructuras compartidas como header/footer.
-- `theme/`: configuraciones de tema.
+- `components/global`: componentes compartidos como headers, footer, SEO y controles reutilizables.
+- `pages`: pantallas asociadas a rutas.
+- `sections/home`: secciones de la pagina principal.
+- `sections/devise-business`, `sections/devise-marketplace`, `sections/valuo`, `sections/consulting`: secciones aisladas por pagina de producto.
+- `hooks`: hooks compartidos de React.
+- `constants`: contenido y constantes de la aplicacion.
 - `lib/`: utilidades generales.
+- `theme/`: configuraciones de tema.
 
 ## Rutas principales
 - `/`
