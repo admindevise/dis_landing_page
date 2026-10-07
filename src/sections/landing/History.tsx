@@ -11,7 +11,7 @@ export default function History() {
   return (
     <section id="historia" className="lp-section lp-tone-ink lp-history" data-screen-label="11 Trayectoria" aria-labelledby="historia-title">
       <div className="lp-container">
-        <SectionHeading index="11" eyebrow="Trayectoria" titleId="historia-title" title={["Aprendemos con cada", "sistema que construimos."]} accent={[1]} />
+        <SectionHeading index="11" eyebrow="Trayectoria" titleId="historia-title" title={["Cada caso resuelto", "fortalece nuestra metodología."]} accent={[1]} />
 
         <div
           className="lp-history__timeline"

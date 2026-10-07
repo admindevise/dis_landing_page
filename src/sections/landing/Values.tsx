@@ -5,10 +5,10 @@ import { ERAS, SECTORS, SOLUTIONS, STEPS, VALUES } from "../../constants/content
 import { investmentNetwork } from "../../three/objects/investmentNetwork";
 
 const FACTS = [
-  { value: String(SOLUTIONS.length), label: "soluciones conectadas en un mismo ecosistema" },
-  { value: String(SECTORS.length), label: "perfiles de organización a los que servimos" },
-  { value: String(STEPS.length), label: "etapas con entregables verificables por proyecto" },
-  { value: ERAS[0].year.slice(0, 4), label: "año en que empezamos a explorar el problema" }
+  { value: String(SOLUTIONS.length), label: "soluciones integradas en un mismo ecosistema" },
+  { value: String(SECTORS.length), label: "perfiles de organización que atendemos" },
+  { value: String(STEPS.length), label: "etapas de la metodología, con entregables verificables" },
+  { value: ERAS[0].year.slice(0, 4), label: "año de inicio de la exploración del problema" }
 ];
 
 export default function Values() {
@@ -20,9 +20,9 @@ export default function Values() {
             index="12"
             eyebrow="Valores y cultura"
             titleId="valores-title"
-            title={["La forma en que", "hacemos que las", "cosas funcionen."]}
+            title={["Los principios", "que orientan", "nuestro trabajo."]}
             accent={[2]}
-            lead="Un equipo de software se reconoce por sus decisiones: cómo escucha, cómo simplifica, cómo cuida lo que construye y cómo sigue aprendiendo después de lanzar."
+            lead="Nuestro equipo se distingue por la manera en que escucha, simplifica, cuida lo que implementa y continúa aprendiendo después de cada entrega."
           />
           <ol className="lp-values__list">
             {VALUES.map((value, index) => (
@@ -53,7 +53,7 @@ export default function Values() {
             </div>
           ))}
         </dl>
-        <p className="lp-values__source">Cifras del propio ecosistema disHub descrito en esta página.</p>
+        <p className="lp-values__source">Cifras correspondientes al ecosistema disHub descrito en esta página.</p>
       </div>
     </section>
   );

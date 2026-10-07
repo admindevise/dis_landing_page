@@ -12,13 +12,13 @@ export default function Approach() {
   const stageState = useMemo(() => ({ active, progress }), [active, progress]);
 
   return (
-    <section ref={ref} id="enfoque" className="lp-section lp-tone-navy lp-approach" data-screen-label="05 Enfoque" aria-labelledby="enfoque-title">
+    <section ref={ref} id="enfoque" className="lp-section lp-tone-navy lp-approach" data-screen-label="05 Metodología" aria-labelledby="enfoque-title">
       <div className="lp-approach__pin">
         <div className="lp-container lp-approach__inner">
           <div className="lp-approach__head">
-            <SectionHeading index="05" eyebrow="Cómo construimos" titleId="enfoque-title" title={["Del problema", "a una capacidad", "que permanece."]} accent={[2]} />
+            <SectionHeading index="05" eyebrow="Nuestra metodología" titleId="enfoque-title" title={["Del diagnóstico", "a resultados", "sostenibles."]} accent={[2]} />
             <p className="lp-lead" data-reveal>
-              Cada proyecto avanza por cuatro etapas con entregables verificables. El equipo entiende qué se construye, por qué y cómo se incorpora a la operación.
+              Cada caso se desarrolla en cuatro etapas con entregables verificables. La tecnología se define una vez el problema ha sido medido, nunca antes.
             </p>
           </div>
 
@@ -41,7 +41,7 @@ export default function Approach() {
                 <span className="lp-step__num">{pad(index + 1)}</span>
                 <h3 className="lp-step__title">{step.t}</h3>
                 <p className="lp-step__desc">{step.d}</p>
-                <p className="lp-step__out"><span>Resultado</span>{step.out}</p>
+                <p className="lp-step__out"><span>Entregable</span>{step.out}</p>
               </li>
             ))}
           </ol>

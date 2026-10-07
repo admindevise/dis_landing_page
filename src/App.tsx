@@ -15,37 +15,30 @@ import Security from "./sections/landing/Security";
 import Lab from "./sections/landing/Lab";
 import History from "./sections/landing/History";
 import Values from "./sections/landing/Values";
-import Testimonials from "./sections/landing/Testimonials";
 import FAQ from "./sections/landing/FAQ";
 import Contact from "./sections/landing/Contact";
-import { NAV } from "./constants/content";
 import { useLandingMotion } from "./hooks/useLandingMotion";
 import { usePreload } from "./hooks/usePreload";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
-function Landing() {
+function LandingLayout() {
   const rootRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const [headerPad, setHeaderPad] = useState("20px 16px");
   const [wide, setWide] = useState(() => window.innerWidth >= 1080);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("inicio");
+  const { pathname } = useLocation();
+  const activeSection = pathname.split("/")[1] || "nosotros";
   const { progress: loadProgress, done: loaded } = usePreload();
   const [showLoader, setShowLoader] = useState(true);
   const hideLoader = useCallback(() => setShowLoader(false), []);
 
-  useLandingMotion(rootRef, progressRef, loaded);
+  useLandingMotion(rootRef, progressRef, loaded, pathname);
 
   useEffect(() => {
     const handleScroll = () => {
       setHeaderPad(window.scrollY > 24 ? "10px 16px" : "20px 16px");
-      let active = "inicio";
-      NAV.forEach(([id]) => {
-        const section = document.getElementById(id);
-        if (section && section.getBoundingClientRect().top < 140) active = id;
-      });
-      setActiveSection(active);
     };
     const handleResize = () => setWide(window.innerWidth >= 1080);
 
@@ -58,11 +51,16 @@ function Landing() {
     };
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+    setMenuOpen(false);
+  }, [pathname]);
+
   return (
     <>
     <Helmet>
-      <title>disHub | Estudio de software y desarrollo a la medida</title>
-      <meta name="description" content="disHub es un estudio de software en Bogotá. Diseñamos y desarrollamos software a la medida que une estrategia, producto e ingeniería para convertir operaciones complejas en tecnología útil y segura." />
+      <title>disHub | Soluciones tecnológicas para el sector financiero e inmobiliario</title>
+      <meta name="description" content="disHub es el laboratorio de innovación de Digital Investment Systems S.A.S. Mediante una metodología propia, diagnosticamos los retos operativos de entidades del sector financiero e inmobiliario y los resolvemos con la tecnología pertinente para cada caso." />
     </Helmet>
     <div ref={rootRef} className="lp dis-page relative min-h-screen overflow-x-clip bg-disPage bg-disGrid">
       <a href="#contenido" className="lp-skip">Saltar al contenido</a>
@@ -101,43 +99,49 @@ function Landing() {
       <Header headerPad={headerPad} wide={wide} menuOpen={menuOpen} activeSection={activeSection} setMenuOpen={setMenuOpen} />
 
       <main id="contenido" className="lp-main" aria-busy={!loaded}>
-        <Hero />
-        <About />
-        <StatementBand
-          id="lectura"
-          index="03"
-          tone="teal"
-          eyebrow="La razón de existir"
-          statement="Los problemas complejos necesitan a alguien que sepa construir."
-          detail="Entramos donde el negocio, la operación y la tecnología todavía no hablan el mismo idioma. Entendemos el contexto, encontramos la fricción y convertimos la oportunidad en software que puede crecer."
-          metric="01"
-          metricLabel="equipo para negocio, producto e ingeniería"
-        />
-        <Challenge />
-        <Approach />
-        <Lab />
-        <StatementBand
-          id="control"
-          index="07"
-          tone="ink"
-          eyebrow="Lo que permanece"
-          statement="Construimos capacidades, no entregas aisladas."
-          detail="Cada producto, plataforma o automatización deja una base reutilizable: decisiones más claras, equipos más autónomos y tecnología preparada para la siguiente pregunta del negocio."
-          metric="360°"
-          metricLabel="de acompañamiento, de la idea a la operación"
-        />
-        <Solutions />
-        <Sectors />
-        <Security />
-        <History />
-        <Values />
-        <Testimonials />
-        <FAQ />
-        <Contact />
+        <Outlet />
       </main>
 
       <Footer />
     </div>
+    </>
+  );
+}
+
+function HomePage() {
+  return (
+    <>
+      <Hero />
+      <About />
+      <StatementBand
+        id="lectura"
+        index="03"
+        tone="teal"
+        eyebrow="Nuestro propósito"
+        statement="Toda solución efectiva comienza con un diagnóstico riguroso."
+        detail="Intervenimos en los puntos donde el negocio, la operación y la tecnología aún no están alineados. Analizamos el contexto, identificamos las causas de las ineficiencias y las transformamos en soluciones medibles, con la tecnología que cada caso requiere."
+        metric="01"
+        metricLabel="metodología integral, del diagnóstico a los resultados"
+      />
+    </>
+  );
+}
+
+function ApproachPage() {
+  return (
+    <>
+      <Approach />
+      <Lab />
+      <StatementBand
+        id="control"
+        index="07"
+        tone="ink"
+        eyebrow="Valor sostenible"
+        statement="Generamos capacidades permanentes, no entregables aislados."
+        detail="Cada diagnóstico, proceso rediseñado o solución implementada constituye una base reutilizable: decisiones mejor fundamentadas, equipos con mayor autonomía y una organización preparada para sus próximos retos."
+        metric="360°"
+        metricLabel="de acompañamiento, del diagnóstico a la operación"
+      />
     </>
   );
 }
@@ -147,7 +151,16 @@ export default function App() {
     <>
       <CursorEffect />
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route element={<LandingLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="nosotros" element={<HomePage />} />
+          <Route path="desafio" element={<Challenge />} />
+          <Route path="enfoque" element={<ApproachPage />} />
+          <Route path="soluciones" element={<><Solutions /><Sectors /><Security /></>} />
+          <Route path="seguridad" element={<Navigate to="/soluciones" replace />} />
+          <Route path="historia" element={<><History /><Values /></>} />
+          <Route path="contacto" element={<><FAQ /><Contact /></>} />
+        </Route>
         <Route path="/politica-privacidad" element={<PrivacyPolicy />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

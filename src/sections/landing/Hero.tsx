@@ -4,11 +4,11 @@ import SplitLines from "../../components/landing/SplitLines";
 import { connectedAssets } from "../../three/objects/connectedAssets";
 import { SITE } from "../../constants/content";
 
-const AUDIENCE = ["Estrategia", "Producto", "Ingeniería", "Operación"];
+const AUDIENCE = ["Diagnóstico", "Diseño", "Validación", "Escalamiento"];
 const HUD_ROWS = [
-  ["Contexto", "Entendido"],
-  ["Hipótesis", "Validada"],
-  ["Siguiente paso", "En marcha"]
+  ["Diagnóstico", "Completado"],
+  ["Solución", "Validada"],
+  ["Escalamiento", "En curso"]
 ];
 
 export default function Hero() {
@@ -17,32 +17,32 @@ export default function Hero() {
       <ThreeStage
         factory={connectedAssets}
         className="lp-hero__stage"
-            label="Sistema digital construido por capas, conectado a personas, datos y decisiones que intercambian pulsos de información."
+            label="Estructura por capas que conecta personas, datos y decisiones mediante flujos de información."
       />
       <div className="lp-hero__veil" aria-hidden="true" />
 
       <div className="lp-container lp-hero__content">
         <p className="lp-hero__badge" data-reveal>
           <span className="lp-hero__dot" aria-hidden="true" />
-          Estudio de software · Bogotá
+          Laboratorio de innovación · Bogotá
         </p>
         <h1 id="hero-title" className="lp-hero__title" data-reveal="lines">
-          <SplitLines lines={["Construimos", "tecnología para", "negocios que", "mueven el mundo."]} accent={[3]} />
+          <SplitLines lines={["Resolvemos", "retos operativos", "con metodología", "y tecnología."]} accent={[3]} />
         </h1>
         <p className="lp-hero__lead" data-reveal style={{ "--d": 4 } as CSSProperties}>
-          disHub es un estudio de software. Unimos entendimiento de negocio, diseño de producto e ingeniería para convertir operaciones complejas en tecnología útil, segura y lista para crecer.
+          disHub es el laboratorio de innovación de Digital Investment Systems S.A.S. Aplicamos una metodología propia para diagnosticar los retos operativos de cada organización y resolverlos con la herramienta pertinente: rediseño de procesos, datos, automatización, inteligencia artificial o plataformas especializadas.
         </p>
         <div className="lp-hero__actions" data-reveal style={{ "--d": 5 } as CSSProperties}>
           <a className="lp-btn lp-btn--primary" href={SITE.bookingUrl} target="_blank" rel="noopener noreferrer">
             Agendar una reunión
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
           </a>
-          <a className="lp-btn lp-btn--ghost" href="#nosotros">Conocer disHub</a>
+          <a className="lp-btn lp-btn--ghost" href="#enfoque">Conocer la metodología</a>
         </div>
       </div>
 
       <div className="lp-hero__hud" aria-hidden="true">
-        <p className="lp-hero__hud-title">Sistema en construcción <span>Vista ilustrativa</span></p>
+        <p className="lp-hero__hud-title">Metodología en curso <span>Vista ilustrativa</span></p>
         <dl>
           {HUD_ROWS.map(([label, value]) => (
             <div key={label}>
@@ -54,11 +54,11 @@ export default function Hero() {
       </div>
 
       <div className="lp-container lp-hero__footer">
-        <ul className="lp-hero__audience" aria-label="Cómo construimos">
+        <ul className="lp-hero__audience" aria-label="Etapas de la metodología">
           {AUDIENCE.map((item) => <li key={item}>{item}</li>)}
         </ul>
         <a href="#nosotros" className="lp-hero__cue">
-          Desplazar
+          Continuar
           <span aria-hidden="true" />
         </a>
       </div>

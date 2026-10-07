@@ -8,16 +8,16 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="preguntas" className="lp-section lp-tone-ink lp-faq" data-screen-label="14 FAQ" aria-labelledby="preguntas-title">
+    <section id="preguntas" className="lp-section lp-tone-ink lp-faq" data-screen-label="13 FAQ" aria-labelledby="preguntas-title">
       <div className="lp-container lp-faq__grid">
         <div className="lp-faq__aside">
           <div className="lp-faq__sticky">
             <SectionHeading
-              index="14"
+              index="13"
               eyebrow="Preguntas frecuentes"
               titleId="preguntas-title"
-              title={["Respuestas claras", "antes de empezar."]}
-              lead={<>Si su pregunta no está aquí, escríbanos a <a href={`mailto:${CONTACT_DETAILS.email}`}>{CONTACT_DETAILS.email}</a>.</>}
+              title={["Información relevante", "antes de iniciar."]}
+              lead={<>Para consultas adicionales, escríbanos a <a href={`mailto:${CONTACT_DETAILS.email}`}>{CONTACT_DETAILS.email}</a>.</>}
             />
             <p className="lp-faq__count" data-reveal>{pad(FAQS.length)} <span>preguntas</span></p>
           </div>

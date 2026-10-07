@@ -42,9 +42,8 @@ export const SITE = {
 export const NAV = [
   ["nosotros", "Nosotros"],
   ["desafio", "Desafío"],
-  ["enfoque", "Enfoque"],
-  ["soluciones", "Qué construimos"],
-  ["seguridad", "Seguridad"],
+  ["enfoque", "Metodología"],
+  ["soluciones", "Soluciones"],
   ["historia", "Trayectoria"],
   ["contacto", "Contacto"]
 ];
@@ -100,58 +99,58 @@ export const SOLUTIONS = [
   },
   {
     key: "ai",
-    name: "Transformación con AI",
+    name: "Transformación tecnológica",
     kind: "Consultoría · BrickFlow",
     mark: MARK.brick,
-    tagline: "Inteligencia artificial aplicada a sus procesos.",
-    desc: "Acompañamos a su organización a identificar dónde la inteligencia artificial genera valor, diseñar la estrategia, automatizar procesos y preparar a los equipos para sostener el cambio.",
-    points: ["Análisis y diagnóstico", "Estrategia y automatización", "Cultura y adopción"],
+    tagline: "Nuestra metodología aplicada a los procesos de su organización.",
+    desc: "Acompañamos a su organización en la identificación de las oportunidades en las que la tecnología genera valor —automatización, datos, inteligencia artificial o nuevas plataformas—, en el diseño de la hoja de ruta, en su ejecución y en la preparación de los equipos para sostener el cambio.",
+    points: ["Diagnóstico de procesos", "Hoja de ruta tecnológica", "Implementación y adopción"],
     hint: "Pase el cursor para ordenar el flujo",
     demo: [
       { label: "Procesos diagnosticados", value: "18" },
       { label: "Tareas automatizables", value: "7" },
       { label: "Equipos en adopción", value: "3" }
     ],
-    alt: "Partículas dispersas que una red neuronal ordena en un muro de bloques: la inteligencia artificial convierte la complejidad en procesos estructurados."
+    alt: "Partículas dispersas que una red organiza en un muro de bloques: la metodología convierte la complejidad en procesos estructurados."
   }
 ];
 
 export const PROBLEMS = [
   {
     icon: ICON.file,
-    t: "Contexto fragmentado",
-    d: "La información vive en documentos, conversaciones y sistemas que no comparten una misma lectura del negocio.",
-    c: "Cada decisión empieza reconstruyendo qué está pasando."
+    t: "Información fragmentada",
+    d: "La información se encuentra dispersa en documentos, comunicaciones y sistemas que no ofrecen una visión unificada del negocio.",
+    c: "Cada decisión exige reconstruir previamente el estado de la operación."
   },
   {
     icon: ICON.trace,
     t: "Procesos manuales",
-    d: "El trabajo depende de hojas de cálculo, correos y tareas repetitivas que consumen tiempo y abren espacio para el error.",
-    c: "El equipo opera el proceso en lugar de mejorarlo."
+    d: "La operación depende de hojas de cálculo, correos electrónicos y tareas repetitivas que consumen tiempo y aumentan el riesgo de error.",
+    c: "Los equipos dedican su capacidad a ejecutar el proceso, no a mejorarlo."
   },
   {
     icon: ICON.swap,
-    t: "Decisiones sin señal",
-    d: "Los equipos reciben reportes tarde y no cuentan con la información necesaria para actuar cuando todavía hay margen.",
-    c: "La organización reacciona cuando el problema ya creció."
+    t: "Información inoportuna",
+    d: "Los reportes llegan con retraso y los equipos no disponen de los datos necesarios para actuar a tiempo.",
+    c: "Las decisiones se toman cuando el problema ya ha escalado."
   },
   {
     icon: ICON.layers,
-    t: "Handoffs frágiles",
-    d: "Cada área resuelve su parte con herramientas distintas y el trabajo pierde continuidad en los puntos de entrega.",
-    c: "La misma información se explica más de una vez."
+    t: "Transiciones entre áreas",
+    d: "Cada área utiliza herramientas distintas y el trabajo pierde continuidad en los puntos de entrega.",
+    c: "La misma información debe explicarse y validarse en repetidas ocasiones."
   },
   {
     icon: ICON.msg,
     t: "Complejidad creciente",
-    d: "Nuevos productos, reglas y actores agregan capas a la operación sin una base digital que las ordene.",
-    c: "Crecer significa sumar excepciones y esfuerzo manual."
+    d: "Nuevos productos, normas y actores añaden capas a la operación sin una base digital que las organice.",
+    c: "El crecimiento implica más excepciones y mayor esfuerzo manual."
   },
   {
     icon: ICON.chart,
-    t: "Escala difícil",
-    d: "La solución que funcionaba para un equipo no siempre está preparada para más usuarios, volumen o exigencia regulatoria.",
-    c: "Cada etapa de crecimiento reabre decisiones básicas."
+    t: "Limitaciones de escala",
+    d: "Las soluciones que funcionan para un equipo no siempre soportan mayor volumen, más usuarios o nuevas exigencias regulatorias.",
+    c: "Cada etapa de crecimiento obliga a replantear decisiones estructurales."
   }
 ];
 
@@ -187,9 +186,9 @@ export const PROOFS = [
 ];
 
 export const PILLARS = [
-  { t: "Negocio", d: "Conocimiento fiduciario e inmobiliario." },
-  { t: "Producto", d: "Diseño centrado en quien opera." },
-  { t: "Ingeniería", d: "Arquitectura segura y escalable." }
+  { t: "Negocio", d: "Conocimiento del sector fiduciario e inmobiliario." },
+  { t: "Metodología", d: "Diagnóstico riguroso previo a toda propuesta." },
+  { t: "Tecnología", d: "Herramientas pertinentes para cada caso." }
 ];
 
 export const METRICS = [
@@ -208,50 +207,50 @@ export const SECTORS = [
 ];
 
 export const CAPABILITIES = [
-  { icon: ICON.cpu, t: "Inteligencia artificial aplicada", d: "Modelos que clasifican, concilian y detectan hallazgos en la operación." },
-  { icon: ICON.db, t: "Datos y analítica", d: "Información unificada y reportes que soportan decisiones." },
-  { icon: ICON.layers, t: "Plataformas SaaS", d: "Productos especializados, seguros y escalables para entidades del sector." },
-  { icon: ICON.merge, t: "Integración y automatización", d: "Conexión con sistemas contables y financieros existentes." }
+  { icon: ICON.flow, t: "Rediseño y automatización de procesos", d: "Eliminamos tareas manuales y repetitivas en conciliación, generación de reportes y comunicaciones." },
+  { icon: ICON.db, t: "Datos y analítica", d: "Integramos la información y la convertimos en indicadores para la toma de decisiones." },
+  { icon: ICON.cpu, t: "Inteligencia artificial", d: "Modelos que clasifican, concilian y detectan hallazgos, cuando el caso lo justifica." },
+  { icon: ICON.layers, t: "Plataformas e integraciones", d: "Productos propios o integración con los sistemas existentes, según lo requiera cada caso." }
 ];
 
 export const VALUES = [
-  { n: "01", t: "Rigor", d: "Cada decisión se sustenta en datos y en el conocimiento del negocio." },
-  { n: "02", t: "Transparencia", d: "Comunicamos con claridad qué hacemos, cómo y con qué resultados." },
-  { n: "03", t: "Colaboración", d: "Construimos con nuestros clientes, no solo para ellos." },
+  { n: "01", t: "Rigor", d: "Ninguna recomendación sin diagnóstico previo; cada decisión se sustenta en datos." },
+  { n: "02", t: "Transparencia", d: "Comunicamos con claridad qué hacemos, cómo lo hacemos y qué resultados obtenemos." },
+  { n: "03", t: "Colaboración", d: "Trabajamos junto a nuestros clientes en cada etapa del proceso." },
   { n: "04", t: "Mejora continua", d: "Medimos, aprendemos y ajustamos en cada ciclo." }
 ];
 
 export const TESTIMONIALS = [
   { q: "Con DIS dejamos de perseguir la información en hojas de cálculo. Hoy nuestro equipo toma decisiones con una visión clara de cada activo y cada operación.", a: "Mariana Torres", r: "Directora de Operaciones · Horizonte Fiduciaria" },
   { q: "El acompañamiento del equipo fue clave para convertir un proceso complejo en una experiencia simple para nuestros inversionistas, sin perder control ni trazabilidad.", a: "Andrés Velasco", r: "Gerente de Transformación · Capitalia" },
-  { q: "Encontramos un aliado que entiende el negocio y también sabe construir tecnología. La solución se adaptó a nuestra operación y empezó a generar valor desde el primer ciclo.", a: "Laura Méndez", r: "Líder de Producto · Urbana Activos" }
+  { q: "Encontramos un aliado que entiende el negocio y sabe qué tecnología aplicar. La solución se adaptó a nuestra operación y empezó a generar valor desde el primer ciclo.", a: "Laura Méndez", r: "Líder de Producto · Urbana Activos" }
 ];
 
 export const CONTACT_DETAILS = {
   email: "contacto@dishub.co",
   address: "Calle 76 Nº 8-28, piso 3, Bogotá, Colombia",
-  responseTime: "2"
+  responseTime: "dos (2)"
 };
 
 export const STEPS = [
   {
-    t: "Descubrimiento",
-    d: "Entendemos su operación, sus actores y sus restricciones regulatorias. Identificamos dónde se pierde tiempo, dinero o control.",
-    out: "diagnóstico y mapa de oportunidades"
+    t: "Diagnóstico",
+    d: "Analizamos la operación, sus actores y sus restricciones regulatorias, y cuantificamos dónde se generan pérdidas de tiempo, recursos o control.",
+    out: "diagnóstico cuantificado y mapa de oportunidades"
   },
   {
-    t: "Diseño",
-    d: "Definimos la solución con usted: flujos, reglas de negocio, datos e integraciones, priorizados por impacto.",
-    out: "alcance, prototipo y plan de implementación"
+    t: "Diseño de la solución",
+    d: "Definimos con su equipo la combinación adecuada de procesos, datos y tecnología, priorizada según su impacto y viabilidad.",
+    out: "alcance, prototipo y caso de negocio"
   },
   {
-    t: "Construcción",
-    d: "Desarrollamos e integramos por fases cortas, con validaciones periódicas y pruebas con usuarios reales.",
-    out: "solución funcional validada"
+    t: "Validación",
+    d: "Probamos la solución en un piloto controlado, con usuarios reales e indicadores acordados previamente.",
+    out: "piloto con resultados medidos"
   },
   {
     t: "Escalamiento",
-    d: "Acompañamos la puesta en producción, medimos resultados y extendemos la solución a nuevas áreas.",
+    d: "Extendemos lo validado al conjunto de la operación, transferimos capacidades a su equipo y hacemos seguimiento al impacto.",
     out: "indicadores de impacto y hoja de ruta"
   }
 ];
@@ -259,62 +258,66 @@ export const STEPS = [
 export const ERAS = [
   {
     year: "2020–2022",
-    title: "Origen y conceptualización",
+    title: "Origen",
     items: [
-      { k: "Problema", v: "Identificamos el potencial de digitalizar la cadena de valor inmobiliaria para la banca tradicional." },
-      { k: "Exploración", v: "Evaluamos las soluciones existentes en el mercado." },
-      { k: "Hallazgo", v: "No existía una solución a la medida para las necesidades de la industria y la región." }
+      { k: "Problema", v: "Identificamos que la cadena de valor inmobiliaria operaba con procesos manuales y baja trazabilidad." },
+      { k: "Exploración", v: "Evaluamos las herramientas disponibles en el mercado y su pertinencia para la región." },
+      { k: "Hallazgo", v: "Las herramientas genéricas no atendían el problema de fondo; era necesario comprenderlo primero." }
     ]
   },
   {
     year: "2023",
-    title: "Desarrollo propio",
+    title: "Primer caso",
     items: [
-      { k: "Construcción", v: "Desarrollamos un primer marketplace de inversiones con una arquitectura especializada." },
-      { k: "Colaboración", v: "Trabajamos con actores del negocio tradicional para alinear la solución." },
-      { k: "Validación", v: "Los usuarios finales confirmaron el problema y la necesidad de resolverlo." }
+      { k: "Diagnóstico", v: "Trabajamos con actores del negocio tradicional para dimensionar el problema." },
+      { k: "Solución", v: "De ese trabajo surgió un primer marketplace de inversiones." },
+      { k: "Validación", v: "Los usuarios finales confirmaron la existencia del problema y el valor de resolverlo." }
     ]
   },
   {
     year: "2024",
-    title: "Nace DIS",
+    title: "Constitución de DIS",
     items: [
-      { k: "Independencia", v: "Creamos una compañía dedicada al desarrollo de soluciones tecnológicas." },
-      { k: "Ampliación", v: "Identificamos nuevas soluciones para el mercado." },
-      { k: "Arquitectura", v: "La madurez de FinTech, SaaS e IA nos permitió construir soluciones robustas y especializadas." }
+      { k: "Independencia", v: "Constituimos una compañía dedicada a resolver los retos del sector mediante tecnología." },
+      { k: "Metodología", v: "Formalizamos las etapas de diagnóstico, diseño, validación y escalamiento." },
+      { k: "Ampliación", v: "Aplicamos la metodología a nuevos retos, de los cuales surgieron nuevas soluciones." }
     ]
   },
   {
     year: "2025 en adelante",
-    title: "Producción",
+    title: "Resultados en operación",
     items: [
-      { k: "Implementación", v: "Llevamos las soluciones a operaciones reales con impactos positivos." },
-      { k: "Incubación", v: "Promovemos una cultura de innovación interna y con los actores del mercado." },
-      { k: "Resultados", v: "Generamos eficiencias directas en las operaciones que usan nuestras soluciones." }
+      { k: "Implementación", v: "Nuestras soluciones operan en entidades reales con impactos medibles." },
+      { k: "Incubación", v: "Promovemos una cultura de innovación al interior de la compañía y con los actores del mercado." },
+      { k: "Resultados", v: "Generamos eficiencias directas en las operaciones que aplican la metodología." }
     ]
   }
 ];
 
 export const FAQS = [
   {
-    q: "¿Qué tipo de organizaciones atienden?",
-    a: "Sociedades fiduciarias, gestores de activos, operadores y desarrolladores inmobiliarios, grupos corporativos con operación inmobiliaria e inversionistas."
+    q: "¿disHub es una empresa de desarrollo de software?",
+    a: "No. Somos un laboratorio de innovación enfocado en resolver retos operativos. La tecnología, propia o de terceros, es un medio; en algunos casos la solución consiste en un ajuste de procesos o de datos, sin necesidad de desarrollo a la medida."
   },
   {
-    q: "¿Las soluciones se integran con nuestros sistemas actuales?",
-    a: "Sí. En la etapa de diseño definimos las integraciones necesarias con sus sistemas contables, financieros y de gestión, para evitar reprocesos y duplicidad de información."
+    q: "¿Qué tipo de organizaciones atienden?",
+    a: "Sociedades fiduciarias, gestores de activos y fondos, operadores y desarrolladores inmobiliarios, grupos corporativos con operación inmobiliaria e inversionistas."
+  },
+  {
+    q: "¿Es necesario adoptar uno de sus productos?",
+    a: "No. Si alguna de nuestras soluciones atiende su necesidad, la proponemos; de lo contrario, diseñamos la respuesta adecuada con la misma metodología."
+  },
+  {
+    q: "¿La solución se integra con nuestros sistemas actuales?",
+    a: "Sí. Durante el diagnóstico revisamos sus sistemas contables, financieros y de gestión, y diseñamos la solución sobre ellos para evitar reprocesos y duplicidad de información."
   },
   {
     q: "¿Cómo protegen la información de nuestros clientes?",
-    a: "Aplicamos control de acceso por roles, registro auditable de las operaciones y tratamiento de datos conforme a la Ley 1581 de 2012. Los detalles de infraestructura se comparten en la etapa de diagnóstico."
+    a: "Aplicamos control de acceso por roles, registro auditable de las operaciones y tratamiento de datos personales conforme a la Ley 1581 de 2012. Los detalles de infraestructura se comparten durante la etapa de diagnóstico."
   },
   {
-    q: "¿Cuánto tarda una implementación?",
-    a: "Depende del alcance. Trabajamos por fases cortas con entregables verificables; el plazo estimado se define al cierre de la etapa de descubrimiento."
-  },
-  {
-    q: "¿Puedo empezar con una sola solución?",
-    a: "Sí. Cada solución funciona de manera independiente y se puede ampliar después dentro del mismo ecosistema."
+    q: "¿Cuál es la duración del proceso?",
+    a: "Depende del alcance de cada caso. El diagnóstico tiene un plazo definido y, a su cierre, se establecen el alcance del piloto y el cronograma de escalamiento."
   }
 ];
 

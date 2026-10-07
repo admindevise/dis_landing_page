@@ -4,21 +4,23 @@ import { EMPTY_FORM, FIELDS, SITE, type FormData } from "../../constants/content
 type Errors = Partial<Record<keyof FormData, string>>;
 
 const INTERESTS = [
+  ["diagnostico", "Diagnóstico de un reto operativo"],
   ["devise-business", "Devise Business"],
   ["devise-marketplace", "Devise Marketplace"],
   ["valuo", "Valuo"],
-  ["ai", "Transformación con AI"]
+  ["ai", "Transformación tecnológica"],
+  ["otro", "Otro / por definir"]
 ];
 
 function validate(form: FormData) {
   const errors: Errors = {};
   if (form.nombre.trim().length < 3) errors.nombre = "Indique su nombre completo.";
   if (form.empresa.trim().length < 2) errors.empresa = "Indique el nombre de su empresa.";
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.trim())) errors.email = "El correo no es válido.";
-  if (form.telefono && !/^[+\d\s()-]{7,20}$/.test(form.telefono)) errors.telefono = "Use solo números, espacios o +.";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.trim())) errors.email = "Ingrese un correo electrónico válido.";
+  if (form.telefono && !/^[+\d\s()-]{7,20}$/.test(form.telefono)) errors.telefono = "Ingrese un número telefónico válido.";
   if (!form.interes) errors.interes = "Seleccione una opción.";
   if (form.mensaje.trim().length < 20) errors.mensaje = "El mensaje debe tener al menos 20 caracteres.";
-  if (!form.consent) errors.consent = "Debe autorizar el tratamiento de datos.";
+  if (!form.consent) errors.consent = "Para continuar, debe autorizar el tratamiento de sus datos personales.";
   return errors;
 }
 
@@ -93,8 +95,8 @@ export default function ContactForm() {
         <span className="lp-form__check" aria-hidden="true">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m20 6-11 11-5-5" /></svg>
         </span>
-        <h3>Recibimos su mensaje.</h3>
-        <p>Gracias por escribirnos. Le contactaremos al correo indicado.</p>
+        <h3>Su mensaje ha sido recibido.</h3>
+        <p>Gracias por contactarnos. Un integrante de nuestro equipo le responderá al correo indicado.</p>
         <button
           type="button"
           className="lp-btn lp-btn--ghost"
@@ -136,7 +138,7 @@ export default function ContactForm() {
       })}
 
       <div className="lp-field lp-field--full">
-        <label htmlFor="interes">¿En cuál de nuestras soluciones está interesado?</label>
+        <label htmlFor="interes">Área de interés</label>
         <select
           id="interes"
           value={form.interes}
@@ -144,14 +146,14 @@ export default function ContactForm() {
           aria-describedby={errors.interes ? "err-interes" : undefined}
           onChange={(event) => update("interes", event.target.value)}
         >
-          <option value="">Seleccionar...</option>
+          <option value="">Seleccione una opción</option>
           {INTERESTS.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
         </select>
         {errors.interes && <p id="err-interes" className="lp-field__error">{errors.interes}</p>}
       </div>
 
       <div className="lp-field lp-field--full">
-        <label htmlFor="mensaje">Cuéntanos más (al menos 20 caracteres)</label>
+        <label htmlFor="mensaje">Mensaje (mínimo 20 caracteres)</label>
         <textarea
           id="mensaje"
           name="mensaje"
@@ -160,7 +162,7 @@ export default function ContactForm() {
           aria-invalid={Boolean(errors.mensaje)}
           aria-describedby={errors.mensaje ? "err-mensaje" : undefined}
           onChange={(event) => update("mensaje", event.target.value)}
-          placeholder="Cuéntanos sobre tu operación..."
+          placeholder="Describa brevemente el reto que desea resolver."
         />
         {errors.mensaje && <p id="err-mensaje" className="lp-field__error">{errors.mensaje}</p>}
       </div>
@@ -174,7 +176,7 @@ export default function ContactForm() {
           onChange={(event) => update("consent", event.target.checked)}
         />
         <span>
-          Autorizo el tratamiento de mis datos personales conforme a la <a href="/politica-privacidad">Política de Privacidad</a>.
+          Autorizo el tratamiento de mis datos personales conforme a la <a href="/politica-privacidad">Política de Privacidad</a> y a la Ley 1581 de 2012.
         </span>
       </label>
       {errors.consent && <p id="err-consent" className="lp-field__error lp-field--full">{errors.consent}</p>}

@@ -11,12 +11,12 @@ export default function Solutions() {
   const stageState = useMemo(() => ({ active: selected }), [selected]);
 
   return (
-    <section id="soluciones" className="lp-section lp-tone-glass lp-solutions" data-screen-label="08 Qué construimos" aria-labelledby="soluciones-title">
+    <section id="soluciones" className="lp-section lp-tone-glass lp-solutions" data-screen-label="08 Soluciones" aria-labelledby="soluciones-title">
       <div className="lp-container">
         <div className="lp-solutions__head">
-          <SectionHeading index="08" eyebrow="Qué construimos" titleId="soluciones-title" title={["Productos propios,", "plataformas a la medida", "y nuevas posibilidades."]} accent={[2]} />
+          <SectionHeading index="08" eyebrow="Soluciones" titleId="soluciones-title" title={["Soluciones probadas", "para retos", "recurrentes del sector."]} accent={[2]} />
           <p className="lp-lead" data-reveal>
-            Estos son algunos productos y capacidades nacidos de nuestro trabajo con industrias complejas. Son muestra de cómo exploramos, diseñamos y construimos el siguiente sistema que una operación necesita.
+            Cuando un mismo reto se presenta en varias organizaciones, convertimos la solución en un producto. Así surgieron las cuatro soluciones que presentamos a continuación. Para casos particulares, aplicamos la misma metodología en el diseño de una respuesta específica.
           </p>
         </div>
 

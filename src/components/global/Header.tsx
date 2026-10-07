@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { NAV, SITE } from "../../constants/content";
 
 interface HeaderProps {
@@ -36,14 +37,6 @@ export default function Header({ headerPad, wide, menuOpen, activeSection, setMe
     return () => document.removeEventListener("keydown", trapFocus);
   }, [menuOpen, setMenuOpen]);
 
-  const handleScroll = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setMenuOpen(false);
-    }
-  };
-
   return (
     <>
       <header
@@ -77,8 +70,8 @@ export default function Header({ headerPad, wide, menuOpen, activeSection, setMe
             boxShadow: "inset 0 1px 0 rgb(255 255 255 / 0.08), 0 16px 40px -20px rgb(0 0 0 / 0.7)"
           }}
         >
-          <a
-            href="#inicio"
+          <Link
+            to="/"
             aria-label="disHub, ir al inicio"
             style={{
               display: "flex",
@@ -93,7 +86,7 @@ export default function Header({ headerPad, wide, menuOpen, activeSection, setMe
             }}
           >
             <img src="/DIS.svg" alt="" width="110" height="37" style={{ display: "block", objectFit: "contain" }} />
-          </a>
+          </Link>
 
           {wide && (
             <nav
@@ -104,9 +97,9 @@ export default function Header({ headerPad, wide, menuOpen, activeSection, setMe
               }}
             >
               {NAV.map(([id, label]) => (
-                <a
+                <Link
                   key={id}
-                  href={`#${id}`}
+                  to={`/${id}`}
                   aria-current={activeSection === id ? "location" : undefined}
                   style={{
                     position: "relative",
@@ -127,7 +120,7 @@ export default function Header({ headerPad, wide, menuOpen, activeSection, setMe
                 >
                   {label}
                   <span style={{ position: "absolute", left: "14px", right: "14px", bottom: "6px", height: "2px", borderRadius: "2px", background: "#02B2B2", opacity: activeSection === id ? 1 : 0, transition: "opacity 200ms" }} />
-                </a>
+                </Link>
               ))}
             </nav>
           )}
@@ -251,9 +244,9 @@ export default function Header({ headerPad, wide, menuOpen, activeSection, setMe
           </div>
 
           {NAV.map(([id, label]) => (
-            <a
+            <Link
               key={id}
-              href={`#${id}`}
+              to={`/${id}`}
               onClick={() => setMenuOpen(false)}
               style={{
                 color: "#fff",
@@ -265,7 +258,7 @@ export default function Header({ headerPad, wide, menuOpen, activeSection, setMe
               }}
             >
               {label}
-            </a>
+            </Link>
           ))}
         </div>
       )}

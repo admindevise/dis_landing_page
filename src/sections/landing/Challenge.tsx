@@ -14,11 +14,11 @@ export default function Challenge() {
           <div className="lp-challenge__sticky">
             <SectionHeading
               index="04"
-              eyebrow="El punto de partida"
+              eyebrow="El desafío"
               titleId="desafio-title"
-              title={["Los negocios", "complejos exigen", "tecnología que", "entienda el contexto."]}
+              title={["Las operaciones", "complejas requieren", "soluciones que", "comprendan su contexto."]}
               accent={[2]}
-              lead="Cuando una operación crece, aparecen sistemas que no conversan, decisiones que dependen de personas clave y procesos que ya no escalan. Ahí empieza nuestro trabajo."
+              lead="A medida que una operación crece, surgen sistemas desconectados, decisiones que dependen de personas específicas y procesos que dejan de ser escalables. En ese punto inicia nuestro diagnóstico."
             />
             <div className="lp-challenge__counter" aria-hidden="true">
               <p className="lp-challenge__numbers">
@@ -46,7 +46,7 @@ export default function Challenge() {
               </div>
               <h3 className="lp-problem__title">{problem.t}</h3>
               <p className="lp-problem__desc">{problem.d}</p>
-              <p className="lp-problem__effect"><span>Efecto</span>{problem.c}</p>
+              <p className="lp-problem__effect"><span>Impacto</span>{problem.c}</p>
             </li>
           ))}
         </ol>

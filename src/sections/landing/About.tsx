@@ -13,7 +13,7 @@ export default function About() {
           <ThreeStage
             factory={dataFlow}
             className="lp-about__stage"
-            label="Partículas de datos que atraviesan tres planos —negocio, producto e ingeniería— y pasan de un estado disperso a carriles ordenados."
+            label="Partículas de datos que atraviesan tres planos —negocio, metodología y tecnología— y pasan de un estado disperso a un flujo ordenado."
           />
           <ol className="lp-about__legend" aria-hidden="true">
             {PILLARS.map((pillar, index) => (
@@ -27,16 +27,16 @@ export default function About() {
             index="02"
             eyebrow="Quiénes somos"
             titleId="nosotros-title"
-            title={["Un equipo para", "pensar, diseñar", "y construir", "software."]}
+            title={["Un equipo para", "comprender, diseñar", "y resolver", "retos operativos."]}
             accent={[3]}
-            lead="Un equipo que entra en problemas complejos con curiosidad de negocio y disciplina de ingeniería. No partimos de una tecnología: partimos de lo que necesita cambiar."
+            lead="Abordamos los problemas complejos con conocimiento del negocio y rigor metodológico. Nuestro punto de partida no es una tecnología, sino la necesidad que debe atenderse."
           />
           <div className="lp-about__body">
             <p data-reveal>
-              disHub es el estudio de software de Digital Investment Systems S.A.S. Nacimos dentro de un negocio real y aprendimos que las mejores soluciones no se compran listas: se entienden, se diseñan y se construyen cerca de quienes las van a operar.
+              disHub es el laboratorio de innovación de Digital Investment Systems S.A.S. Surgimos en el seno de una operación real y comprobamos que las soluciones más efectivas no se adquieren listas: se comprenden, se diseñan y se validan junto a quienes las operan.
             </p>
             <p data-reveal style={{ "--d": 1 } as CSSProperties}>
-              Hoy combinamos conocimiento de industrias reguladas con producto e ingeniería. Construimos plataformas propias, desarrollos a la medida y nuevas capacidades digitales con una misma exigencia: que la tecnología resuelva algo real y permanezca útil después del lanzamiento.
+              Hoy integramos el conocimiento de industrias reguladas con una metodología propia de diagnóstico, diseño, validación y escalamiento. La respuesta puede consistir en el rediseño de un proceso, un modelo de datos, una automatización, inteligencia artificial o una plataforma especializada. En todos los casos aplicamos el mismo criterio: que la solución atienda una necesidad concreta y mantenga su vigencia después de implementada.
             </p>
           </div>
           <ol className="lp-about__pillars">

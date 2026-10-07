@@ -9,7 +9,7 @@ const clamp = (value: number) => Math.min(1, Math.max(0, value));
  * - exposes `--progress`, `--enter` and `--exit` per section for parallax and panel transitions;
  * - updates the reading progress bar.
  */
-export function useLandingMotion(rootRef: RefObject<HTMLElement | null>, progressRef: RefObject<HTMLElement | null>, enabled = true) {
+export function useLandingMotion(rootRef: RefObject<HTMLElement | null>, progressRef: RefObject<HTMLElement | null>, enabled = true, routeKey = "") {
   useEffect(() => {
     const root = rootRef.current;
     if (!root || !enabled) return;
@@ -64,5 +64,5 @@ export function useLandingMotion(rootRef: RefObject<HTMLElement | null>, progres
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
     };
-  }, [rootRef, progressRef, enabled]);
+  }, [rootRef, progressRef, enabled, routeKey]);
 }

@@ -5,16 +5,16 @@ import { pad } from "../../lib/tabs";
 
 export default function Lab() {
   return (
-    <section id="laboratorio" className="lp-section lp-tone-navy lp-lab" data-screen-label="06 Capacidades" aria-labelledby="laboratorio-title">
+    <section id="laboratorio" className="lp-section lp-tone-navy lp-lab" data-screen-label="06 Tecnología aplicada" aria-labelledby="laboratorio-title">
       <div className="lp-container">
         <SectionHeading
-                index="06"
-                eyebrow="Capacidades"
+          index="06"
+          eyebrow="Tecnología aplicada"
           titleId="laboratorio-title"
           align="center"
-          title={["Negocio, producto", "e ingeniería en la misma mesa."]}
+          title={["La herramienta se define", "después del diagnóstico."]}
           accent={[1]}
-          lead="No somos una fábrica de código. Reunimos estrategia, diseño, datos, arquitectura e ingeniería para tomar mejores decisiones y llevarlas a producción."
+          lead="No ofrecemos desarrollo de software por encargo ni dependemos de una tecnología específica. Evaluamos cada caso y aplicamos la alternativa que mejor resuelve el problema, con criterios de costo, riesgo y facilidad de adopción."
         />
         <ul className="lp-lab__grid">
           {CAPABILITIES.map((capability, index) => (

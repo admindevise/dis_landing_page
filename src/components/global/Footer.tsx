@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { SITE, SOLUTIONS } from "../../constants/content";
 
 export default function Footer() {
@@ -31,9 +32,9 @@ export default function Footer() {
         >
           {/* Branding */}
           <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-            <a href="#inicio" aria-label="disHub, volver al inicio" style={{ display: "inline-flex", alignItems: "center", minHeight: "44px" }}>
+            <Link to="/" aria-label="disHub, volver al inicio" style={{ display: "inline-flex", alignItems: "center", minHeight: "44px" }}>
               <img src="/DIS.svg" alt="disHub" width="110" height="37" style={{ display: "block", objectFit: "contain" }} />
-            </a>
+            </Link>
             <p
               style={{
                 margin: 0,
@@ -125,14 +126,14 @@ export default function Footer() {
               }}
             >
               {[
-                { label: "Nosotros", href: "#nosotros" },
-                { label: "Cómo trabajamos", href: "#enfoque" },
-                { label: "Trayectoria", href: "#historia" },
-                { label: "Contacto", href: "#contacto" }
+                { label: "Nosotros", href: "/nosotros" },
+                { label: "Metodología", href: "/enfoque" },
+                { label: "Trayectoria", href: "/historia" },
+                { label: "Contacto", href: "/contacto" }
               ].map((item, idx) => (
                 <li key={idx}>
-                  <a
-                    href={item.href}
+                  <Link
+                    to={item.href}
                     style={{
                       fontSize: "13px",
                       color: "#B0C4D4",
@@ -147,7 +148,7 @@ export default function Footer() {
                     }}
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

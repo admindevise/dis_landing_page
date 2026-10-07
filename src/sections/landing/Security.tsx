@@ -7,16 +7,16 @@ import { securityLayers } from "../../three/objects/securityLayers";
 
 export default function Security() {
   return (
-    <section id="seguridad" className="lp-section lp-tone-abyss lp-security" data-screen-label="10 Seguridad" aria-labelledby="seguridad-title">
+    <section id="seguridad" className="lp-section lp-tone-abyss lp-security" data-screen-label="10 Seguridad y cumplimiento" aria-labelledby="seguridad-title">
       <div className="lp-container lp-security__grid">
         <div className="lp-security__copy">
           <SectionHeading
             index="10"
-            eyebrow="Seguridad y criterio"
+            eyebrow="Seguridad y cumplimiento"
             titleId="seguridad-title"
-            title={["La confianza", "también se", "construye desde", "el código."]}
+            title={["La seguridad", "se incorpora", "desde el", "diagnóstico."]}
             accent={[3]}
-            lead="Trabajar con sistemas críticos exige pensar en seguridad, trazabilidad y cumplimiento desde el primer boceto. La arquitectura no es una capa final: es parte de la decisión de producto."
+            lead="La gestión de sistemas críticos exige considerar la seguridad, la trazabilidad y el cumplimiento normativo desde el diagnóstico. La seguridad no constituye una capa final, sino un criterio presente en cada decisión de la solución."
           />
           <ul className="lp-console" aria-label="Capas de control">
             {SECURITY_CONTROLS.map((control, index) => (

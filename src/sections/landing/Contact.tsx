@@ -7,7 +7,7 @@ import ContactForm from "./ContactForm";
 
 export default function Contact() {
   return (
-    <section id="contacto" className="lp-section lp-panel lp-tone-final lp-contact" data-screen-label="15 Contacto" aria-labelledby="contacto-title">
+    <section id="contacto" className="lp-section lp-panel lp-tone-final lp-contact" data-screen-label="14 Contacto" aria-labelledby="contacto-title">
       <ThreeStage
         factory={financialInfrastructure}
         className="lp-contact__stage"
@@ -16,15 +16,15 @@ export default function Contact() {
       <div className="lp-container lp-contact__grid">
         <div className="lp-contact__copy">
           <p className="lp-eyebrow" data-reveal>
-            <span className="lp-eyebrow__index">15</span>
+            <span className="lp-eyebrow__index">14</span>
             <span className="lp-eyebrow__rule" aria-hidden="true" />
             Contacto
           </p>
           <h2 id="contacto-title" className="lp-title lp-contact__title" data-reveal="lines">
-            <SplitLines lines={["Conversemos sobre", "lo que su negocio", "necesita construir."]} accent={[2]} />
+            <SplitLines lines={["Permítanos conocer", "el reto que", "desea resolver."]} accent={[2]} />
           </h2>
           <p className="lp-lead" data-reveal style={{ "--d": 3 } as CSSProperties}>
-            En una reunión de 30 minutos entendemos su contexto y le indicamos qué tipo de acompañamiento puede generar más valor: estrategia, producto, ingeniería o una combinación de las tres. Si prefiere escribir, le responderemos en un plazo de {CONTACT_DETAILS.responseTime} días hábiles.
+            En una reunión de 30 minutos analizamos su contexto e identificamos la alternativa de mayor valor: un diagnóstico, una de nuestras soluciones o un proyecto específico. Si lo prefiere, puede escribirnos y le responderemos en un plazo de {CONTACT_DETAILS.responseTime} días hábiles.
           </p>
           <div className="lp-contact__actions" data-reveal style={{ "--d": 4 } as CSSProperties}>
             <a className="lp-btn lp-btn--primary lp-btn--xl" href={SITE.bookingUrl} target="_blank" rel="noopener noreferrer">
@@ -45,7 +45,7 @@ export default function Contact() {
         </div>
 
         <div className="lp-contact__card" data-reveal="scale">
-          <p className="lp-contact__card-title">O escríbanos directamente</p>
+          <p className="lp-contact__card-title">Formulario de contacto</p>
           <ContactForm />
         </div>
       </div>

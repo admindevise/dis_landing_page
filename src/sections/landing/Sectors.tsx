@@ -5,12 +5,12 @@ import { pad } from "../../lib/tabs";
 
 export default function Sectors() {
   return (
-    <section id="sectores" className="lp-section lp-panel lp-tone-paper lp-sectors" data-screen-label="09 Contextos" aria-labelledby="sectores-title">
+    <section id="sectores" className="lp-section lp-panel lp-tone-paper lp-sectors" data-screen-label="09 Sectores" aria-labelledby="sectores-title">
       <div className="lp-container">
         <div className="lp-sectors__head">
-          <SectionHeading index="09" eyebrow="Dónde tiene sentido" titleId="sectores-title" title={["Del sector financiero", "a cualquier operación compleja."]} />
+          <SectionHeading index="09" eyebrow="Sectores" titleId="sectores-title" title={["Del sector financiero", "a operaciones de alta complejidad."]} />
           <p className="lp-lead" data-reveal>
-            Nuestra experiencia nace en finanzas e inmuebles, pero el método viaja bien: allí donde hay regulación, múltiples actores, datos sensibles y una operación que necesita evolucionar.
+            Nuestra experiencia se originó en el sector financiero e inmobiliario. La metodología es aplicable a toda operación con regulación, múltiples actores, información sensible y necesidad de evolucionar.
           </p>
         </div>
         <ul className="lp-sectors__list">

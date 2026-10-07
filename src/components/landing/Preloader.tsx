@@ -7,7 +7,7 @@ interface PreloaderProps {
   onExited: () => void;
 }
 
-const MESSAGES = ["Conectando activos", "Sincronizando datos", "Verificando trazabilidad", "Preparando la experiencia"];
+const MESSAGES = ["Conectando activos", "Sincronizando datos", "Verificando trazabilidad", "Cargando contenido"];
 
 export default function Preloader({ progress, done, onExited }: PreloaderProps) {
   const [shown, setShown] = useState(0);
@@ -65,7 +65,7 @@ export default function Preloader({ progress, done, onExited }: PreloaderProps) 
           <span style={{ transform: `scaleX(${shown / 100})` }} />
         </div>
       </div>
-      <p className="lp-loader__foot" aria-hidden="true">Estudio de software · Bogotá</p>
+      <p className="lp-loader__foot" aria-hidden="true">Laboratorio de innovación · Bogotá</p>
     </div>
   );
 }
