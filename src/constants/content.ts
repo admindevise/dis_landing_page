@@ -227,8 +227,9 @@ export const TESTIMONIALS = [
 ];
 
 export const CONTACT_DETAILS = {
-  email: "contacto@dishub.co",
-  address: "Calle 76 Nº 8-28, piso 3, Bogotá, Colombia",
+  email: "contactenos@gruposantarosa.co",
+  phone: "+57 311 489 65 08",
+  address: "Ak 15 #93a-84, Oficina 506, Edificio Business 93, Bogotá, Colombia",
   responseTime: "dos (2)"
 };
 

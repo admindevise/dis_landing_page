@@ -22,10 +22,6 @@ export default function Hero() {
       <div className="lp-hero__veil" aria-hidden="true" />
 
       <div className="lp-container lp-hero__content">
-        <p className="lp-hero__badge" data-reveal>
-          <span className="lp-hero__dot" aria-hidden="true" />
-          Laboratorio de innovación · Bogotá
-        </p>
         <h1 id="hero-title" className="lp-hero__title" data-reveal="lines">
           <SplitLines lines={["Resolvemos", "retos operativos", "con metodología", "y tecnología."]} accent={[3]} />
         </h1>

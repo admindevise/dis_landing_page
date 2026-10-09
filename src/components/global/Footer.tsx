@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { SITE, SOLUTIONS } from "../../constants/content";
+import { CONTACT_DETAILS, SITE, SOLUTIONS } from "../../constants/content";
 
 export default function Footer() {
   return (
@@ -45,7 +45,11 @@ export default function Footer() {
             >
               Digital Investment Systems S.A.S.<br />
               NIT 901.783.251-1<br />
-              Bogotá, Colombia
+              {CONTACT_DETAILS.address}
+            </p>
+            <p style={{ margin: 0, fontSize: "13px", lineHeight: 1.6 }}>
+              <a href={`mailto:${CONTACT_DETAILS.email}`} style={{ color: "inherit" }}>{CONTACT_DETAILS.email}</a><br />
+              <a href={`tel:${CONTACT_DETAILS.phone.replace(/\s/g, "")}`} style={{ color: "inherit" }}>{CONTACT_DETAILS.phone}</a>
             </p>
           </div>
 
@@ -101,7 +105,7 @@ export default function Footer() {
           </div>
 
           {/* Company */}
-          <div>
+          <div className="footer-company-links">
             <h4
               style={{
                 margin: "0 0 16px",
@@ -180,9 +184,8 @@ export default function Footer() {
               }}
             >
               {[
-                { label: "Política de privacidad", href: "/politica-privacidad" },
-                { label: "LinkedIn", href: "[[URL_LINKEDIN]]", external: true },
-                { label: "contacto@dishub.co", href: "mailto:contacto@dishub.co" }
+                { label: "Privacidad y datos personales", href: "/politica-privacidad" },
+                { label: "LinkedIn", href: "[[URL_LINKEDIN]]", external: true }
               ].map((item, idx) => (
                 <li key={idx}>
                   <a

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FAQS } from "../../constants/content";
+import { CONTACT_DETAILS, FAQS } from "../../constants/content";
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -18,7 +18,7 @@ export default function FAQ() {
         <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
           <span style={{ fontFamily: "'Outfit', sans-serif", fontSize: "13px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "#4FD8D8" }}>Preguntas frecuentes</span>
           <h2 style={{ margin: 0, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: "clamp(32px, 4vw, 48px)", lineHeight: 1.08, letterSpacing: "-0.025em", color: "#fff" }}>Respuestas claras antes de empezar.</h2>
-          <p style={{ margin: 0, fontSize: "16px", lineHeight: 1.65, color: "#B0C4D4" }}>Si su pregunta no está aquí, escríbanos a <a href="mailto:contacto@dishub.co">contacto@dishub.co</a>.</p>
+          <p style={{ margin: 0, fontSize: "16px", lineHeight: 1.65, color: "#B0C4D4" }}>Si su pregunta no está aquí, escríbanos a <a href={`mailto:${CONTACT_DETAILS.email}`}>{CONTACT_DETAILS.email}</a>.</p>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           {FAQS.map((faq, idx) => (

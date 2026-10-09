@@ -33,10 +33,10 @@ export default function About() {
           />
           <div className="lp-about__body">
             <p data-reveal>
-              disHub es el laboratorio de innovación de Digital Investment Systems S.A.S. Surgimos en el seno de una operación real y comprobamos que las soluciones más efectivas no se adquieren listas: se comprenden, se diseñan y se validan junto a quienes las operan.
+              disHub es el laboratorio de innovación de Digital Investment Systems S.A.S. Nacimos desde una operación real y diseñamos soluciones junto a quienes las usan.
             </p>
             <p data-reveal style={{ "--d": 1 } as CSSProperties}>
-              Hoy integramos el conocimiento de industrias reguladas con una metodología propia de diagnóstico, diseño, validación y escalamiento. La respuesta puede consistir en el rediseño de un proceso, un modelo de datos, una automatización, inteligencia artificial o una plataforma especializada. En todos los casos aplicamos el mismo criterio: que la solución atienda una necesidad concreta y mantenga su vigencia después de implementada.
+              Combinamos experiencia en industrias reguladas con una metodología de diagnóstico, diseño, validación y escalamiento. La respuesta puede ser un proceso, datos, automatización, inteligencia artificial o una plataforma, siempre a partir de una necesidad concreta.
             </p>
           </div>
           <ol className="lp-about__pillars">

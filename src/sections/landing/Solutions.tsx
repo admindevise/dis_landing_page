@@ -20,7 +20,7 @@ export default function Solutions() {
           </p>
         </div>
 
-        <div className="lp-solutions__layout" data-reveal="scale">
+        <div className="lp-solutions__layout" data-reveal>
           <div
             role="tablist"
             aria-label="Soluciones"

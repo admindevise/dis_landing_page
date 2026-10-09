@@ -1,7 +1,8 @@
 import { Box, Typography, Stack, Grid, useTheme, Paper } from "@mui/material";
-import { Mail, MapPin } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import AnimatedBackground from "../components/global/AnimatedBackground";
 import SEO from "../components/global/SEO";
+import { CONTACT_DETAILS } from "../constants/content";
 
 const Contact = () => {
   const theme = useTheme();
@@ -98,7 +99,7 @@ const Contact = () => {
                     <Mail size={22} color={theme.palette.primary.main} />
                     <Typography
                       component="a"
-                      href="mailto:contacto@dishub.co"
+                      href={`mailto:${CONTACT_DETAILS.email}`}
                       sx={{
                         color: theme.palette.text.primary,
                         textDecoration: 'none',
@@ -108,18 +109,20 @@ const Contact = () => {
                         }
                       }}
                     >
-                      contacto@dishub.co
+                      {CONTACT_DETAILS.email}
                     </Typography>
                   </Box>
 
-                  {/* <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                     <Phone size={22} color={theme.palette.primary.main} />
-                    <Typography>+57 311 489 65 08</Typography>
-                  </Box> */}
+                    <Typography component="a" href={`tel:${CONTACT_DETAILS.phone.replace(/\s/g, "")}`} sx={{ color: theme.palette.text.primary, textDecoration: "none" }}>
+                      {CONTACT_DETAILS.phone}
+                    </Typography>
+                  </Box>
 
                   <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                     <MapPin size={22} color={theme.palette.primary.main} />
-                    <Typography>Calle 76 Nº 8-28 - Piso 3, Bogotá, Colombia</Typography>
+                    <Typography>{CONTACT_DETAILS.address}</Typography>
                   </Box>
                 </Stack>
 
@@ -134,7 +137,7 @@ const Contact = () => {
                   }}
                 >
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.6087097849867!2d-74.05938!3d4.661111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9a376a0e8c1b%3A0x1234567890abcdef!2sCalle%2076%20%238-28%2C%20Bogot%C3%A1%2C%20Colombia!5e0!3m2!1ses!2sco!4v1234567890123!5m2!1ses!2sco"
+                    src={`https://www.google.com/maps?q=${encodeURIComponent(CONTACT_DETAILS.address)}&output=embed`}
                     width="100%"
                     height="100%"
                     style={{ border: 0, minHeight: '300px' }}

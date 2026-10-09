@@ -4,7 +4,7 @@
 
 @theme {
   --breakpoint-lg: 1200px;
-  --breakpoint-2xl: 1460px;
+  --breakpoint-2xl: 1471px;
 }
 
 :root {
@@ -161,7 +161,7 @@ html.custom-cursor-active .custom-cursor-ring {
     }
   }
 
-  @media (min-width: 1201px) and (max-width: 1460px) {
+  @media (min-width: 1201px) and (max-width: 1470px) {
     .dis-large-header {
       zoom: 1 !important;
       padding: 16px 24px !important;
@@ -180,9 +180,31 @@ html.custom-cursor-active .custom-cursor-ring {
   }
 }
 
+.lp-ambient {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+.lp-ambient__stain {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: radial-gradient(circle at 78% 28%, rgb(0 178 178 / 0.28), transparent 28%), radial-gradient(circle at 8% 90%, rgb(31 126 190 / 0.34), transparent 34%);
+  animation: stainDrift 26s ease-in-out infinite;
+}
+
 .dis-orb--a { background: radial-gradient(circle, rgb(0 178 178 / 0.3), transparent 68%); }
 .dis-orb--b { background: radial-gradient(circle, rgb(31 126 190 / 0.34), transparent 68%); }
 .dis-orb--c { background: radial-gradient(circle, rgb(0 126 130 / 0.16), transparent 68%); }
+
+.dis-booking-label-short {
+  display: none;
+}
+
 .dis-grid-lines {
   position: absolute;
   inset: 0;
@@ -190,6 +212,92 @@ html.custom-cursor-active .custom-cursor-ring {
   pointer-events: none;
   background-image: linear-gradient(rgb(121 182 202 / 0.03) 1px, transparent 1px), linear-gradient(90deg, rgb(121 182 202 / 0.03) 1px, transparent 1px);
   background-size: 64px 64px;
+}
+
+@media (max-width: 480px) {
+  .dis-large-header {
+    padding: 12px !important;
+  }
+
+  .dis-large-header-inner {
+    gap: 8px !important;
+    padding: 8px 8px 8px 12px !important;
+    border-radius: 14px !important;
+  }
+
+  .dis-large-header-inner > a img {
+    width: 90px;
+    height: auto;
+  }
+
+  .dis-header-booking {
+    padding-inline: 12px !important;
+    border-radius: 10px !important;
+    font-size: 13px !important;
+  }
+
+  .dis-booking-label-long {
+    display: none;
+  }
+
+  .dis-booking-label-short {
+    display: inline;
+  }
+
+  .dis-large-header-inner button[aria-controls="menu-movil"] {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .dis-large-header-inner {
+    gap: 6px !important;
+    padding-inline: 8px !important;
+  }
+
+  .dis-large-header-inner > a img {
+    width: 76px;
+  }
+
+  .dis-header-booking {
+    padding-inline: 9px !important;
+  }
+
+  .dis-large-header-inner button[aria-controls="menu-movil"] {
+    width: 38px !important;
+    height: 38px !important;
+  }
+}
+
+@media (max-width: 767px), (pointer: coarse) {
+  .lp-ambient__stain {
+    background: radial-gradient(circle at 78% 28%, rgb(0 178 178 / 0.12), transparent 30%), radial-gradient(circle at 8% 90%, rgb(31 126 190 / 0.14), transparent 36%);
+    animation: none;
+  }
+
+  .dis-orb--a,
+  .dis-orb--b,
+  .dis-orb--c {
+    display: none !important;
+  }
+
+  .dis-grid-lines {
+    opacity: 0.4;
+    background-size: 48px 48px;
+  }
+
+  #menu-movil {
+    background: #0b1b27 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer-company-links {
+    display: none;
+  }
 }
 
 @layer base {

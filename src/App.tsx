@@ -17,6 +17,7 @@ import History from "./sections/landing/History";
 import Values from "./sections/landing/Values";
 import FAQ from "./sections/landing/FAQ";
 import Contact from "./sections/landing/Contact";
+import ContinueJourney from "./sections/landing/ContinueJourney";
 import { useLandingMotion } from "./hooks/useLandingMotion";
 import { usePreload } from "./hooks/usePreload";
 import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
@@ -68,26 +69,8 @@ function LandingLayout() {
       {showLoader && <Preloader progress={loadProgress} done={loaded} onExited={hideLoader} />}
 
       {/* Background grid and orbs */}
-      <div 
-        style={{
-          pointerEvents: 'none',
-          position: 'fixed',
-          inset: 0,
-          zIndex: 0,
-          overflow: 'hidden',
-          background: 'transparent'
-        }}
-        aria-hidden="true"
-      >
-        <div 
-          style={{
-            position: 'absolute',
-            inset: 0,
-            zIndex: 10,
-            background: 'radial-gradient(circle at 78% 28%, rgb(0 178 178 / 0.28), transparent 28%), radial-gradient(circle at 8% 90%, rgb(31 126 190 / 0.34), transparent 34%)',
-            animation: 'stainDrift 26s ease-in-out infinite'
-          }}
-        />
+      <div className="lp-ambient" aria-hidden="true">
+        <div className="lp-ambient__stain" />
         <div className="dis-orb--a absolute right-[-12vw] top-[-12vh] h-[64vw] w-[64vw] rounded-full blur-[110px] motion-safe:animate-[orbA_28s_ease-in-out_infinite]" />
         <div className="dis-orb--b absolute bottom-[-24vh] left-[-18vw] h-[72vw] w-[72vw] rounded-full blur-[120px] motion-safe:animate-[orbB_34s_ease-in-out_infinite]" />
         <div className="dis-orb--c absolute left-[38vw] top-[34vh] h-[28vw] w-[28vw] rounded-full blur-[100px] motion-safe:animate-[orbA_40s_ease-in-out_infinite_reverse]" />
@@ -100,6 +83,7 @@ function LandingLayout() {
 
       <main id="contenido" className="lp-main" aria-busy={!loaded}>
         <Outlet />
+        <ContinueJourney />
       </main>
 
       <Footer />

@@ -1,5 +1,5 @@
 import { useRef, useState, type FormEvent } from "react";
-import { EMPTY_FORM, FIELDS, SITE, type FormData } from "../../constants/content";
+import { CONTACT_DETAILS, EMPTY_FORM, FIELDS, SITE, type FormData } from "../../constants/content";
 
 type Errors = Partial<Record<keyof FormData, string>>;
 
@@ -85,7 +85,7 @@ export default function ContactForm() {
       setStatus("");
     } catch {
       setSending(false);
-      setStatus("No pudimos enviar su mensaje. Intente de nuevo o escriba a contacto@dishub.co.");
+      setStatus(`No pudimos enviar su mensaje. Intente de nuevo o escriba a ${CONTACT_DETAILS.email}.`);
     }
   };
 
@@ -176,7 +176,7 @@ export default function ContactForm() {
           onChange={(event) => update("consent", event.target.checked)}
         />
         <span>
-          Autorizo el tratamiento de mis datos personales conforme a la <a href="/politica-privacidad">Política de Privacidad</a> y a la Ley 1581 de 2012.
+          Autorizo el tratamiento de mis datos personales conforme a la <a href="/politica-privacidad">Política de privacidad y tratamiento de datos personales</a> y a la Ley 1581 de 2012.
         </span>
       </label>
       {errors.consent && <p id="err-consent" className="lp-field__error lp-field--full">{errors.consent}</p>}

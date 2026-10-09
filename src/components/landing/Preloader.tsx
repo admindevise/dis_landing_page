@@ -28,11 +28,12 @@ export default function Preloader({ progress, done, onExited }: PreloaderProps) 
   }, [progress]);
 
   useEffect(() => {
-    if (!done || shown < 100) return;
+    if (!done) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const timer = setTimeout(onExited, reduced ? 0 : 1000);
+    const lightweight = window.matchMedia("(max-width: 767px), (pointer: coarse)").matches;
+    const timer = setTimeout(onExited, reduced || lightweight ? 0 : 1000);
     return () => clearTimeout(timer);
-  }, [done, shown, onExited]);
+  }, [done, onExited]);
 
   useEffect(() => {
     const root = document.documentElement;

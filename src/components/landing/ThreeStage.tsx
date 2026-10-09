@@ -1,5 +1,6 @@
 import { useEffect, type ReactNode } from "react";
 import { cn } from "../../lib/utils";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
 import type { SceneFactory } from "../../three/types";
 import { useThreeStage } from "../../three/useThreeStage";
 
@@ -12,7 +13,8 @@ interface ThreeStageProps {
 }
 
 export default function ThreeStage({ factory, label, className, state, children }: ThreeStageProps) {
-  const { ref, status, setState } = useThreeStage(factory);
+  const lightweight = useMediaQuery("(max-width: 1099px)");
+  const { ref, status, setState } = useThreeStage(factory, !lightweight);
 
   useEffect(() => {
     if (state) Object.entries(state).forEach(([key, value]) => setState(key, value));
@@ -20,7 +22,7 @@ export default function ThreeStage({ factory, label, className, state, children 
 
   return (
     <div ref={ref} className={cn("lp-stage", className)} data-status={status} role="img" aria-label={label}>
-      {status === "unsupported" && <div className="lp-stage__fallback" aria-hidden="true" />}
+      {(status === "unsupported" || status === "disabled") && <div className="lp-stage__fallback" aria-hidden="true" />}
       {children}
     </div>
   );

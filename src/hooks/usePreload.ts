@@ -18,15 +18,16 @@ export function usePreload(minDuration = 1400, maxDuration = 6000) {
     let cancelled = false;
     let completed = 0;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const duration = reduced ? 300 : minDuration;
+    const lightweight = window.matchMedia("(max-width: 1099px), (pointer: coarse)").matches;
+    const duration = reduced || lightweight ? 350 : minDuration;
     const start = performance.now();
     const clock = setInterval(() => setTimeProgress(Math.min(1, (performance.now() - start) / duration)), 50);
 
-    const tasks: Promise<unknown>[] = [
-      document.fonts?.ready ?? Promise.resolve(),
-      windowLoaded(),
-      import("three")
-    ].map((task) => task.catch(() => undefined).then(() => {
+    const requiredTasks: Promise<unknown>[] = lightweight
+      ? []
+      : [document.fonts?.ready ?? Promise.resolve(), windowLoaded(), import("three")];
+
+    const tasks = requiredTasks.map((task) => task.catch(() => undefined).then(() => {
       if (cancelled) return;
       completed += 1;
       setTaskProgress(completed / tasks.length);

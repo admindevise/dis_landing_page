@@ -72,7 +72,7 @@ export default function Contact() {
       setStatus("");
     } catch {
       setSending(false);
-      setStatus("No pudimos enviar su mensaje. Intente de nuevo o escriba a contacto@dishub.co.");
+      setStatus(`No pudimos enviar su mensaje. Intente de nuevo o escriba a ${CONTACT_DETAILS.email}.`);
     }
   };
 

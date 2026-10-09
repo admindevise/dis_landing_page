@@ -19,10 +19,12 @@ export default function Lab() {
         <ul className="lp-lab__grid">
           {CAPABILITIES.map((capability, index) => (
             <li key={capability.t} className="lp-cap" data-reveal style={{ "--d": index } as CSSProperties}>
-              <span className="lp-cap__num">{pad(index + 1)}</span>
-              <span className="lp-cap__icon" aria-hidden="true">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d={capability.icon} /></svg>
-              </span>
+              <div className="lp-cap__meta">
+                <span className="lp-cap__num">{pad(index + 1)}</span>
+                <span className="lp-cap__icon" aria-hidden="true">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d={capability.icon} /></svg>
+                </span>
+              </div>
               <h3>{capability.t}</h3>
               <p>{capability.d}</p>
             </li>
