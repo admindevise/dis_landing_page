@@ -13,11 +13,11 @@ const FACTS = [
 
 export default function Values() {
   return (
-    <section id="valores" className="lp-section lp-tone-deep lp-values" data-screen-label="12 Valores" aria-labelledby="valores-title">
+    <section id="valores" className="lp-section lp-tone-deep lp-values" data-screen-label="14 Valores" aria-labelledby="valores-title">
       <div className="lp-container lp-values__grid">
         <div className="lp-values__copy">
           <SectionHeading
-            index="12"
+            index="14"
             eyebrow="Valores y cultura"
             titleId="valores-title"
             title={["Los principios", "que orientan", "nuestro trabajo."]}

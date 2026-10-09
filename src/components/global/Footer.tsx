@@ -131,7 +131,7 @@ export default function Footer() {
             >
               {[
                 { label: "Nosotros", href: "/nosotros" },
-                { label: "Metodología", href: "/enfoque" },
+                { label: "Metodología", href: "/metodologia" },
                 { label: "Trayectoria", href: "/historia" },
                 { label: "Contacto", href: "/contacto" }
               ].map((item, idx) => (

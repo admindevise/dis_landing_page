@@ -5,18 +5,20 @@ import { SITE, SOLUTIONS } from "../../constants/content";
 import { handleTabKeys, pad } from "../../lib/tabs";
 import { solutionsShowcase } from "../../three/objects/solutions/solutionsShowcase";
 
+const displayedSolutions = SOLUTIONS.filter((item) => item.key !== "ai");
+
 export default function Solutions() {
   const [selected, setSelected] = useState(0);
   const solution = SOLUTIONS[selected];
   const stageState = useMemo(() => ({ active: selected }), [selected]);
 
   return (
-    <section id="soluciones" className="lp-section lp-tone-glass lp-solutions" data-screen-label="08 Soluciones" aria-labelledby="soluciones-title">
+    <section id="soluciones" className="lp-section lp-tone-glass lp-solutions" data-screen-label="10 Soluciones" aria-labelledby="soluciones-title">
       <div className="lp-container">
         <div className="lp-solutions__head">
-          <SectionHeading index="08" eyebrow="Soluciones" titleId="soluciones-title" title={["Soluciones probadas", "para retos", "recurrentes del sector."]} accent={[2]} />
+          <SectionHeading index="10" eyebrow="Soluciones" titleId="soluciones-title" title={["Soluciones probadas", "para retos", "recurrentes del sector."]} accent={[2]} />
           <p className="lp-lead" data-reveal>
-            Cuando un mismo reto se presenta en varias organizaciones, convertimos la solución en un producto. Así surgieron las cuatro soluciones que presentamos a continuación. Para casos particulares, aplicamos la misma metodología en el diseño de una respuesta específica.
+            Cuando un mismo reto se presenta en varias organizaciones, convertimos la solución en un producto. Así surgieron las soluciones que presentamos a continuación. Para casos particulares, aplicamos la misma metodología en el diseño de una respuesta específica.
           </p>
         </div>
 
@@ -25,9 +27,9 @@ export default function Solutions() {
             role="tablist"
             aria-label="Soluciones"
             className="lp-solutions__tabs"
-            onKeyDown={(event) => handleTabKeys(event, selected, SOLUTIONS.length, setSelected, "solution-tab")}
+            onKeyDown={(event) => handleTabKeys(event, selected, displayedSolutions.length, setSelected, "solution-tab")}
           >
-            {SOLUTIONS.map((item, index) => (
+            {displayedSolutions.map((item, index) => (
               <button
                 key={item.key}
                 id={`solution-tab-${index}`}
@@ -50,7 +52,7 @@ export default function Solutions() {
           </div>
 
           <ThreeStage factory={solutionsShowcase} state={stageState} className="lp-solutions__stage" label={solution.alt}>
-            <p className="lp-solutions__counter" aria-hidden="true">{pad(selected + 1)} <span>/ {pad(SOLUTIONS.length)}</span></p>
+            <p className="lp-solutions__counter" aria-hidden="true">{pad(selected + 1)} <span>/ {pad(displayedSolutions.length)}</span></p>
             <p className="lp-solutions__hint" aria-hidden="true">{solution.hint}</p>
           </ThreeStage>
 

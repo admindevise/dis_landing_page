@@ -2,11 +2,11 @@ import { Link, useLocation } from "react-router-dom";
 
 const JOURNEY = [
   { key: "nosotros", number: "01", label: "Nosotros", to: "/", description: "Conozca disHub y la manera en que abordamos los retos operativos." },
-  { key: "desafio", number: "04", label: "Desafío", to: "/desafio", description: "Las operaciones complejas requieren soluciones que comprendan su contexto." },
-  { key: "enfoque", number: "05", label: "Metodología", to: "/enfoque", description: "Un diagnóstico estructurado convierte los retos operativos en oportunidades de mejora." },
-  { key: "soluciones", number: "08", label: "Soluciones", to: "/soluciones", description: "Tecnología pertinente para resolver cada reto de negocio." },
-  { key: "historia", number: "11", label: "Trayectoria", to: "/historia", description: "Una experiencia construida junto a organizaciones del sector." },
-  { key: "contacto", number: "13", label: "Contacto", to: "/contacto", description: "Conversemos sobre los retos de su organización." }
+  // { key: "desafio", number: "04", label: "Desafío", to: "/desafio", description: "Las operaciones complejas requieren soluciones que comprendan su contexto." },
+  { key: "metodologia", number: "05", label: "Metodología", to: "/metodologia", description: "Un diagnóstico estructurado convierte los retos operativos en oportunidades de mejora." },
+  { key: "soluciones", number: "10", label: "Soluciones", to: "/soluciones", description: "Tecnología pertinente para resolver cada reto de negocio." },
+  { key: "historia", number: "13", label: "Trayectoria", to: "/historia", description: "Una experiencia construida junto a organizaciones del sector." },
+  { key: "contacto", number: "15", label: "Contacto", to: "/contacto", description: "Conversemos sobre los retos de su organización." }
 ];
 
 export default function ContinueJourney() {

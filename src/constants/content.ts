@@ -41,8 +41,8 @@ export const SITE = {
 
 export const NAV = [
   ["nosotros", "Nosotros"],
-  ["desafio", "Desafío"],
-  ["enfoque", "Metodología"],
+  // ["desafio", "Desafío"],
+  ["metodologia", "Metodología"],
   ["soluciones", "Soluciones"],
   ["historia", "Trayectoria"],
   ["contacto", "Contacto"]
@@ -236,24 +236,90 @@ export const CONTACT_DETAILS = {
 export const STEPS = [
   {
     t: "Diagnóstico",
-    d: "Analizamos la operación, sus actores y sus restricciones regulatorias, y cuantificamos dónde se generan pérdidas de tiempo, recursos o control.",
-    out: "diagnóstico cuantificado y mapa de oportunidades"
+    layer: "Cimiento",
+    d: "Mapeamos procesos, sistemas y datos con negocio, riesgo y TI. Priorizamos casos de uso por valor, factibilidad y exposición regulatoria.",
+    out: "mapa de oportunidades priorizado"
   },
   {
-    t: "Diseño de la solución",
-    d: "Definimos con su equipo la combinación adecuada de procesos, datos y tecnología, priorizada según su impacto y viabilidad.",
-    out: "alcance, prototipo y caso de negocio"
+    t: "Arquitectura y modelos",
+    layer: "Estructura",
+    d: "Elegimos dónde corre cada caso —on-premise, nube o proveedor— y con qué modelo, comercial u open source. Desplegamos y definimos controles de acceso, registro y retención.",
+    out: "plataforma operando en su infraestructura"
   },
   {
-    t: "Validación",
-    d: "Probamos la solución en un piloto controlado, con usuarios reales e indicadores acordados previamente.",
-    out: "piloto con resultados medidos"
+    t: "Agentes en la operación",
+    layer: "Muros",
+    d: "Integramos agentes con sus sistemas core para conciliar, revisar y reportar. Cada salida pasa por aprobación humana cuando la regla lo exige.",
+    out: "casos de uso en producción"
   },
   {
-    t: "Escalamiento",
-    d: "Extendemos lo validado al conjunto de la operación, transferimos capacidades a su equipo y hacemos seguimiento al impacto.",
-    out: "indicadores de impacto y hoja de ruta"
+    t: "Adopción y transferencia",
+    layer: "Cubierta",
+    d: "Formamos a los equipos por rol, instalamos el gobierno de IA y medimos la adopción. Su organización opera; nosotros quedamos como soporte.",
+    out: "capacidad instalada en su equipo"
   }
+];
+
+export const BF_COMMITMENTS = [
+  { t: "Su dato vive donde su política lo permita", d: "On-premise, nube privada o proveedor comercial: la arquitectura se elige por caso, no por defecto." },
+  { t: "Trazabilidad de cada decisión", d: "Fuente, regla aplicada y aprobación quedan registradas y son exportables." },
+  { t: "Despliegue en semanas, no trimestres", d: "Partimos de un caso priorizado y de sus sistemas actuales, sin rehacer su arquitectura." },
+  { t: "IA en la operación, no en un piloto", d: "El objetivo es un proceso en producción con dueño interno, no una demostración." }
+];
+
+export const BF_CAPABILITIES = [
+  {
+    t: "Diagnóstico y oportunidades",
+    d: "Encontramos dónde la IA mueve un indicador del negocio, no dónde luce en una demo.",
+    items: ["Mapa de procesos y datos", "Casos priorizados por valor y riesgo", "Hoja de ruta con responsables"]
+  },
+  {
+    t: "Arquitectura a la medida",
+    d: "On-premise, nube privada o proveedor; LLM comerciales u open source. Elegimos por caso según la sensibilidad del dato, el costo y la regulación.",
+    items: ["On-premise, nube o proveedor", "LLM comerciales u open source", "Registro y control de acceso"]
+  },
+  {
+    t: "Agentes y automatización",
+    d: "Agentes que concilian, revisan y reportan sobre sus sistemas core, con aprobación humana donde la regla lo pida.",
+    items: ["Integración con sistemas existentes", "Reglas explícitas y auditables", "Devise como base fiduciaria"]
+  },
+  {
+    t: "Cultura y gestión del cambio",
+    d: "La adopción se diseña: formación por rol, gobierno de IA y métricas de uso que la dirección puede seguir.",
+    items: ["Formación por rol", "Comité y políticas de IA", "Medición de adopción"]
+  }
+];
+
+export const BF_PIPELINE = [
+  { t: "Conectar fuente", rows: [["Sistema contable", "Lectura directa"], ["Facturación", "Lectura directa"], ["Contratos fiduciarios", "Documentos"]] },
+  { t: "Conciliar", rows: [["Reglas de comisión", "Explícitas y versionadas"], ["Motor de razonamiento", "Modelo según arquitectura"], ["Factura ↔ contrato", "Por fideicomiso"]] },
+  { t: "Reporte", rows: [["Hallazgos priorizados", "Con fuente"], ["Ingresos no capturados", "Por cliente"], ["Bitácora de decisiones", "Exportable"]] }
+];
+
+export const BF_COMPARE = [
+  { k: "Control del dato", generic: "El dato viaja a servidores de terceros, a menudo fuera del país.", us: "Usted decide dónde vive el dato: on-premise, nube privada o proveedor, caso por caso." },
+  { k: "Cumplimiento", generic: "Usted adapta sus políticas a los términos del proveedor.", us: "La arquitectura se diseña sobre sus políticas de seguridad y de datos personales." },
+  { k: "Modelo de costo", generic: "Pago por consulta, variable y difícil de presupuestar.", us: "Comparamos infraestructura propia, nube y API comercial por caso; costo predecible." },
+  { k: "Trazabilidad", generic: "Respuestas sin registro auditable del razonamiento.", us: "Cada decisión registra fuente, regla aplicada y responsable." },
+  { k: "Despliegue", generic: "Rápido para probar, lento para integrar con sistemas core.", us: "Integración con sus sistemas en semanas, junto a su equipo de TI." },
+  { k: "Preparación ante revisor", generic: "Evidencia dispersa entre proveedor y cliente.", us: "Bitácora y documentación listas para revisoría fiscal y auditoría." }
+];
+
+export const BF_FRAMEWORKS = [
+  { tag: "Datos personales", t: "Ley 1581 de 2012", d: "Tratamiento y circulación de datos personales dentro del perímetro de la entidad." },
+  { tag: "Riesgo operacional", t: "SARO", d: "Controles, registro de eventos y responsables para cada proceso automatizado." },
+  { tag: "Prevención LA/FT", t: "SARLAFT", d: "Agentes que apoyan la debida diligencia sin sacar información del entorno." },
+  { tag: "Seguridad de la información", t: "ISO/IEC 27001", d: "Controles de referencia para acceso, cifrado, retención y continuidad." }
+];
+
+export const BF_PROFILES = ["Sociedades fiduciarias", "Bancos y financieras", "Aseguradoras", "Constructoras y fondos inmobiliarios"];
+
+export const BF_FAQS = [
+  { q: "¿On-premise, nube o proveedor comercial?", a: "Depende de cada caso. En el diagnóstico comparamos infraestructura propia, nube privada y API de proveedor, con LLM comerciales u open source, en costo, riesgo y cumplimiento. Un mismo cliente puede combinar varias." },
+  { q: "¿Qué pasa con el modelo cuando cambie la tecnología?", a: "Los modelos son intercambiables. La arquitectura separa datos, reglas y modelo, así que actualizar el modelo no obliga a rehacer la integración ni a reentrenar a los equipos." },
+  { q: "¿Quién opera la solución después de la implantación?", a: "Su equipo. La etapa 04 transfiere operación, gobierno y métricas. BrickFlow queda como soporte de segundo nivel si usted lo requiere." },
+  { q: "¿Cómo se audita lo que decide la IA?", a: "Cada salida queda registrada con su fuente, la regla aplicada y la persona que la aprobó. La bitácora se exporta para revisoría fiscal y auditoría interna." },
+  { q: "¿Necesitamos un equipo de datos para empezar?", a: "No. El diagnóstico parte de sus procesos y sistemas actuales. Definimos juntos qué perfiles internos se forman en el camino." }
 ];
 
 export const ERAS = [

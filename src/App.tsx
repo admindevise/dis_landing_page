@@ -12,7 +12,8 @@ import Approach from "./sections/landing/Approach";
 import Solutions from "./sections/landing/Solutions";
 import Sectors from "./sections/landing/Sectors";
 import Security from "./sections/landing/Security";
-import Lab from "./sections/landing/Lab";
+// import { BrickflowCapabilities, BrickflowDetails, BrickflowIntro } from "./sections/landing/Brickflow";
+import { BrickflowCapabilities, BrickflowDetails } from "./sections/landing/Brickflow";
 import History from "./sections/landing/History";
 import Values from "./sections/landing/Values";
 import FAQ from "./sections/landing/FAQ";
@@ -114,18 +115,10 @@ function HomePage() {
 function ApproachPage() {
   return (
     <>
+      {/* <BrickflowIntro /> */}
       <Approach />
-      <Lab />
-      <StatementBand
-        id="control"
-        index="07"
-        tone="ink"
-        eyebrow="Valor sostenible"
-        statement="Generamos capacidades permanentes, no entregables aislados."
-        detail="Cada diagnóstico, proceso rediseñado o solución implementada constituye una base reutilizable: decisiones mejor fundamentadas, equipos con mayor autonomía y una organización preparada para sus próximos retos."
-        metric="360°"
-        metricLabel="de acompañamiento, del diagnóstico a la operación"
-      />
+      <BrickflowCapabilities />
+      <BrickflowDetails />
     </>
   );
 }
@@ -139,7 +132,8 @@ export default function App() {
           <Route index element={<HomePage />} />
           <Route path="nosotros" element={<HomePage />} />
           <Route path="desafio" element={<Challenge />} />
-          <Route path="enfoque" element={<ApproachPage />} />
+          <Route path="metodologia" element={<ApproachPage />} />
+          <Route path="enfoque" element={<Navigate to="/metodologia" replace />} />
           <Route path="soluciones" element={<><Solutions /><Sectors /><Security /></>} />
           <Route path="seguridad" element={<Navigate to="/soluciones" replace />} />
           <Route path="historia" element={<><History /><Values /></>} />

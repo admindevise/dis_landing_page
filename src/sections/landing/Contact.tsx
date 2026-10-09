@@ -7,7 +7,7 @@ import ContactForm from "./ContactForm";
 
 export default function Contact() {
   return (
-    <section id="contacto" className="lp-section lp-panel lp-tone-final lp-contact" data-screen-label="14 Contacto" aria-labelledby="contacto-title">
+    <section id="contacto" className="lp-section lp-panel lp-tone-final lp-contact" data-screen-label="16 Contacto" aria-labelledby="contacto-title">
       <ThreeStage
         factory={financialInfrastructure}
         className="lp-contact__stage"

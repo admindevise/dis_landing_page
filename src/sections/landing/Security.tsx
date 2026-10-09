@@ -7,11 +7,11 @@ import { securityLayers } from "../../three/objects/securityLayers";
 
 export default function Security() {
   return (
-    <section id="seguridad" className="lp-section lp-tone-abyss lp-security" data-screen-label="10 Seguridad y cumplimiento" aria-labelledby="seguridad-title">
+    <section id="seguridad" className="lp-section lp-tone-abyss lp-security" data-screen-label="12 Seguridad y cumplimiento" aria-labelledby="seguridad-title">
       <div className="lp-container lp-security__grid">
         <div className="lp-security__copy">
           <SectionHeading
-            index="10"
+            index="12"
             eyebrow="Seguridad y cumplimiento"
             titleId="seguridad-title"
             title={["La seguridad", "se incorpora", "desde el", "diagnóstico."]}
