@@ -4,11 +4,11 @@ import SplitLines from "../../components/landing/SplitLines";
 import { connectedAssets } from "../../three/objects/connectedAssets";
 import { SITE } from "../../constants/content";
 
-const AUDIENCE = ["Diagnóstico", "Diseño", "Validación", "Escalamiento"];
+const AUDIENCE = ["Diagnóstico", "Arquitectura", "Agentes", "Adopción"];
 const HUD_ROWS = [
   ["Diagnóstico", "Completado"],
-  ["Solución", "Validada"],
-  ["Escalamiento", "En curso"]
+  ["Agentes", "En producción"],
+  ["Adopción", "En curso"]
 ];
 
 export default function Hero() {
@@ -23,10 +23,10 @@ export default function Hero() {
 
       <div className="lp-container lp-hero__content">
         <h1 id="hero-title" className="lp-hero__title" data-reveal="lines">
-          <SplitLines lines={["Resolvemos", "retos operativos", "con metodología", "y tecnología."]} accent={[3]} />
+          <SplitLines lines={["Resolvemos", "retos operativos", "con método", "e IA aplicada."]} accent={[3]} />
         </h1>
         <p className="lp-hero__lead" data-reveal style={{ "--d": 4 } as CSSProperties}>
-          disHub es el laboratorio de innovación de Digital Investment Systems S.A.S. Aplicamos una metodología propia para diagnosticar los retos operativos de cada organización y resolverlos con la herramienta pertinente: rediseño de procesos, datos, automatización, inteligencia artificial o plataformas especializadas.
+          disHub, el laboratorio de innovación de Digital Investment Systems, diagnostica su operación e integra IA, datos y automatización donde mueven resultados. La capacidad queda instalada en su equipo.
         </p>
         <div className="lp-hero__actions" data-reveal style={{ "--d": 5 } as CSSProperties}>
           <a className="lp-btn lp-btn--primary" href={SITE.bookingUrl} target="_blank" rel="noopener noreferrer">

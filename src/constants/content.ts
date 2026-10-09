@@ -188,7 +188,7 @@ export const PROOFS = [
 export const PILLARS = [
   { t: "Negocio", d: "Conocimiento del sector fiduciario e inmobiliario." },
   { t: "Metodología", d: "Diagnóstico riguroso previo a toda propuesta." },
-  { t: "Tecnología", d: "Herramientas pertinentes para cada caso." }
+  { t: "Tecnología", d: "IA, datos y automatización donde el caso lo justifica." }
 ];
 
 export const METRICS = [

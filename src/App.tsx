@@ -103,10 +103,10 @@ function HomePage() {
         index="03"
         tone="teal"
         eyebrow="Nuestro propósito"
-        statement="Toda solución efectiva comienza con un diagnóstico riguroso."
-        detail="Intervenimos en los puntos donde el negocio, la operación y la tecnología aún no están alineados. Analizamos el contexto, identificamos las causas de las ineficiencias y las transformamos en soluciones medibles, con la tecnología que cada caso requiere."
-        metric="01"
-        metricLabel="metodología integral, del diagnóstico a los resultados"
+        statement="La IA funciona cuando empieza por el diagnóstico."
+        detail="Detectamos dónde negocio, operación y tecnología no están alineados y llevamos la solución hasta producción, con IA cuando el caso lo justifica."
+        metric="04"
+        metricLabel="etapas, del diagnóstico a la capacidad instalada"
       />
     </>
   );
