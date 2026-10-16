@@ -2,6 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { CONTACT_DETAILS, SITE, SOLUTIONS } from "../../constants/content";
 
+const footerSolutions = SOLUTIONS.filter((solution) => {
+  if (solution.key === "ai") return false;
+  const url = SITE.links[solution.key as keyof typeof SITE.links];
+  return /^https?:\/\//.test(url) && !url.includes("[[");
+});
+
 export default function Footer() {
   return (
     <footer
@@ -12,13 +18,14 @@ export default function Footer() {
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
         borderTop: "1px solid rgb(255 255 255 / 0.08)",
-        padding: "64px 24px 32px",
+        padding: "64px var(--lp-gutter, 24px) 32px",
         color: "#B0C4D4"
       }}
     >
       <div
         style={{
-          maxWidth: "1240px",
+          width: "100%",
+          maxWidth: "var(--lp-max, 1240px)",
           margin: "0 auto"
         }}
       >
@@ -54,7 +61,7 @@ export default function Footer() {
           </div>
 
           {/* Products */}
-          <div>
+          {footerSolutions.length > 0 && <div>
             <h4
               style={{
                 margin: "0 0 16px",
@@ -78,7 +85,7 @@ export default function Footer() {
                 gap: "8px"
               }}
             >
-              {SOLUTIONS.map((solution) => (
+              {footerSolutions.map((solution) => (
                 <li key={solution.key}>
                   <a
                     href={SITE.links[solution.key as keyof typeof SITE.links]}
@@ -102,7 +109,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </div>}
 
           {/* Company */}
           <div className="footer-company-links">
@@ -131,7 +138,7 @@ export default function Footer() {
             >
               {[
                 { label: "Nosotros", href: "/nosotros" },
-                { label: "Metodología", href: "/metodologia" },
+                { label: "Metodología Brickflow", href: "/metodologia" },
                 { label: "Trayectoria", href: "/historia" },
                 { label: "Contacto", href: "/contacto" }
               ].map((item, idx) => (
@@ -184,8 +191,7 @@ export default function Footer() {
               }}
             >
               {[
-                { label: "Privacidad y datos personales", href: "/politica-privacidad" },
-                { label: "LinkedIn", href: "[[URL_LINKEDIN]]", external: true }
+                { label: "Privacidad y datos personales", href: "/politica-privacidad", external: false }
               ].map((item, idx) => (
                 <li key={idx}>
                   <a

@@ -8,12 +8,11 @@ export default function Challenge() {
   const { ref, active, progress } = useScrollSteps<HTMLOListElement>(PROBLEMS.length, "flow");
 
   return (
-    <section id="desafio" className="lp-section lp-tone-ink lp-challenge" data-screen-label="04 Desafío" aria-labelledby="desafio-title">
+    <section id="desafio" className="lp-section lp-tone-ink lp-challenge" data-screen-label="Desafío" aria-labelledby="desafio-title">
       <div className="lp-container lp-challenge__grid">
         <div className="lp-challenge__aside">
           <div className="lp-challenge__sticky">
             <SectionHeading
-              index="04"
               eyebrow="El desafío"
               titleId="desafio-title"
               title={["Las operaciones", "complejas requieren", "soluciones que", "comprendan su contexto."]}

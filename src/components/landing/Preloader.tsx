@@ -66,7 +66,7 @@ export default function Preloader({ progress, done, onExited }: PreloaderProps) 
           <span style={{ transform: `scaleX(${shown / 100})` }} />
         </div>
       </div>
-      <p className="lp-loader__foot" aria-hidden="true">Laboratorio de innovación · Bogotá</p>
+      <p className="lp-loader__foot" aria-hidden="true">Metodología Brickflow · Bogotá</p>
     </div>
   );
 }

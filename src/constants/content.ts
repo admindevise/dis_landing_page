@@ -42,7 +42,7 @@ export const SITE = {
 export const NAV = [
   ["nosotros", "Nosotros"],
   // ["desafio", "Desafío"],
-  ["metodologia", "Metodología"],
+  ["metodologia", "Metodología Brickflow"],
   ["soluciones", "Soluciones"],
   ["historia", "Trayectoria"],
   ["contacto", "Contacto"]
@@ -186,9 +186,9 @@ export const PROOFS = [
 ];
 
 export const PILLARS = [
-  { t: "Negocio", d: "Conocimiento del sector fiduciario e inmobiliario." },
+  { t: "Negocio", d: "Conocimiento del sector financiero, fiduciario e inmobiliario." },
   { t: "Metodología", d: "Diagnóstico riguroso previo a toda propuesta." },
-  { t: "Tecnología", d: "IA, datos y automatización donde el caso lo justifica." }
+  { t: "Tecnología", d: "IA, datos y automatización fintech y proptech donde el caso lo justifica." }
 ];
 
 export const METRICS = [
@@ -214,10 +214,10 @@ export const CAPABILITIES = [
 ];
 
 export const VALUES = [
-  { n: "01", t: "Rigor", d: "Ninguna recomendación sin diagnóstico previo; cada decisión se sustenta en datos." },
-  { n: "02", t: "Transparencia", d: "Comunicamos con claridad qué hacemos, cómo lo hacemos y qué resultados obtenemos." },
-  { n: "03", t: "Colaboración", d: "Trabajamos junto a nuestros clientes en cada etapa del proceso." },
-  { n: "04", t: "Mejora continua", d: "Medimos, aprendemos y ajustamos en cada ciclo." }
+  { n: "01", t: "Entregar más de lo acordado", d: "El éxito se mide en la operación del cliente, no en el entregable." },
+  { n: "02", t: "IA primero en casa", d: "Usamos IA en nuestra propia operación antes de llevarla a un cliente, y compartimos lo que aprendemos con el equipo." },
+  { n: "03", t: "Cultura diseñada por quienes construyen", d: "Las decisiones grandes pasan por el criterio de nuestros ingenieros." },
+  { n: "04", t: "Rigor", d: "Ninguna recomendación sin diagnóstico; cada decisión deja traza." }
 ];
 
 export const TESTIMONIALS = [
@@ -237,25 +237,29 @@ export const STEPS = [
   {
     t: "Diagnóstico",
     layer: "Cimiento",
+    lead: "FDT, con apoyo FDE",
     d: "Mapeamos procesos, sistemas y datos con negocio, riesgo y TI. Priorizamos casos de uso por valor, factibilidad y exposición regulatoria.",
     out: "mapa de oportunidades priorizado"
   },
   {
     t: "Arquitectura y modelos",
     layer: "Estructura",
+    lead: "FDE",
     d: "Elegimos dónde corre cada caso —on-premise, nube o proveedor— y con qué modelo, comercial u open source. Desplegamos y definimos controles de acceso, registro y retención.",
     out: "plataforma operando en su infraestructura"
   },
   {
     t: "Agentes en la operación",
     layer: "Muros",
+    lead: "FDE",
     d: "Integramos agentes con sus sistemas core para conciliar, revisar y reportar. Cada salida pasa por aprobación humana cuando la regla lo exige.",
     out: "casos de uso en producción"
   },
   {
     t: "Adopción y transferencia",
     layer: "Cubierta",
-    d: "Formamos a los equipos por rol, instalamos el gobierno de IA y medimos la adopción. Su organización opera; nosotros quedamos como soporte.",
+    lead: "FDT",
+    d: "Formamos a los equipos por rol, instalamos el gobierno de IA y medimos la adopción. Su organización opera la solución; el FDT sigue como su contraparte en la dirección para medir resultados y abrir los siguientes casos.",
     out: "capacidad instalada en su equipo"
   }
 ];
@@ -316,8 +320,10 @@ export const BF_PROFILES = ["Sociedades fiduciarias", "Bancos y financieras", "A
 
 export const BF_FAQS = [
   { q: "¿On-premise, nube o proveedor comercial?", a: "Depende de cada caso. En el diagnóstico comparamos infraestructura propia, nube privada y API de proveedor, con LLM comerciales u open source, en costo, riesgo y cumplimiento. Un mismo cliente puede combinar varias." },
+  { q: "¿Qué hace un FDE dentro de mi empresa?", a: "Un Forward Deployed Engineer trabaja dentro de su operación con quienes concilian, revisan y reportan, integra agentes con sus sistemas core y deja cada caso en producción junto a su equipo de TI." },
+  { q: "¿Quién es nuestra contraparte después de la implementación?", a: "El FDT sigue como su contraparte ante la dirección: revisa resultados, mide la adopción y abre los siguientes casos de IA." },
   { q: "¿Qué pasa con el modelo cuando cambie la tecnología?", a: "Los modelos son intercambiables. La arquitectura separa datos, reglas y modelo, así que actualizar el modelo no obliga a rehacer la integración ni a reentrenar a los equipos." },
-  { q: "¿Quién opera la solución después de la implantación?", a: "Su equipo. La etapa 04 transfiere operación, gobierno y métricas. BrickFlow queda como soporte de segundo nivel si usted lo requiere." },
+  { q: "¿Quién opera la solución después de la implantación?", a: "Su equipo. La etapa 04 transfiere operación, gobierno y métricas; el FDT sigue como su contraparte en la dirección para medir resultados y abrir los siguientes casos." },
   { q: "¿Cómo se audita lo que decide la IA?", a: "Cada salida queda registrada con su fuente, la regla aplicada y la persona que la aprobó. La bitácora se exporta para revisoría fiscal y auditoría interna." },
   { q: "¿Necesitamos un equipo de datos para empezar?", a: "No. El diagnóstico parte de sus procesos y sistemas actuales. Definimos juntos qué perfiles internos se forman en el camino." }
 ];

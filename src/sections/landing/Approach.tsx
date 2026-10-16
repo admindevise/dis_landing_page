@@ -11,12 +11,12 @@ export default function Approach() {
   const showLayerVisual = useMediaQuery("(min-width: 1100px)");
 
   return (
-    <section ref={ref} id="proceso" className="lp-section lp-tone-navy lp-approach" data-screen-label="05 Metodología" aria-labelledby="enfoque-title">
+    <section ref={ref} id="proceso" className="lp-section lp-tone-navy lp-approach" data-screen-label="03 Etapas" aria-labelledby="enfoque-title">
       <div className="lp-approach__pin">
         <div className="lp-container lp-approach__inner">
           <div className="lp-approach__head">
             <div className="lp-approach__copy">
-            <SectionHeading index="05" eyebrow="Metodología disHub" titleId="enfoque-title" title={["Del diagnóstico", "a la capacidad instalada."]} accent={[1]} />
+            <SectionHeading index="03" eyebrow="Metodología Brickflow" titleId="enfoque-title" title={["Del diagnóstico", "a la capacidad instalada."]} accent={[1]} />
             <p className="lp-lead" data-reveal>
               Integrar inteligencia artificial exige entender primero la operación. Avanzamos por cuatro etapas para pasar del diagnóstico a una solución controlada, adoptada y operada por su equipo.
             </p>
@@ -40,6 +40,7 @@ export default function Approach() {
               >
                 <span className="lp-step__num">{pad(index + 1)}</span>
                 <h3 className="lp-step__title">{step.t}</h3>
+                <p className="lp-step__leader"><span>Lidera</span>{step.lead}</p>
                 <p className="lp-step__desc">{step.d}</p>
                 <p className="lp-step__out"><span>Entregable</span>{step.out}</p>
               </li>

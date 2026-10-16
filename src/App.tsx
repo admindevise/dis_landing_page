@@ -13,7 +13,7 @@ import Solutions from "./sections/landing/Solutions";
 import Sectors from "./sections/landing/Sectors";
 import Security from "./sections/landing/Security";
 // import { BrickflowCapabilities, BrickflowDetails, BrickflowIntro } from "./sections/landing/Brickflow";
-import { BrickflowCapabilities, BrickflowDetails } from "./sections/landing/Brickflow";
+import { BrickflowCapabilities, BrickflowDetails, BrickflowProof, BrickflowRoles } from "./sections/landing/Brickflow";
 import History from "./sections/landing/History";
 import Values from "./sections/landing/Values";
 import FAQ from "./sections/landing/FAQ";
@@ -30,7 +30,7 @@ function LandingLayout() {
   const [headerPad, setHeaderPad] = useState("20px 16px");
   const [wide, setWide] = useState(() => window.innerWidth >= 1080);
   const [menuOpen, setMenuOpen] = useState(false);
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   const activeSection = pathname.split("/")[1] || "nosotros";
   const { progress: loadProgress, done: loaded } = usePreload();
   const [showLoader, setShowLoader] = useState(true);
@@ -43,26 +43,34 @@ function LandingLayout() {
       setHeaderPad(window.scrollY > 24 ? "10px 16px" : "20px 16px");
     };
     const handleResize = () => setWide(window.innerWidth >= 1080);
+    const handlePopState = () => setMenuOpen(false);
 
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize);
+    window.addEventListener("popstate", handlePopState);
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("popstate", handlePopState);
     };
   }, []);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
-    setMenuOpen(false);
-  }, [pathname]);
+    const targetId = hash.slice(1);
+    const target = targetId ? document.getElementById(decodeURIComponent(targetId)) : null;
+    if (target) {
+      target.scrollIntoView({ behavior: "instant", block: "start" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+  }, [pathname, hash]);
 
   return (
     <>
     <Helmet>
-      <title>disHub | Soluciones tecnológicas para el sector financiero e inmobiliario</title>
-      <meta name="description" content="disHub es el laboratorio de innovación de Digital Investment Systems S.A.S. Mediante una metodología propia, diagnosticamos los retos operativos de entidades del sector financiero e inmobiliario y los resolvemos con la tecnología pertinente para cada caso." />
+      <title>disHub | Metodología Brickflow para IA en producción</title>
+      <meta name="description" content="disHub, de Digital Investment Systems, despliega ingenieros y líderes de transformación para llevar IA a producción con trazabilidad, cumplimiento y adopción en equipos regulados." />
     </Helmet>
     <div ref={rootRef} className="lp dis-page relative min-h-screen overflow-x-clip bg-disPage bg-disGrid">
       <a href="#contenido" className="lp-skip">Saltar al contenido</a>
@@ -100,7 +108,7 @@ function HomePage() {
       <About />
       <StatementBand
         id="lectura"
-        index="03"
+        index="02"
         tone="teal"
         eyebrow="Nuestro propósito"
         statement="La IA funciona cuando empieza por el diagnóstico."
@@ -115,9 +123,10 @@ function HomePage() {
 function ApproachPage() {
   return (
     <>
-      {/* <BrickflowIntro /> */}
       <Approach />
+      <BrickflowRoles />
       <BrickflowCapabilities />
+      <BrickflowProof />
       <BrickflowDetails />
     </>
   );

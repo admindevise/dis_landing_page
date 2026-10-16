@@ -22,7 +22,7 @@ export default function Values() {
             titleId="valores-title"
             title={["Los principios", "que orientan", "nuestro trabajo."]}
             accent={[2]}
-            lead="Nuestro equipo se distingue por la manera en que escucha, simplifica, cuida lo que implementa y continúa aprendiendo después de cada entrega."
+            lead="Construimos la forma en que las empresas crean valor con IA, y la probamos primero en nuestra propia operación."
           />
           <ol className="lp-values__list">
             {VALUES.map((value, index) => (

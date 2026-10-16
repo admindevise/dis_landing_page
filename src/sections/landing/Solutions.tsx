@@ -11,6 +11,8 @@ export default function Solutions() {
   const [selected, setSelected] = useState(0);
   const solution = SOLUTIONS[selected];
   const stageState = useMemo(() => ({ active: selected }), [selected]);
+  const solutionUrl = SITE.links[solution.key as keyof typeof SITE.links];
+  const hasSolutionUrl = /^https?:\/\//.test(solutionUrl) && !solutionUrl.includes("[[");
 
   return (
     <section id="soluciones" className="lp-section lp-tone-glass lp-solutions" data-screen-label="10 Soluciones" aria-labelledby="soluciones-title">
@@ -76,10 +78,12 @@ export default function Solutions() {
                   ))}
                 </dl>
               </div>
-              <a className="lp-link-arrow" href={SITE.links[solution.key as keyof typeof SITE.links]} target="_blank" rel="noopener noreferrer">
-                Conocer más sobre {solution.name}
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
-              </a>
+              {hasSolutionUrl && (
+                <a className="lp-link-arrow" href={solutionUrl} target="_blank" rel="noopener noreferrer">
+                  Conocer más sobre {solution.name}
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+                </a>
+              )}
             </div>
           </div>
         </div>

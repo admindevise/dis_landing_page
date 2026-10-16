@@ -3,7 +3,7 @@ import { cn } from "../../lib/utils";
 import SplitLines from "./SplitLines";
 
 interface SectionHeadingProps {
-  index: string;
+  index?: string;
   eyebrow: string;
   title: string[];
   titleId: string;
@@ -17,7 +17,7 @@ export default function SectionHeading({ index, eyebrow, title, titleId, accent,
   return (
     <header className={cn("lp-heading", align === "center" && "lp-heading--center", className)}>
       <p className="lp-eyebrow" data-reveal>
-        <span className="lp-eyebrow__index">{index}</span>
+        {index && <span className="lp-eyebrow__index">{index}</span>}
         <span className="lp-eyebrow__rule" aria-hidden="true" />
         {eyebrow}
       </p>

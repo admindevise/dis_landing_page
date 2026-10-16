@@ -8,7 +8,7 @@ const INTERESTS = [
   ["devise-business", "Devise Business"],
   ["devise-marketplace", "Devise Marketplace"],
   ["valuo", "Valuo"],
-  ["ai", "Transformación tecnológica"],
+  ["ai", "Implementación con Brickflow (FDE / FDT)"],
   ["otro", "Otro / por definir"]
 ];
 

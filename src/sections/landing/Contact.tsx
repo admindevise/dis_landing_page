@@ -16,7 +16,7 @@ export default function Contact() {
       <div className="lp-container lp-contact__grid">
         <div className="lp-contact__copy">
           <p className="lp-eyebrow" data-reveal>
-            <span className="lp-eyebrow__index">14</span>
+            <span className="lp-eyebrow__index">16</span>
             <span className="lp-eyebrow__rule" aria-hidden="true" />
             Contacto
           </p>

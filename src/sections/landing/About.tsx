@@ -7,7 +7,7 @@ import { dataFlow } from "../../three/objects/dataFlow";
 
 export default function About() {
   return (
-    <section id="nosotros" className="lp-section lp-tone-navy lp-about" data-screen-label="02 Quiénes somos" aria-labelledby="nosotros-title">
+    <section id="nosotros" className="lp-section lp-tone-navy lp-about" data-screen-label="01 Quiénes somos" aria-labelledby="nosotros-title">
       <div className="lp-container lp-about__grid">
         <div className="lp-about__visual" data-reveal="scale">
           <ThreeStage
@@ -24,19 +24,26 @@ export default function About() {
 
         <div className="lp-about__copy">
           <SectionHeading
-            index="02"
+            index="01"
             eyebrow="Quiénes somos"
             titleId="nosotros-title"
             title={["Un equipo para", "comprender, diseñar", "y resolver", "retos operativos."]}
             accent={[3]}
-            lead="Partimos de la necesidad, no de la tecnología. Conocemos el negocio y lo resolvemos con método."
           />
+          <ul className="lp-about__badges" aria-label="Sectores de especialización">
+            <li>Fintech</li>
+            <li>Proptech</li>
+            <li>Sector financiero</li>
+          </ul>
+          <p className="lp-lead lp-about__lead" data-reveal>
+            Partimos de la necesidad, no de la tecnología. Somos un <strong>equipo fintech y proptech</strong>: conocemos el negocio financiero e inmobiliario y lo resolvemos con método.
+          </p>
           <div className="lp-about__body">
             <p data-reveal>
-              Nacimos dentro de una operación real y diseñamos junto a quienes usan cada solución.
+              Nacimos dentro de una operación real del sector financiero e inmobiliario y diseñamos junto a quienes usan cada solución.
             </p>
             <p data-reveal style={{ "--d": 1 } as CSSProperties}>
-              Cuatro etapas —diagnóstico, arquitectura, agentes y adopción— llevan la IA de la idea a producción en industrias reguladas, con trazabilidad y en manos de su equipo.
+              La metodología Brickflow, en cuatro etapas, lleva la IA de la idea a producción en industrias reguladas, con trazabilidad y en manos de su equipo.
             </p>
           </div>
           <ol className="lp-about__pillars">
