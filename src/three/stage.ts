@@ -163,6 +163,9 @@ export async function mountStage(element: HTMLElement, factory: SceneFactory): P
       input.state[key] = value;
       schedule();
     },
+    pick(x, y) {
+      return instance.pick?.({ x, y }) ?? null;
+    },
     dispose() {
       cancelAnimationFrame(frame);
       resizeObserver.disconnect();

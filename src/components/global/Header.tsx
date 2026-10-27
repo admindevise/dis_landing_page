@@ -137,7 +137,7 @@ export default function Header({ headerPad, wide, menuOpen, activeSection, setMe
               href={SITE.bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Agendar una reunión"
+              aria-label="Iniciar transformación"
               style={{
                 gap: "8px",
                 padding: "0 18px",
@@ -161,8 +161,8 @@ export default function Header({ headerPad, wide, menuOpen, activeSection, setMe
                 (e.currentTarget as HTMLElement).style.background = "#02B2B2";
               }}
             >
-              <span className="dis-booking-label-long">Agendar una reunión</span>
-              <span className="dis-booking-label-short" aria-hidden="true">Agendar</span>
+              <span className="dis-booking-label-long">Iniciar transformación</span>
+              <span className="dis-booking-label-short" aria-hidden="true">Iniciar</span>
             </a>
 
             {!wide && (

@@ -30,3 +30,4 @@ src/**/*.jsx
 
 # Local issue drafting
 ISSUES.md
+updates/

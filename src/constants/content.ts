@@ -35,6 +35,8 @@ export const SITE = {
     business: "[[URL_DEVISE_BUSINESS]]",
     marketplace: "[[URL_DEVISE_MARKETPLACE]]",
     valuo: "[[URL_VALUO]]",
+    hospitality: "[[URL_DEVISE_HOSPITALITY]]",
+    tokenize: "[[URL_DEVISE_TOKENIZE]]",
     ai: "[[URL_BRICKFLOW]]"
   }
 };
@@ -51,51 +53,103 @@ export const NAV = [
 export const SOLUTIONS = [
   {
     key: "business",
-    name: "Devise Business",
-    kind: "Gestión de activos",
+    name: "Devise Trust",
+    kind: "IA agéntica y control transversal · Vehículos de inversión",
     mark: MARK.devise,
-    tagline: "Gestión centralizada de activos, inversionistas y reportes.",
-    desc: "Administre fideicomisos, portafolios y movimientos con trazabilidad completa. Devise Business reúne la información financiera, contable y contractual en un solo entorno y genera reportes listos para auditoría.",
-    points: ["Gestión de activos y portafolio", "Registro de inversionistas y movimientos", "Reportes y analítica en tiempo real"],
+    tagline: "Copiloto operativo con 5 agentes de IA que cruzan contratos, contabilidad y reglas de negocio sin tocar tus sistemas centrales.",
+    desc: "Crea el gemelo digital (Expediente Vivo) de cada vehículo o negocio administrado. Sus cinco agentes de IA contrastan contratos sin formato estándar contra tu contabilidad en modo solo lectura, alertando fugas de ingresos y vencimientos con evidencia exacta.",
+    points: [
+      "Motor de 5 agentes de IA (Archivista, Jurídico, Contable, Conciliador y Auditor) que cruzan con evidencia, sin adivinar.",
+      "Memoria institucional auditable: unifica lo jurídico, contable y operativo sin reemplazar tus sistemas actuales.",
+      "Core blindado y humano en el circuito: acceso 100% de solo lectura; el motor propone con pruebas y tu equipo aprueba."
+    ],
     hint: "Pase el cursor para separar los módulos",
     demo: [
-      { label: "Fideicomisos en seguimiento", value: "24" },
-      { label: "Movimientos conciliados hoy", value: "312" },
-      { label: "Reportes listos para auditoría", value: "8" }
+      { label: "Captura de comisiones y cobros subfacturados", value: "+ Ingresos" },
+      { label: "En búsqueda manual; más negocios por administrador", value: "- Horas" },
+      { label: "Auditando reglas en modo 100% solo lectura", value: "5 Agentes" }
     ],
-    alt: "Módulos de vidrio apilados que se ensamblan en una sola estructura, con pulsos de datos que la recorren: centralización y control."
+    alt: "Módulos conectados que representan agentes de IA contrastando contratos, contabilidad y reglas con evidencia."
   },
   {
     key: "marketplace",
     name: "Devise Marketplace",
-    kind: "Inversión fraccionada",
+    kind: "Infraestructura y distribución B2B2C",
     mark: MARK.devise,
-    tagline: "Acceso a la inversión inmobiliaria, con liquidez.",
-    desc: "Conecta a inversionistas con oportunidades inmobiliarias. Permite invertir por participaciones, seguir cada posición desde una cuenta digital y negociarlas en un entorno seguro.",
-    points: ["Oportunidades de inversión fraccionada", "Cuenta digital del inversionista", "Compraventa digital de participaciones"],
+    tagline: "Distribuye vehículos de inversión directamente en las billeteras digitales y canales masivos donde ya existe la liquidez.",
+    desc: "Capa de interconexión (API) que despliega tus vehículos de inversión y activos fraccionados en billeteras digitales y plataformas reguladas sin costos de adquisición minorista, automatizando en segundo plano la conciliación de micro-transacciones, el control contractual y la dispersión de giros.",
+    points: [
+      "Distribución nativa en rieles masivos: conexión directa con billeteras digitales y plataformas reguladas (cero fricción de CAC).",
+      "Pasarela tipo Peaje (API Hub): comunica en tiempo real a originadores y administradores de vehículos con los canales de distribución.",
+      "Conciliación de micro-tickets y giros: automatiza miles de órdenes fraccionadas (desde $100K COP) y la dispersión de rendimientos."
+    ],
     hint: "Pase el cursor para fraccionar el edificio",
     demo: [
-      { label: "Participaciones disponibles", value: "1.250" },
-      { label: "Inversionistas activos", value: "86" },
-      { label: "Ofertas en mercado secundario", value: "14" }
+      { label: "Tiempo en dispersión de giros y registro", value: "-95%" },
+      { label: "Ticket mínimo habilitado en canales masivos", value: "$100K" },
+      { label: "Carga operativa adicional para el administrador", value: "0" }
     ],
-    alt: "Edificio translúcido que se divide en unidades fraccionadas, con partículas que fluyen hacia nodos de inversionistas: inversión fraccionada y liquidez."
+    alt: "Edificio dividido en unidades de inversión conectadas con billeteras digitales y canales de distribución."
+  },
+  {
+    key: "hospitality",
+    name: "Devise Pulse",
+    kind: "IA operativa y control financiero en vivo",
+    mark: MARK.devise,
+    tagline: "Tu agente CFO con IA que conecta la gerencia con la primera línea operativa vía WhatsApp.",
+    desc: "Agente de inteligencia artificial que monitorea el pulso financiero y operativo de la empresa en tiempo real y traduce cada desviación en instrucciones inmediatas para el personal de campo por WhatsApp, sin portales nuevos, reportes estáticos ni comités.",
+    points: [
+      "Agente IA financiero: monitoreo continuo de flujo de caja, márgenes, presupuestos y cuellos de botella.",
+      "Ejecución en terreno vía WhatsApp: lleva los insights de la dirección a los empleados de a pie en el canal que ya usan.",
+      "Accionables inmediatos sin reuniones: asigna tareas y valida la ejecución de arriba abajo en tiempo real."
+    ],
+    hint: "Pase el cursor para activar el flujo de ejecución",
+    demo: [
+      { label: "Visibilidad y ejecución gerencia-terreno", value: "En vivo" },
+      { label: "Tiempo en comités y consolidación de reportes", value: "-80%" },
+      { label: "Adopción inmediata en campo vía WhatsApp", value: "100%" }
+    ],
+    alt: "Flujo financiero y operativo que conecta la gerencia con equipos de campo a través de WhatsApp."
+  },
+  {
+    key: "tokenize",
+    name: "Devise Tokenize",
+    kind: "Infraestructura blockchain",
+    mark: MARK.devise,
+    tagline: "Tokenización de activos de inversión, fondos y vehículos estructurados con cumplimiento programable.",
+    desc: "Infraestructura blockchain que transforma participaciones tradicionales en activos digitales programables, integrando reglas normativas, límites de tenencia, dispersión de giros y liquidación automática en mercado secundario directamente desde el código.",
+    points: [
+      "Emisión digital de vehículos y fondos: representación en cadena de deuda, capital o activos reales con respaldo técnico.",
+      "Cumplimiento programado: reglas SARLAFT/KYC y restricciones de transferencia ejecutadas por contrato inteligente.",
+      "Liquidación y registro inmutable: dispersión automatizada de giros y trazabilidad de tenencia en tiempo real."
+    ],
+    hint: "Pase el cursor para verificar los bloques en cadena",
+    demo: [
+      { label: "Liquidación y registro instantáneo", value: "T+0" },
+      { label: "Reglas de cumplimiento ejecutadas por código", value: "100%" },
+      { label: "Trazabilidad inmutable en cadena", value: "24/7" }
+    ],
+    alt: "Activo dividido en unidades digitales con reglas de cumplimiento y movimientos registrados en cadena."
   },
   {
     key: "valuo",
     name: "Valuo",
-    kind: "Valoración inmobiliaria",
+    kind: "IA y modelos de valoración inmobiliaria",
     mark: MARK.valuo,
-    tagline: "Avalúos precisos a partir de datos de mercado.",
-    desc: "Estime el valor de un inmueble con base en comparables, tendencias y mapas de calor por zona, para decisiones de compra, venta o financiación mejor fundamentadas.",
-    points: ["Avalúos con comparables", "Tendencias del mercado", "Mapas de calor por zona"],
+    tagline: "Modelos de IA para avalúos precisos a partir de datos dinámicos de mercado.",
+    desc: "Procesa mediante inteligencia artificial y modelos estadísticos miles de comparables, tendencias y mapas de calor por zona para estimar el valor de un inmueble con precisión y respaldar decisiones de compra, venta o financiación.",
+    points: [
+      "Valoración asistida por IA: cruce automatizado de oferta, demanda y cierres comparables.",
+      "Modelos de tendencias de mercado: análisis predictivo de absorción y precios por metro cuadrado.",
+      "Inteligencia geoespacial: mapas de calor dinámicos por zona y radio de influencia."
+    ],
     hint: "Pase el cursor para ampliar el radio de comparables",
     demo: [
-      { label: "Comparables analizados", value: "42" },
-      { label: "Radio de búsqueda", value: "1,5 km" },
-      { label: "Rango de confianza", value: "± 6 %" }
+      { label: "Comparables analizados por activo", value: "42" },
+      { label: "Radio dinámico de búsqueda", value: "1,5 km" },
+      { label: "Rango de confianza del modelo", value: "± 6 %" }
     ],
-    alt: "Ciudad en miniatura cuyas alturas forman un mapa de calor de valor, con un anillo que recorre la zona resaltando comparables: valoración precisa desde los datos."
+    alt: "Mapa de calor de valor inmobiliario con un radio dinámico que destaca comparables de mercado."
   },
   {
     key: "ai",
@@ -114,6 +168,51 @@ export const SOLUTIONS = [
     alt: "Partículas dispersas que una red organiza en un muro de bloques: la metodología convierte la complejidad en procesos estructurados."
   }
 ];
+
+// Seis pasos de cada solución: recorren el objeto 3D de la sección Soluciones y su línea de pasos.
+// `tag` es el dato que se lee en la fachada de cada nivel (valores ilustrativos).
+export const SOLUTION_FLOWS = {
+  business: [
+    { name: "Conecta", summary: "5 fuentes en solo lectura", title: "Observa sin intervenir", desc: "ERP, core, gestor documental, facturación y correo, sin migrar nada.", tag: "5 fuentes" },
+    { name: "Comprende", summary: "Reglas extraídas del contrato", title: "Lee el negocio, no solo el documento", desc: "Contratos y otrosíes convertidos en reglas auditables.", tag: "Cláusula 14.2" },
+    { name: "Cruza", summary: "Regla frente a evidencia", title: "La regla frente a la evidencia", desc: "Cada regla se enfrenta a la factura emitida y al asiento contable.", tag: "46/47 conciliadas" },
+    { name: "Explica", summary: "Hallazgos con su evidencia", title: "Hallazgos que se explican solos", desc: "Cláusula, cálculo, asiento e impacto económico en un solo hallazgo.", tag: "Hallazgo H-0412" },
+    { name: "Decide", summary: "Su equipo tiene la última palabra", title: "La IA propone. Su equipo decide.", desc: "Un responsable aprueba, ajusta o descarta, con su justificación.", tag: "Aprobar o ajustar" },
+    { name: "Audita", summary: "Rastro completo en el expediente", title: "Todo queda en el expediente", desc: "La decisión y su evidencia quedan listas para la próxima auditoría.", tag: "Rastro completo" }
+  ],
+  hospitality: [
+    { name: "Monitorea", summary: "Finanzas y operación en tiempo real", title: "El pulso de la operación, en vivo", desc: "El agente observa el flujo de caja, los márgenes, los presupuestos y los cuellos de botella.", tag: "Pulso en vivo" },
+    { name: "Detecta", summary: "Desviaciones frente a las reglas", title: "Cada desviación, identificada", desc: "El monitoreo continuo permite reconocer cambios que requieren atención.", tag: "Desviación detectada" },
+    { name: "Interpreta", summary: "Contexto para cada hallazgo", title: "Una señal con contexto", desc: "La dirección recibe información accionable sobre el estado financiero y operativo.", tag: "Hallazgo priorizado" },
+    { name: "Asigna", summary: "Instrucciones por WhatsApp", title: "La instrucción llega al equipo", desc: "El agente traduce la desviación en una instrucción inmediata para el personal de campo.", tag: "Tarea asignada" },
+    { name: "Ejecuta", summary: "En el canal que el equipo ya usa", title: "Sin portales nuevos", desc: "El equipo recibe y atiende las instrucciones desde WhatsApp.", tag: "WhatsApp" },
+    { name: "Verifica", summary: "Ejecución visible en tiempo real", title: "La gerencia sigue la ejecución", desc: "La empresa valida la respuesta de arriba abajo en tiempo real, sin esperar al siguiente comité.", tag: "Ejecución verificada" }
+  ],
+  tokenize: [
+    { name: "Estructura", summary: "El activo y su vehículo legal", title: "Primero, el activo y sus reglas", desc: "Títulos, avalúo y contrato fiduciario reunidos como base de la emisión.", tag: "Activo AT-07" },
+    { name: "Valora", summary: "Un valor de referencia sustentado", title: "Un valor que se puede sustentar", desc: "El avalúo y sus supuestos quedan ligados a cada unidad emitida.", tag: "Avalúo vigente" },
+    { name: "Fracciona", summary: "Unidades digitales del activo", title: "El activo, en unidades", desc: "Cada token representa una fracción definida del activo y de sus derechos.", tag: "10.000 unidades" },
+    { name: "Verifica", summary: "Participantes validados", title: "Solo participantes verificados", desc: "Conocimiento del cliente y listas restrictivas antes de cada asignación.", tag: "KYC aprobado" },
+    { name: "Registra", summary: "Cada movimiento, en registro", title: "Un registro que no se reescribe", desc: "Emisiones y transferencias quedan en un registro consultable e inalterable.", tag: "Bloque 4.812" },
+    { name: "Distribuye", summary: "Rendimientos por unidad", title: "Rendimientos a cada unidad", desc: "Los flujos del activo se reparten según la participación de cada titular.", tag: "Pago trimestral" }
+  ],
+  marketplace: [
+    { name: "Publica", summary: "Oportunidades con su ficha", title: "Cada oportunidad, con su ficha", desc: "Proyecto, documentos y condiciones de inversión en un solo lugar.", tag: "Torre Norte" },
+    { name: "Fracciona", summary: "Participaciones con valor definido", title: "El inmueble, en participaciones", desc: "Cada proyecto se divide en participaciones con valor y derechos definidos.", tag: "1.250 partic." },
+    { name: "Invierte", summary: "Aporte en línea, con soporte", title: "Invertir en pocos pasos", desc: "Vinculación, aporte y certificado desde la cuenta digital.", tag: "Aporte confirmado" },
+    { name: "Sigue", summary: "Su posición al día", title: "Cada posición a la vista", desc: "Rendimientos, documentos y movimientos del inversionista en su cuenta.", tag: "Posición al día" },
+    { name: "Negocia", summary: "Mercado secundario", title: "Liquidez entre inversionistas", desc: "Las participaciones se ofrecen y transfieren en un entorno controlado.", tag: "14 ofertas" },
+    { name: "Liquida", summary: "Transferencias registradas", title: "Cada transferencia, registrada", desc: "Pagos y cambios de titularidad conciliados y listos para auditoría.", tag: "Registro al día" }
+  ],
+  valuo: [
+    { name: "Ubica", summary: "El inmueble y su entorno", title: "Todo empieza en la dirección", desc: "Ubicación, área, uso del suelo y normativa del predio.", tag: "Predio 0412" },
+    { name: "Compara", summary: "Comparables dentro del radio", title: "Comparables, no suposiciones", desc: "Ofertas y transacciones similares dentro de un radio definido.", tag: "42 comparables" },
+    { name: "Homologa", summary: "Ajustes por área y estado", title: "Cada comparable, homologado", desc: "Ajustes por área, antigüedad, piso y estado, cada uno con su porcentaje.", tag: "Ajuste −4 %" },
+    { name: "Analiza", summary: "La tendencia de la zona", title: "La tendencia de la zona", desc: "Precio por metro cuadrado y su evolución en los últimos meses.", tag: "+3,1 % anual" },
+    { name: "Mapea", summary: "Calor de valor por manzana", title: "El valor, sobre el mapa", desc: "Mapas de calor por zona para leer dónde sube el valor y dónde se estanca.", tag: "Zona alta" },
+    { name: "Estima", summary: "Valor con rango de confianza", title: "Un valor con su rango", desc: "Valor estimado con su rango de confianza y la evidencia que lo sostiene.", tag: "± 6 %" }
+  ]
+};
 
 export const PROBLEMS = [
   {
@@ -155,20 +254,22 @@ export const PROBLEMS = [
 ];
 
 export const SECURITY_CONTROLS = [
-  { icon: ICON.usercheck, title: "Gobierno de accesos", desc: "Permisos por rol, separación de funciones y revisión periódica de accesos." },
-  { icon: ICON.server, title: "Infraestructura", desc: "Nube con cifrado en tránsito y en reposo." },
-  { icon: ICON.trace, title: "Trazabilidad", desc: "Registro auditable de cada operación: quién, qué y cuándo." },
-  { icon: ICON.lock, title: "Protección de datos", desc: "Tratamiento de datos personales conforme a la Ley 1581 de 2012 y sus decretos reglamentarios." }
+  { icon: ICON.usercheck, title: "Gobierno de accesos", desc: "Permisos granulares por rol, separación de funciones, aprobación humana en flujos críticos y revisión periódica de accesos." },
+  { icon: ICON.server, title: "Infraestructura", desc: "Despliegue en servidores propios, nube privada o entornos híbridos con cifrado de extremo a extremo en tránsito y en reposo." },
+  { icon: ICON.trace, title: "Trazabilidad", desc: "Registro inmutable y auditable de cada operación e inferencia: quién, qué, cuándo y bajo qué regla se ejecutó." },
+  { icon: ICON.lock, title: "Protección y soberanía de datos", desc: "Tratamiento alineado con la Ley 1581 e ISO/IEC 27001. Tus datos permanecen dentro de tu perímetro y nunca entrenan modelos de terceros." }
 ];
 
 export const KEYWORDS = [
   "Fiduciarias",
-  "Activos",
-  "Fondos",
-  "Desarrolladores",
-  "Inversionistas",
-  "Operaciones inmobiliarias",
-  "Cumplimiento"
+  "Banca de Inversión",
+  "Gestores de Activos",
+  "Fondos de Capital Privado",
+  "Desarrolladores Inmobiliarios",
+  "Bancos y Financieras",
+  "Aseguradoras",
+  "Grupos Corporativos",
+  "Operaciones Reguladas"
 ];
 
 export const CLIENT_SLOTS = [
@@ -199,11 +300,11 @@ export const METRICS = [
 ];
 
 export const SECTORS = [
-  { icon: ICON.landmark, t: "Sociedades fiduciarias", d: "Digitalizan la gestión de fideicomisos, automatizan procesos y fortalecen la trazabilidad." },
-  { icon: ICON.briefcase, t: "Gestores de activos y fondos", d: "Administran portafolios con analítica, reportes financieros y opciones de liquidez." },
-  { icon: ICON.building, t: "Operadores y desarrolladores", d: "Centralizan activos, contratos y rentas para mejorar la rentabilidad." },
-  { icon: ICON.network, t: "Grupos corporativos", d: "Modernizan su operación inmobiliaria con trazabilidad y cumplimiento." },
-  { icon: ICON.trend, t: "Inversionistas", d: "Acceden a información en tiempo real y a operaciones seguras y transparentes." }
+  { icon: ICON.landmark, t: "Sociedades fiduciarias y banca", d: "Digitalizan la gestión de fideicomisos y vehículos, automatizan conciliaciones sobre sistemas centrales y fortalecen la trazabilidad ante entes de control." },
+  { icon: ICON.briefcase, t: "Gestores de activos y banca de inversión", d: "Estructuran, tokenizan y distribuyen portafolios con analítica en tiempo real, reportes auditables y canales de liquidez." },
+  { icon: ICON.building, t: "Operadores y desarrolladores inmobiliarios", d: "Centralizan activos, contratos, avalúos y rentas para maximizar la rentabilidad operativa del portafolio." },
+  { icon: ICON.network, t: "Aseguradoras, salud y sectores regulados", d: "Automatizan el análisis documental, la auditoría de cuentas, la suscripción de riesgo y el cumplimiento bajo estricta privacidad del dato." },
+  { icon: ICON.trend, t: "Grupos corporativos e industria", d: "Conectan la estrategia financiera con la ejecución en campo (vía agentes y WhatsApp) y modernizan procesos críticos con trazabilidad total." }
 ];
 
 export const CAPABILITIES = [
@@ -214,10 +315,12 @@ export const CAPABILITIES = [
 ];
 
 export const VALUES = [
-  { n: "01", t: "Entregar más de lo acordado", d: "El éxito se mide en la operación del cliente, no en el entregable." },
-  { n: "02", t: "IA primero en casa", d: "Usamos IA en nuestra propia operación antes de llevarla a un cliente, y compartimos lo que aprendemos con el equipo." },
-  { n: "03", t: "Cultura diseñada por quienes construyen", d: "Las decisiones grandes pasan por el criterio de nuestros ingenieros." },
-  { n: "04", t: "Rigor", d: "Ninguna recomendación sin diagnóstico; cada decisión deja traza." }
+  { n: "01", t: "De «funciona» a «factura»", d: "El código no sirve si no genera valor monetizable en producción." },
+  { n: "02", t: "IA en el P&L", d: "La innovación debe verse en el estado de resultados o en eficiencia operativa real." },
+  { n: "03", t: "Profundidad radical", d: "Perfeccionamos y rentabilizamos al máximo lo que ya existe en tu operación." },
+  { n: "04", t: "Dueños del problema", d: "El mismo equipo que escucha en la primera línea es quien construye la solución." },
+  { n: "05", t: "Acción–reacción", d: "Entendemos la necesidad y entregamos la solución de inmediato, sin burocracia." },
+  { n: "06", t: "Work as a Service", d: "No entregamos software vacío; nuestra tecnología asume la carga operativa desde el día uno." }
 ];
 
 export const TESTIMONIALS = [
@@ -229,38 +332,41 @@ export const TESTIMONIALS = [
 export const CONTACT_DETAILS = {
   email: "contactenos@gruposantarosa.co",
   phone: "+57 311 489 65 08",
-  address: "Ak 15 #93a-84, Oficina 506, Edificio Business 93, Bogotá, Colombia",
-  responseTime: "dos (2)"
+  address: "Ak 15 #93a-84, Oficina 506, Edificio Business 93, Bogotá, Colombia"
 };
 
 export const STEPS = [
   {
-    t: "Diagnóstico",
+    t: "Diagnóstico y Cimiento",
     layer: "Cimiento",
-    lead: "FDT, con apoyo FDE",
-    d: "Mapeamos procesos, sistemas y datos con negocio, riesgo y TI. Priorizamos casos de uso por valor, factibilidad y exposición regulatoria.",
-    out: "mapa de oportunidades priorizado"
+    lead: "Director de Transformación (FDT) + apoyo FDE",
+    counterpart: "Comité Directivo, Líderes de Negocio y Riesgo",
+    d: "Auditamos procesos, sistemas y exposición regulatoria en conjunto. Identificamos dónde la IA mueve un indicador real del negocio y seleccionamos los casos prioritarios por valor y factibilidad.",
+    out: "Mapa de oportunidades priorizado"
   },
   {
-    t: "Arquitectura y modelos",
+    t: "Arquitectura y Estructura",
     layer: "Estructura",
-    lead: "FDE",
-    d: "Elegimos dónde corre cada caso —on-premise, nube o proveedor— y con qué modelo, comercial u open source. Desplegamos y definimos controles de acceso, registro y retención.",
-    out: "plataforma operando en su infraestructura"
+    lead: "Ingeniero Desplegado en Campo (FDE)",
+    counterpart: "Dirección de TI, Arquitectura y Seguridad (CISO)",
+    d: "Diseñamos una infraestructura duradera según la sensibilidad del dato, el costo y la norma: en servidores propios, nube privada o modelos comerciales y de código abierto, definiendo controles de acceso, registro y retención.",
+    out: "Plataforma segura operando en tu infraestructura"
   },
   {
-    t: "Agentes en la operación",
-    layer: "Muros",
-    lead: "FDE",
-    d: "Integramos agentes con sus sistemas core para conciliar, revisar y reportar. Cada salida pasa por aprobación humana cuando la regla lo exige.",
-    out: "casos de uso en producción"
+    t: "Agentes en el Flujo Operativo",
+    layer: "Flujo Operativo",
+    lead: "Ingeniero Desplegado en Campo (FDE)",
+    counterpart: "Expertos de Dominio, Operadores y Equipos de Primera Línea",
+    d: "Integramos sistemas directamente sobre tus plataformas centrales para conciliar, revisar y reportar en el trabajo diario. Cada flujo mantiene reglas explícitas y aprobación humana donde la operación lo exige.",
+    out: "Flujos críticos y casos de uso en producción"
   },
   {
-    t: "Adopción y transferencia",
-    layer: "Cubierta",
-    lead: "FDT",
-    d: "Formamos a los equipos por rol, instalamos el gobierno de IA y medimos la adopción. Su organización opera la solución; el FDT sigue como su contraparte en la dirección para medir resultados y abrir los siguientes casos.",
-    out: "capacidad instalada en su equipo"
+    t: "Adopción y Capacidad Instalada",
+    layer: "Capacidad Instalada",
+    lead: "Director de Transformación (FDT)",
+    counterpart: "Gerentes de Área, Comité de IA y Usuarios Finales",
+    d: "Formamos a los equipos por rol, instalamos el gobierno de IA y medimos el uso real. Tu organización opera la solución de forma autónoma mientras el FDT acompaña a la dirección para medir el impacto y escalar los siguientes casos.",
+    out: "Capacidad instalada y gobierno activo en tu equipo"
   }
 ];
 
@@ -273,98 +379,112 @@ export const BF_COMMITMENTS = [
 
 export const BF_CAPABILITIES = [
   {
-    t: "Diagnóstico y oportunidades",
-    d: "Encontramos dónde la IA mueve un indicador del negocio, no dónde luce en una demo.",
-    items: ["Mapa de procesos y datos", "Casos priorizados por valor y riesgo", "Hoja de ruta con responsables"]
+    t: "Inteligencia Documental y Estructuración",
+    d: "Sistemas que leen, cruzan y extraen información crítica de contratos, escrituras, estados financieros y expedientes complejos con precisión auditable.",
+    items: ["Debida diligencia y análisis de activos", "Cruce automático contra reglas de negocio", "Trazabilidad exacta a la página y párrafo fuente"]
   },
   {
-    t: "Arquitectura a la medida",
-    d: "On-premise, nube privada o proveedor; LLM comerciales u open source. Elegimos por caso según la sensibilidad del dato, el costo y la regulación.",
-    items: ["On-premise, nube o proveedor", "LLM comerciales u open source", "Registro y control de acceso"]
+    t: "Conciliación y Operación Central",
+    d: "Agentes conectados a tus ERPs y sistemas centrales que ejecutan cruces operativos, conciliaciones financieras y generación de reportes sin fricción manual.",
+    items: ["Integración directa con sistemas existentes", "Ejecución con supervisión y aprobación humana", "Reducción de tiempos de cierre y error operativo"]
   },
   {
-    t: "Agentes y automatización",
-    d: "Agentes que concilian, revisan y reportan sobre sus sistemas core, con aprobación humana donde la regla lo pida.",
-    items: ["Integración con sistemas existentes", "Reglas explícitas y auditables", "Devise como base fiduciaria"]
+    t: "Riesgo, Cumplimiento y Auditoría",
+    d: "Automatización de controles preventivos, monitoreo transaccional y verificación normativa sin que la información sensible salga del perímetro de tu entidad.",
+    items: ["Reglas explícitas y bitácoras deterministas", "Alertas tempranas y soporte a oficialías de cumplimiento", "Evidencia lista para revisoría fiscal y entes de control"]
   },
   {
-    t: "Cultura y gestión del cambio",
-    d: "La adopción se diseña: formación por rol, gobierno de IA y métricas de uso que la dirección puede seguir.",
-    items: ["Formación por rol", "Comité y políticas de IA", "Medición de adopción"]
+    t: "Infraestructura Privada y Gobierno de IA",
+    d: "Despliegue de modelos comerciales o de código abierto bajo control exclusivo de tu organización, con políticas claras de uso, costos predecibles y seguridad por rol.",
+    items: ["Servidores propios, nube privada o híbrida", "Control granular de acceso y retención de datos", "Monitoreo de adopción y rendimiento en tiempo real"]
   }
 ];
 
-export const BF_PIPELINE = [
-  { t: "Conectar fuente", rows: [["Sistema contable", "Lectura directa"], ["Facturación", "Lectura directa"], ["Contratos fiduciarios", "Documentos"]] },
-  { t: "Conciliar", rows: [["Reglas de comisión", "Explícitas y versionadas"], ["Motor de razonamiento", "Modelo según arquitectura"], ["Factura ↔ contrato", "Por fideicomiso"]] },
-  { t: "Reporte", rows: [["Hallazgos priorizados", "Con fuente"], ["Ingresos no capturados", "Por cliente"], ["Bitácora de decisiones", "Exportable"]] }
-];
-
 export const BF_COMPARE = [
-  { k: "Control del dato", generic: "El dato viaja a servidores de terceros, a menudo fuera del país.", us: "Usted decide dónde vive el dato: on-premise, nube privada o proveedor, caso por caso." },
-  { k: "Cumplimiento", generic: "Usted adapta sus políticas a los términos del proveedor.", us: "La arquitectura se diseña sobre sus políticas de seguridad y de datos personales." },
+  { k: "Control del dato", generic: "El dato viaja a servidores de terceros, a menudo fuera del país.", us: "Tú decides dónde vive el dato: on-premise, nube privada o proveedor, caso por caso." },
+  { k: "Cumplimiento", generic: "Adaptas tus políticas a los términos del proveedor.", us: "La arquitectura se diseña sobre tus políticas de seguridad y de datos personales." },
   { k: "Modelo de costo", generic: "Pago por consulta, variable y difícil de presupuestar.", us: "Comparamos infraestructura propia, nube y API comercial por caso; costo predecible." },
   { k: "Trazabilidad", generic: "Respuestas sin registro auditable del razonamiento.", us: "Cada decisión registra fuente, regla aplicada y responsable." },
-  { k: "Despliegue", generic: "Rápido para probar, lento para integrar con sistemas core.", us: "Integración con sus sistemas en semanas, junto a su equipo de TI." },
+  { k: "Despliegue", generic: "Rápido para probar, lento para integrar con sistemas core.", us: "Integración con tus sistemas en semanas, junto a tu equipo de TI." },
   { k: "Preparación ante revisor", generic: "Evidencia dispersa entre proveedor y cliente.", us: "Bitácora y documentación listas para revisoría fiscal y auditoría." }
 ];
 
+// Del anillo interior (0) al exterior (3) de la cúpula de marcos.
 export const BF_FRAMEWORKS = [
-  { tag: "Datos personales", t: "Ley 1581 de 2012", d: "Tratamiento y circulación de datos personales dentro del perímetro de la entidad." },
-  { tag: "Riesgo operacional", t: "SARO", d: "Controles, registro de eventos y responsables para cada proceso automatizado." },
-  { tag: "Prevención LA/FT", t: "SARLAFT", d: "Agentes que apoyan la debida diligencia sin sacar información del entorno." },
-  { tag: "Seguridad de la información", t: "ISO/IEC 27001", d: "Controles de referencia para acceso, cifrado, retención y continuidad." }
+  { tag: "Privacidad y soberanía del dato", short: "Ley 1581 · GDPR", t: "Ley 1581 / Habeas Data y GDPR", d: "Tratamiento, anonimización y circulación de datos sensibles o estratégicos estrictamente dentro del perímetro de la organización, sin entrenar modelos de terceros." },
+  { tag: "Riesgo operacional y trazabilidad", short: "SARO · ISO 31000", t: "SARO / ISO 31000 / Revisoría Fiscal", d: "Controles deterministas, bitácoras de eventos inmutables y responsables definidos para cada flujo automatizado, listos para auditoría interna y externa." },
+  { tag: "Cumplimiento y debida diligencia", short: "SARLAFT · SAGRILAFT · PTEE", t: "SARLAFT / SAGRILAFT / PTEE", d: "Agentes que aceleran la verificación de contrapartes, proveedores y activos cumpliendo tanto con normativas financieras como con regímenes del sector real (Supersociedades)." },
+  { tag: "Seguridad de la información", short: "ISO/IEC 27001 · SOC 2", t: "ISO/IEC 27001 y SOC 2", d: "Arquitecturas diseñadas bajo estándares internacionales de control de acceso por rol, cifrado de extremo a extremo, retención controlada y continuidad operativa." }
 ];
 
-export const BF_PROFILES = ["Sociedades fiduciarias", "Bancos y financieras", "Aseguradoras", "Constructoras y fondos inmobiliarios"];
+export const BF_PROFILES = [
+  "Banca de Inversión",
+  "Sociedades Fiduciarias",
+  "Desarrolladores y Fondos Inmobiliarios",
+  "Aseguradoras",
+  "Bancos y Financieras",
+  "Comisionistas de Bolsa",
+  "Grupos Empresariales",
+  "Infraestructura y Energía",
+  "Salud y Farmacéutica",
+  "Logística y Cadena de Suministro",
+  "Firmas Legales y Consultoría"
+];
 
 export const BF_FAQS = [
-  { q: "¿On-premise, nube o proveedor comercial?", a: "Depende de cada caso. En el diagnóstico comparamos infraestructura propia, nube privada y API de proveedor, con LLM comerciales u open source, en costo, riesgo y cumplimiento. Un mismo cliente puede combinar varias." },
-  { q: "¿Qué hace un FDE dentro de mi empresa?", a: "Un Forward Deployed Engineer trabaja dentro de su operación con quienes concilian, revisan y reportan, integra agentes con sus sistemas core y deja cada caso en producción junto a su equipo de TI." },
-  { q: "¿Quién es nuestra contraparte después de la implementación?", a: "El FDT sigue como su contraparte ante la dirección: revisa resultados, mide la adopción y abre los siguientes casos de IA." },
-  { q: "¿Qué pasa con el modelo cuando cambie la tecnología?", a: "Los modelos son intercambiables. La arquitectura separa datos, reglas y modelo, así que actualizar el modelo no obliga a rehacer la integración ni a reentrenar a los equipos." },
-  { q: "¿Quién opera la solución después de la implantación?", a: "Su equipo. La etapa 04 transfiere operación, gobierno y métricas; el FDT sigue como su contraparte en la dirección para medir resultados y abrir los siguientes casos." },
-  { q: "¿Cómo se audita lo que decide la IA?", a: "Cada salida queda registrada con su fuente, la regla aplicada y la persona que la aprobó. La bitácora se exporta para revisoría fiscal y auditoría interna." },
-  { q: "¿Necesitamos un equipo de datos para empezar?", a: "No. El diagnóstico parte de sus procesos y sistemas actuales. Definimos juntos qué perfiles internos se forman en el camino." }
+  { q: "¿Servidores propios, nube privada o proveedor comercial?", a: "Tú decides dónde viven tus datos caso por caso. Desplegamos sobre tus propios servidores, en tu nube privada o mediante APIs comerciales bajo acuerdos de cero retención, según la sensibilidad de la información, la regulación y el modelo de costos que mejor se ajuste a tu operación." },
+  { q: "¿Qué hace un FDE (Ingeniero Desplegado) dentro de mi empresa?", a: "Se integra en tu operación junto a quienes ejecutan el proceso a diario y tu equipo de TI. En lugar de pedirte meses de levantamiento de requerimientos, mapea los flujos en terreno, conecta los modelos con tus sistemas y datos reales, y deja el caso funcionando en producción en cuestión de semanas." },
+  { q: "¿Tienen que modificar o escribir sobre nuestros sistemas centrales?", a: "No. Operamos bajo un principio de core blindado con acceso de solo lectura. Nuestros sistemas leen e interpretan tus fuentes actuales (ERPs, gestores documentales, bases de datos) sin alterar tu contabilidad ni tus registros maestros, devolviendo resultados vía API o en nuestra propia interfaz solo con tu autorización." },
+  { q: "¿Qué pasa con la solución cuando cambie la tecnología o salgan nuevos modelos?", a: "Construimos sistemas duraderos diseñados hacia donde avanza la frontera de la IA. Nuestra arquitectura desacopla tus reglas de negocio y flujos operativos del modelo subyacente: cuando aparece un modelo más potente o eficiente, actualizamos el motor sin tener que reconstruir tu integración ni reentrenar a tu equipo." },
+  { q: "¿Quién opera la solución después del despliegue?", a: "Tu propio equipo, respaldado por nuestro modelo Work as a Service (WaaS). La plataforma asume la fuerza bruta de lectura, cruce y conciliación todos los días, mientras tus operadores y líderes mantienen el control y la aprobación final desde su bandeja de trabajo, con capacidad instalada y soporte continuo de nuestro equipo." },
+  { q: "¿Cómo se audita lo que decide o propone la IA?", a: "Cero cajas negras. La IA no adivina ni toma decisiones autónomas hacia el cliente final. Cada hallazgo o acción registra una bitácora inmutable con cuatro pruebas: la regla o cláusula exacta citada, el dato o asiento fuente, el cálculo paso a paso y el usuario humano que aprobó la resolución, lista para revisoría fiscal y auditoría." },
+  { q: "¿Necesitamos un equipo de datos o de IA para empezar?", a: "No. El diagnóstico parte de tus procesos y sistemas tal como operan hoy. Nosotros ponemos la ingeniería de principio a fin desde el día uno y formamos a tus perfiles internos por rol durante la implementación." }
 ];
 
 export const ERAS = [
   {
-    year: "2020–2022",
-    title: "Origen",
+    year: "2003–2020",
+    title: "Origen en el negocio",
     items: [
-      { k: "Problema", v: "Identificamos que la cadena de valor inmobiliaria operaba con procesos manuales y baja trazabilidad." },
-      { k: "Exploración", v: "Evaluamos las herramientas disponibles en el mercado y su pertinencia para la región." },
-      { k: "Hallazgo", v: "Las herramientas genéricas no atendían el problema de fondo; era necesario comprenderlo primero." }
+      { k: "Experiencia", v: "+20 años estructurando proyectos y operaciones complejas en Santa Rosa." },
+      { k: "El dolor real", v: "Vivimos en carne propia la conciliación manual y las contabilidades espejo." },
+      { k: "El aprendizaje", v: "Entendimos que la escala exige conectar datos y reglas, no sumar planillas." }
     ]
   },
   {
-    year: "2023",
-    title: "Primer caso",
+    year: "2021–2023",
+    title: "Incubación e I+D",
     items: [
-      { k: "Diagnóstico", v: "Trabajamos con actores del negocio tradicional para dimensionar el problema." },
-      { k: "Solución", v: "De ese trabajo surgió un primer marketplace de inversiones." },
-      { k: "Validación", v: "Los usuarios finales confirmaron la existencia del problema y el valor de resolverlo." }
+      { k: "Laboratorio", v: "I+D interno para automatizar procesos operativos, contables y de negocio." },
+      { k: "Arquitectura", v: "Primeros motores propios para centralizar datos dispersos y eliminar fricción." },
+      { k: "En casa", v: "Validamos cada desarrollo en nuestra propia operación antes de llevarlo al mercado." }
     ]
   },
   {
-    year: "2024",
-    title: "Constitución de DIS",
+    year: "2024–2025",
+    title: "Spin-off y salto a IA",
     items: [
-      { k: "Independencia", v: "Constituimos una compañía dedicada a resolver los retos del sector mediante tecnología." },
-      { k: "Metodología", v: "Formalizamos las etapas de diagnóstico, diseño, validación y escalamiento." },
-      { k: "Ampliación", v: "Aplicamos la metodología a nuevos retos, de los cuales surgieron nuevas soluciones." }
+      { k: "Spin-off", v: "Constitución formal de DIS como firma de ingeniería y transformación." },
+      { k: "IA agéntica", v: "Evolución hacia una capa transversal en modo solo lectura sobre tus sistemas." },
+      { k: "Modelo WaaS", v: "Sistemas que asumen la fuerza bruta operativa desde el primer día." }
     ]
   },
   {
-    year: "2025 en adelante",
+    year: "2026 en adelante",
     title: "Resultados en operación",
     items: [
-      { k: "Implementación", v: "Nuestras soluciones operan en entidades reales con impactos medibles." },
-      { k: "Incubación", v: "Promovemos una cultura de innovación al interior de la compañía y con los actores del mercado." },
-      { k: "Resultados", v: "Generamos eficiencias directas en las operaciones que aplican la metodología." }
+      { k: "Implementación", v: "Soluciones en producción operando en entidades reales con impactos medibles." },
+      { k: "BrickFlow", v: "Ingeniería desplegada (FDE + FDT) para construir sistemas duraderos a la medida." },
+      { k: "Resultados", v: "Eficiencias directas y retorno financiero desde las primeras semanas." }
     ]
   }
+];
+
+export const IMPACT_KPIS = [
+  { v: "2x", l: "Capacidad operativa por persona sin ampliar nómina." },
+  { v: "-85%", l: "Tiempo en conciliación, cruces manuales y reportes." },
+  { v: "24–48 h", l: "Para estructurar y activar el gemelo digital." },
+  { v: "100% ROI", l: "Sistemas que se pagan solos en operación." }
 ];
 
 export const FAQS = [

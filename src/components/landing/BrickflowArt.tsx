@@ -1,132 +1,65 @@
-import { useEffect, useRef, useState } from "react";
-import { MARK } from "../../constants/content";
 import { cn } from "../../lib/utils";
 
-const WALL_ROWS = 9;
-const WALL_FILLED = 6;
+const LAYER_JOINTS = "M0 93 L150 168 L300 93 M50 100 V118 M100 125 V143 M25 105.5 V123.5 M75 130.5 V148.5 M125 155.5 V173.5 M200 125 V143 M250 100 V118 M175 155.5 V173.5 M225 130.5 V148.5 M275 105.5 V123.5";
 
-/** Muro isométrico de BrickFlow: se ensambla al entrar, se inclina con el cursor y enciende bloques al azar. */
-export function BrickWall({ className }: { className?: string }) {
-  const wallRef = useRef<HTMLDivElement>(null);
-  const [lit, setLit] = useState<string | null>(null);
-
-  useEffect(() => {
-    const wall = wallRef.current;
-    if (!wall || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    let visible = true;
-    const io = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; });
-    io.observe(wall);
-
-    const cur = { x: 0, y: 0 };
-    const tgt = { x: 0, y: 0 };
-    const onMove = (e: PointerEvent) => {
-      tgt.x = (e.clientX / window.innerWidth) * 2 - 1;
-      tgt.y = (e.clientY / window.innerHeight) * 2 - 1;
-    };
-    window.addEventListener("pointermove", onMove, { passive: true });
-
-    let raf = 0;
-    const loop = () => {
-      if (visible) {
-        cur.x += (tgt.x - cur.x) * 0.07;
-        cur.y += (tgt.y - cur.y) * 0.07;
-        wall.style.transform = `rotateX(${16 - cur.y * 5.6}deg) rotateY(${-24 + cur.x * 8}deg)`;
-      }
-      raf = requestAnimationFrame(loop);
-    };
-    raf = requestAnimationFrame(loop);
-
-    const timer = window.setInterval(() => {
-      if (!visible) return;
-      const r = WALL_ROWS - 1 - Math.floor(Math.random() * WALL_FILLED);
-      const c = 3 + Math.floor(Math.random() * 5);
-      setLit(`${r}-${c}`);
-    }, 900);
-
-    return () => {
-      io.disconnect();
-      window.removeEventListener("pointermove", onMove);
-      cancelAnimationFrame(raf);
-      window.clearInterval(timer);
-    };
-  }, []);
-
+/** One isometric course of the Brickflow tower (300 × 186). Colors come from CSS by state. */
+export function TowerLayer({ active, className }: { active: boolean; className?: string }) {
   return (
-    <div className={cn("lp-bf-scene", className)} aria-hidden="true">
-      <div ref={wallRef} className="lp-bf-wall">
-        {Array.from({ length: WALL_ROWS }, (_, r) => {
-          const fromBottom = WALL_ROWS - 1 - r;
-          const state = fromBottom < WALL_FILLED ? "fill" : fromBottom < WALL_FILLED + 1.5 ? "line" : "ghost";
-          const grow = r % 2 ? [0.5, 1, 1, 1, 1, 1, 1, 1, 0.5] : [1, 1, 1, 1, 1, 1, 1, 1];
-          return (
-            <div key={r} className="lp-bf-wall__row">
-              {grow.map((g, c) => (
-                <span
-                  key={c}
-                  className={cn("lp-bf-brick", `is-${lit === `${r}-${c}` ? "lit" : state}`)}
-                  style={{ flex: g, animationDelay: `${fromBottom * 110 + c * 28}ms` }}
-                />
-              ))}
-            </div>
-          );
-        })}
-      </div>
-    </div>
+    <svg className={cn("bf-layer", active ? "is-active" : "is-built", className)} viewBox="0 0 300 186" aria-hidden="true">
+      <polygon className="bf-layer__left" points="0,75 150,150 150,186 0,111" />
+      <polygon className="bf-layer__right" points="150,150 300,75 300,111 150,186" />
+      <polygon className="bf-layer__top" points="150,0 300,75 150,150 0,75" />
+      <path className="bf-layer__joint" d={LAYER_JOINTS} />
+      <polygon className="bf-layer__joint" points="150,22 256,75 150,128 44,75" />
+    </svg>
   );
 }
 
-/** Pila de capas: cada etapa del proceso agrega una hilada; la cubierta aparece en la última. */
-export function BrickLayers({ active, className }: { active: number; className?: string }) {
+/** Dotted outline of the full four-course tower: future layers only exist as scaffolding. */
+export function TowerScaffold({ className }: { className?: string }) {
   return (
-    <div className={cn("lp-bf-layers", className)} aria-hidden="true">
-      <div className="lp-bf-layers__stack">
-        <svg className={cn("lp-bf-layers__roof", active === 3 && "is-on")} viewBox="0 0 48 48" fill="currentColor">
-          <path d={MARK.brick} />
-        </svg>
-        {[3, 2, 1, 0].map((k) => (
-          <div key={k} className={cn("lp-bf-course", k < active && "is-done", k === active && "is-active")}>
-            {(k % 2 ? [0.5, 1, 1, 1, 1, 1, 0.5] : [1, 1, 1, 1, 1, 1]).map((g, i) => (
-              <span key={i} style={{ flex: g }} />
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
+    <svg className={cn("bf-scaffold", className)} viewBox="0 0 300 294" aria-hidden="true">
+      <path d="M150 0 L300 75 L300 219 L150 294 L0 219 L0 75 Z" />
+      <path d="M0 75 L150 150 L300 75 M150 150 V294" />
+      <path d="M0 111 L150 186 L300 111 M0 147 L150 222 L300 147 M0 183 L150 258 L300 183" />
+    </svg>
   );
 }
 
-const ICON_PATHS = [
-  // Pila de placas: diagnóstico por capas
-  <>
-    <path className="f" d="M8 34 L24 42 L40 34 L40 37 L24 45 L8 37 Z" /><path className="f" d="M24 26 L40 34 L24 42 L8 34 Z" />
-    <path className="f" d="M8 24 L24 32 L40 24 L40 27 L24 35 L8 27 Z" /><path className="f" d="M24 16 L40 24 L24 32 L8 24 Z" />
-    <path className="f" d="M8 14 L24 22 L40 14 L40 17 L24 25 L8 17 Z" /><path className="t" d="M24 6 L40 14 L24 22 L8 14 Z" />
-  </>,
-  // Bloque sobre base punteada: arquitectura
-  <>
-    <path d="M24 22 L46 34 L24 46 L2 34 Z" strokeDasharray="2 3" />
-    <path className="f" d="M12 12.5 L24 19 L24 33 L12 26.5 Z" /><path className="f" d="M24 19 L36 12.5 L36 26.5 L24 33 Z" />
-    <path className="t" d="M24 6 L36 12.5 L24 19 L12 12.5 Z" />
-  </>,
-  // Dos bloques enlazados: agentes
-  <>
-    <path d="M19 30 L29 20" strokeDasharray="2 2.5" /><circle className="dot" cx="24" cy="25" r="2.2" stroke="none" />
-    <path className="f" d="M29 12 L36 16 L36 24 L29 20 Z" /><path className="f" d="M36 16 L43 12 L43 20 L36 24 Z" /><path className="t" d="M36 8 L43 12 L36 16 L29 12 Z" />
-    <path className="f" d="M5 26 L12 30 L12 38 L5 34 Z" /><path className="f" d="M12 30 L19 26 L19 34 L12 38 Z" /><path className="f" d="M12 22 L19 26 L12 30 L5 26 Z" />
-  </>,
-  // Escalera de bloques: adopción
-  <>
-    <path className="f" d="M31 10 L38 14 L38 22 L31 18 Z" /><path className="f" d="M38 14 L45 10 L45 18 L38 22 Z" /><path className="t" d="M38 6 L45 10 L38 14 L31 10 Z" />
-    <path className="f" d="M17 18 L24 22 L24 30 L17 26 Z" /><path className="f" d="M24 22 L31 18 L31 26 L24 30 Z" /><path className="f" d="M24 14 L31 18 L24 22 L17 18 Z" />
-    <path className="f" d="M3 26 L10 30 L10 38 L3 34 Z" /><path className="f" d="M10 30 L17 26 L17 34 L10 38 Z" /><path className="f" d="M10 22 L17 26 L10 30 L3 26 Z" />
-  </>
+// Per stage: the stroked outline and the face that gets a soft fill when `filled`.
+const STAGE_ICONS = [
+  { lines: ["M7 22.5 L24 31 L41 22.5", "M7 29.5 L24 38 L41 29.5"], face: "M24 7 L41 15.5 L24 24 L7 15.5 Z" },
+  { lines: ["M14 10 V22 L24 27 L34 22 V10 M24 15 V27"], face: "M24 5 L34 10 L24 15 L14 10 Z", dashed: "M24 26 L44 36 L24 46 L4 36 Z" },
+  { lines: ["M12 24 L19 27.5 L12 31 L5 27.5 Z M5 27.5 V35.5 L12 39 L19 35.5 V27.5 M12 31 V39", "M29 11.5 V19.5 L36 23 L43 19.5 V11.5 M36 15 V23"], face: "M36 8 L43 11.5 L36 15 L29 11.5 Z", link: true },
+  { lines: ["M10 26 L17 29.5 L10 33 L3 29.5 Z M3 29.5 V37.5 L10 41 L17 37.5 V29.5 M10 33 V41", "M24 18 L31 21.5 L24 25 L17 21.5 Z M17 21.5 V29.5 L24 33 L31 29.5 V21.5 M24 25 V33", "M31 13.5 V21.5 L38 25 L45 21.5 V13.5 M38 17 V25"], face: "M38 10 L45 13.5 L38 17 L31 13.5 Z" }
 ];
 
-export function BrickIcon({ index }: { index: number }) {
+/** Line icon for each of the four stages (and the matching capability piece when `filled`). */
+export function StageIcon({ index, filled = false, className }: { index: number; filled?: boolean; className?: string }) {
+  const icon = STAGE_ICONS[index];
   return (
-    <svg className="lp-bf-icon" width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" aria-hidden="true">
-      {ICON_PATHS[index]}
+    <svg className={cn("bf-icon", filled && "bf-icon--filled", className)} viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" aria-hidden="true">
+      <path className="bf-icon__face" d={icon.face} />
+      {icon.lines.map((d) => <path key={d} d={d} />)}
+      {icon.dashed && <path d={icon.dashed} strokeDasharray="1.5 3" />}
+      {icon.link && (
+        <>
+          <path d="M19.5 30 L28.5 20" strokeDasharray="2 3" />
+          {filled && <circle cx="24" cy="25" r="2" fill="currentColor" stroke="none" />}
+        </>
+      )}
+    </svg>
+  );
+}
+
+/** disHub cube-in-hexagon symbol, drawn with the landing palette. */
+export function DisHubSymbol({ className }: { className?: string }) {
+  return (
+    <svg className={cn("bf-symbol", className)} viewBox="0 0 26 28" aria-hidden="true">
+      <path className="bf-symbol__hex" d="M13 1 L25 7.5 V20.5 L13 27 L1 20.5 V7.5 Z" />
+      <path className="bf-symbol__top" d="M13 7 L19 10.5 L13 14 L7 10.5 Z" />
+      <path className="bf-symbol__left" d="M7 10.5 V17.5 L13 21 V14 Z" />
+      <path className="bf-symbol__right" d="M19 10.5 V17.5 L13 21 V14 Z" />
     </svg>
   );
 }

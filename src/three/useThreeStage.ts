@@ -53,5 +53,15 @@ export function useThreeStage(factory: SceneFactory, enabled = true) {
     controllerRef.current?.setState(key, value);
   }, []);
 
-  return { ref, status: enabled ? status : "disabled", setState };
+  const pick = useCallback((clientX: number, clientY: number) => {
+    const element = ref.current;
+    if (!element) return null;
+    const rect = element.getBoundingClientRect();
+    if (!rect.width || !rect.height) return null;
+    const x = ((clientX - rect.left) / rect.width) * 2 - 1;
+    const y = 1 - ((clientY - rect.top) / rect.height) * 2;
+    return controllerRef.current?.pick(x, y) ?? null;
+  }, []);
+
+  return { ref, status: enabled ? status : "disabled", setState, pick };
 }

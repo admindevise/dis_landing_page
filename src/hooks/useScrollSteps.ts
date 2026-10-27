@@ -5,9 +5,10 @@ const clamp = (value: number) => Math.min(1, Math.max(0, value));
 /**
  * Maps scroll position to a step index.
  * - `pinned`: progress runs while a tall element scrolls past a sticky viewport.
+ * - `section`: progress runs from the top to the bottom of a naturally flowing section.
  * - `flow`: progress runs while the element crosses the middle of the viewport.
  */
-export function useScrollSteps<T extends HTMLElement>(count: number, mode: "pinned" | "flow") {
+export function useScrollSteps<T extends HTMLElement>(count: number, mode: "pinned" | "section" | "flow") {
   const ref = useRef<T | null>(null);
   const [state, setState] = useState({ active: 0, progress: 0 });
 
@@ -21,7 +22,7 @@ export function useScrollSteps<T extends HTMLElement>(count: number, mode: "pinn
       const rect = element.getBoundingClientRect();
       const viewport = window.innerHeight;
       const travel = rect.height - viewport;
-      const progress = mode === "pinned" && travel > 0
+      const progress = (mode === "pinned" || mode === "section") && travel > 0
         ? clamp(-rect.top / travel)
         : clamp((viewport * 0.55 - rect.top) / rect.height);
       const rounded = Math.round(progress * 1000) / 1000;

@@ -4,21 +4,20 @@ import Footer from "./components/global/Footer";
 import CursorEffect from "./components/global/CursorEffect";
 import Preloader from "./components/landing/Preloader";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
-import Hero from "./sections/landing/Hero";
-import About from "./sections/landing/About";
-import StatementBand from "./sections/landing/StatementBand";
-import Challenge from "./sections/landing/Challenge";
-import Approach from "./sections/landing/Approach";
-import Solutions from "./sections/landing/Solutions";
-import Sectors from "./sections/landing/Sectors";
-import Security from "./sections/landing/Security";
-// import { BrickflowCapabilities, BrickflowDetails, BrickflowIntro } from "./sections/landing/Brickflow";
-import { BrickflowCapabilities, BrickflowDetails, BrickflowProof, BrickflowRoles } from "./sections/landing/Brickflow";
-import History from "./sections/landing/History";
-import Values from "./sections/landing/Values";
-import FAQ from "./sections/landing/FAQ";
-import Contact from "./sections/landing/Contact";
-import ContinueJourney from "./sections/landing/ContinueJourney";
+import Hero from "./sections/00-Hero";
+import About from "./sections/01-About";
+import StatementBand from "./sections/02-StatementBand";
+import Challenge from "./sections/Challenge";
+import Approach from "./sections/03-Approach";
+import { BrickflowCapabilities, BrickflowDetails, BrickflowRoles } from "./sections/04-08-Brickflow";
+import Solutions from "./sections/09-Solutions";
+import Sectors from "./sections/10-Sectors";
+import Security from "./sections/11-Security";
+import History from "./sections/12-History";
+import Values from "./sections/13-Values";
+import FAQ from "./sections/14-FAQ";
+import Contact from "./sections/15-Contact";
+import ContinueJourney from "./sections/components/ContinueJourney";
 import { useLandingMotion } from "./hooks/useLandingMotion";
 import { usePreload } from "./hooks/usePreload";
 import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
@@ -111,10 +110,11 @@ function HomePage() {
         index="02"
         tone="teal"
         eyebrow="Nuestro propósito"
-        statement="La IA funciona cuando empieza por el diagnóstico."
-        detail="Detectamos dónde negocio, operación y tecnología no están alineados y llevamos la solución hasta producción, con IA cuando el caso lo justifica."
-        metric="04"
-        metricLabel="etapas, del diagnóstico a la capacidad instalada"
+        statement="La ventaja no está en tener IA, sino en desplegarla en los flujos que mueven tu operación."
+        detail="Partimos de un diagnóstico enfocado donde la IA mueve indicadores reales. Nos integramos con tus líderes y operadores para repensar flujos desde cero, conectando modelos avanzados con tus datos y controles para potenciar el trabajo diario."
+        actionLead="Del diagnóstico enfocado a la capacidad instalada en 4 etapas."
+        actionHref="/metodologia#proceso"
+        actionLabel="Conocer la metodología BrickFlow"
       />
     </>
   );
@@ -126,7 +126,6 @@ function ApproachPage() {
       <Approach />
       <BrickflowRoles />
       <BrickflowCapabilities />
-      <BrickflowProof />
       <BrickflowDetails />
     </>
   );

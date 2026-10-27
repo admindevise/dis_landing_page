@@ -27,6 +27,7 @@ export interface SceneContext {
 export interface SceneInstance {
   object: THREE.Object3D;
   update(input: SceneInput): void;
+  pick?(pointer: { x: number; y: number }): number | null;
   dispose?(): void;
 }
 
@@ -34,5 +35,6 @@ export type SceneFactory = (context: SceneContext) => SceneInstance;
 
 export interface StageController {
   setState(key: string, value: number): void;
+  pick(x: number, y: number): number | null;
   dispose(): void;
 }

@@ -8,6 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import "./styles/landing-base.css";
 import "./styles/landing-sections.css";
+import "./styles/landing-brickflow.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
