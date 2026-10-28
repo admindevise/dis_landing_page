@@ -4,13 +4,13 @@ import { SITE, SOLUTION_FLOWS, SOLUTIONS } from "../constants/content";
 
 const SOLUTION_KEYS = ["business", "marketplace", "hospitality", "tokenize", "valuo"] as const;
 type SolutionKey = (typeof SOLUTION_KEYS)[number];
-type DeviseSolutionKey = Exclude<SolutionKey, "valuo">;
 
-const DEVISE_LOGOS: Record<DeviseSolutionKey, { src: string; alt: string }> = {
+const LOGOS: Record<SolutionKey, { src: string; alt: string }> = {
   business: { src: "/images/logos/devise-trust-blanco.svg", alt: "Devise Trust" },
   hospitality: { src: "/images/logos/devise-pulse-blanco.svg", alt: "Devise Pulse" },
   tokenize: { src: "/images/logos/devise-tokenize-blanco.svg", alt: "Devise Tokenize" },
-  marketplace: { src: "/images/logos/devise-marketplace-blanco.svg", alt: "Devise Marketplace" }
+  marketplace: { src: "/images/logos/devise-marketplace-blanco.svg", alt: "Devise Marketplace" },
+  valuo: { src: "/images/logos/valuo-logotipo-blanco.svg", alt: "Valuo" }
 };
 
 const displayedSolutions = SOLUTION_KEYS.map((key) => ({ ...SOLUTIONS.find((item) => item.key === key)!, key }));
@@ -44,9 +44,7 @@ const solutionUrl = (key: SolutionKey) => {
           class="lp-solutions__tab"
           data-solution={item.key}
         >
-          {item.key === "valuo"
-            ? <span class="lp-solutions__wordmark" aria-label="Valuo">valuo</span>
-            : <img class="lp-solutions__devise-logo" src={DEVISE_LOGOS[item.key].src} alt={DEVISE_LOGOS[item.key].alt} />}
+          <img class="lp-solutions__logo" data-logo={item.key} src={LOGOS[item.key].src} alt={LOGOS[item.key].alt} />
           <span class="lp-solutions__tab-kind">{item.kind}</span>
         </button>
       ))}

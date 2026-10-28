@@ -730,26 +730,7 @@
   outline-offset: 4px;
 }
 
-.lp-solutions__wordmark {
-  display: inline-flex;
-  align-items: center;
-  max-width: 100%;
-  color: #fff;
-  font-family: var(--font-ui);
-  font-size: clamp(1.15rem, 1.45vw, 1.6rem);
-  font-weight: 750;
-  line-height: 1;
-  white-space: nowrap;
-  opacity: 0.55;
-  transition: opacity 0.3s;
-}
-
-.lp-solutions__tab:hover .lp-solutions__wordmark,
-.lp-solutions__tab[aria-selected="true"] .lp-solutions__wordmark {
-  opacity: 1;
-}
-
-.lp-solutions__devise-logo {
+.lp-solutions__logo {
   display: block;
   width: 180px;
   max-width: 100%;
@@ -760,8 +741,14 @@
   transition: opacity 0.3s;
 }
 
-.lp-solutions__tab:hover .lp-solutions__devise-logo,
-.lp-solutions__tab[aria-selected="true"] .lp-solutions__devise-logo {
+/* Single-line bold mark: smaller so it weighs the same as the two-line Devise logos; margins keep the row aligned. */
+.lp-solutions__logo[data-logo="valuo"] {
+  height: 30px;
+  margin-block: 9px;
+}
+
+.lp-solutions__tab:hover .lp-solutions__logo,
+.lp-solutions__tab[aria-selected="true"] .lp-solutions__logo {
   opacity: 1;
 }
 
@@ -2366,17 +2353,42 @@
   border-color: #ff8a7a;
 }
 
-.lp-chip__dot {
+.lp-chip__logo {
+  display: block;
   flex: none;
-  width: 7px;
-  height: 7px;
-  border-radius: 1px;
-  background: rgb(176 196 212 / 0.45);
-  transition: background 0.25s;
+  width: 92px;
+  height: 28px;
+  object-fit: contain;
 }
 
-.lp-chip:has(:checked) .lp-chip__dot {
-  background: var(--c);
+.lp-chip__logo--valuo {
+  transform: scale(0.65);
+}
+
+.lp-chip:has(.lp-chip__logo),
+.lp-chip:has(.bf-symbol) {
+  justify-content: center;
+  min-block-size: 42px;
+  padding-block: 6px;
+  padding-inline: 16px;
+}
+
+.lp-chip:has(.bf-symbol) {
+  min-inline-size: 126px;
+}
+
+.lp-chip__brand {
+  --bf-accent: var(--lp-teal-light);
+  --bf-accent-deep: var(--lp-teal);
+  --bf-accent-mid: color-mix(in srgb, var(--lp-teal) 55%, var(--lp-teal-light));
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lp-chip__brand:has(.bf-symbol) {
+  transform: scale(1.2);
 }
 
 .lp-interest__desc {
@@ -2483,6 +2495,20 @@
 /* ================= Laptop · 1201–1470 ================= */
 
 @media (min-width: 1201px) {
+  .lp-chip:has(.lp-chip__logo),
+  .lp-chip:has(.bf-symbol) {
+    min-block-size: 52px;
+  }
+
+  .lp-chip__logo {
+    width: 120px;
+    height: 38px;
+  }
+
+  .lp-chip:has(.bf-symbol) {
+    min-inline-size: 154px;
+  }
+
   .lp-about__grid {
     align-items: start;
   }

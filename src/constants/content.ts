@@ -89,7 +89,7 @@ export const HOME_STATEMENT = {
   eyebrow: "Nuestro propósito",
   statement: "La ventaja no está en tener IA, sino en desplegarla en los flujos que mueven tu operación.",
   detail: "Partimos de un diagnóstico enfocado donde con tecnología adecuada se mueve indicadores reales. Nos integramos con tus líderes y operadores para repensar flujos desde cero, conectando modelos avanzados con tus datos y controles para potenciar el trabajo diario.",
-  actionLead: "Del diagnóstico enfocado a la capacidad instalada en 4 etapas.",
+  actionLead: "Del diagnóstico enfocado a la transformación en 4 etapas.",
   actionLabel: "Conocer la metodología BrickFlow"
 };
 

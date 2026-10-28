@@ -165,6 +165,30 @@
   margin: 0;
 }
 
+/* On wide screens the description sits beside the title, aligned to its baseline, instead of stacking under it. */
+@media (min-width: 1471px) {
+  .bf-method__head {
+    display: grid;
+    grid-template-columns: minmax(0, 1120px) minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: clamp(48px, 5vw, 96px);
+    row-gap: 24px;
+  }
+
+  .bf-method__head > .lp-heading,
+  .bf-method__head > .bf-pill { grid-column: 1; }
+
+  .bf-method__head > .lp-heading { grid-row: 1; }
+  .bf-method__head > .bf-pill { grid-row: 2; }
+
+  .bf-method__head > .lp-lead {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: end;
+    max-width: 30rem;
+  }
+}
+
 .bf-pill {
   display: inline-flex;
   align-items: center;

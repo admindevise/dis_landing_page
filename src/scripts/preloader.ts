@@ -9,9 +9,9 @@ const windowLoaded = () =>
  * Waits for fonts, page assets and the Three.js module before revealing the landing,
  * while `loader` shows the progress. Resolves when loading is done; the loader then
  * plays its exit and removes itself.
- * `minDuration` avoids a flash; `maxDuration` guarantees the page never stays blocked.
+ * `minDuration` lets the loader cube finish assembling (about 2.4 s); `maxDuration` guarantees the page never stays blocked.
  */
-export function runPreloader(loader: HTMLElement, minDuration = 1400, maxDuration = 6000) {
+export function runPreloader(loader: HTMLElement, minDuration = 2500, maxDuration = 6000) {
   const message = loader.querySelector<HTMLElement>(".lp-loader__message")!;
   const count = loader.querySelector<HTMLElement>(".lp-loader__count")!;
   const bar = loader.querySelector<HTMLElement>(".lp-loader__bar span")!;

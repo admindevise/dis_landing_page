@@ -1,15 +1,15 @@
 ---
 import { FIELDS } from "../../constants/content";
+import DisHubSymbol from "./brickflow/DisHubSymbol.astro";
 
-// The dot takes each product's brand colour once it is chosen.
 const INTERESTS = [
-  { value: "brickflow", label: "BrickFlow", desc: "Diagnóstico y Arquitectura a la Medida", color: "#4fd8d8" },
-  { value: "devise-trust", label: "Devise Trust", desc: "Control y auditoría con IA para vehículos de inversión", color: "#8b7cf0" },
-  { value: "devise-marketplace", label: "Devise Marketplace", desc: "Distribución B2B2C y canales de liquidez", color: "#2bc4cf" },
-  { value: "devise-pulse", label: "Devise Pulse", desc: "Agente CFO y ejecución operativa vía WhatsApp", color: "#ff7a5c" },
-  { value: "devise-tokenize", label: "Devise Tokenize", desc: "Tokenización de activos y fondos", color: "#fbb833" },
-  { value: "valuo", label: "Valuo", desc: "Valoración e inteligencia inmobiliaria", color: "#10b981" },
-  { value: "otro", label: "Otro reto operativo", desc: "Cuéntanos tu reto y te orientamos a la ruta de mayor impacto.", color: "#b0c4d4" }
+  { value: "brickflow", label: "BrickFlow", desc: "Diagnóstico y Arquitectura a la Medida" },
+  { value: "devise-trust", label: "Devise Trust", logo: "/images/logos/devise-trust-blanco.svg", desc: "Control y auditoría con IA para vehículos de inversión" },
+  { value: "devise-marketplace", label: "Devise Marketplace", logo: "/images/logos/devise-marketplace-blanco.svg", desc: "Distribución B2B2C y canales de liquidez" },
+  { value: "devise-pulse", label: "Devise Pulse", logo: "/images/logos/devise-pulse-blanco.svg", desc: "Agente CFO y ejecución operativa vía WhatsApp" },
+  { value: "devise-tokenize", label: "Devise Tokenize", logo: "/images/logos/devise-tokenize-blanco.svg", desc: "Tokenización de activos y fondos" },
+  { value: "valuo", label: "Valuo", logo: "/images/logos/valuo-logotipo-blanco.svg", desc: "Valoración e inteligencia inmobiliaria" },
+  { value: "otro", label: "Otro reto operativo", desc: "Cuéntanos tu reto y te orientamos a la ruta de mayor impacto." }
 ];
 const INTEREST_HINT = "Elige el área que mejor describe tu reto.";
 ---
@@ -35,10 +35,14 @@ const INTEREST_HINT = "Elige el área que mejor describe tu reto.";
     <legend>Área de interés</legend>
     <div class="lp-interest__options">
       {INTERESTS.map((interest) => (
-        <label class="lp-chip" style={`--c: ${interest.color}`}>
+        <label class="lp-chip">
           <input type="radio" name="interes" value={interest.value} aria-invalid="false" data-field="interes" data-desc={interest.desc} />
-          <span class="lp-chip__dot" aria-hidden="true" />
-          {interest.label}
+          {interest.logo
+            ? <img class:list={["lp-chip__logo", { "lp-chip__logo--valuo": interest.value === "valuo" }]} src={interest.logo} alt={interest.label} />
+            : <span class="lp-chip__brand">
+                {interest.value === "brickflow" && <DisHubSymbol />}
+                {interest.label}
+              </span>}
         </label>
       ))}
     </div>

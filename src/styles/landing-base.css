@@ -442,8 +442,14 @@
   .lp-loader__inner {
     transition-duration: 0.25s, 0.35s;
   }
+}
 
-  .lp-loader__object span {
+@media (max-width: 1099px), (pointer: coarse) {
+  .lp-loader__edge,
+  .lp-loader__sway-x,
+  .lp-loader__sway-y,
+  .lp-loader__brick,
+  .lp-loader__pop {
     animation: none;
   }
 }
@@ -469,31 +475,101 @@
 
 .lp-loader__object {
   position: relative;
-  width: 120px;
-  height: 120px;
-  margin: 48px 0 40px;
-  perspective: 600px;
+  width: 160px;
+  height: 160px;
+  margin: 40px 0 32px;
+  perspective: 330px;
 }
 
-.lp-loader__object span {
+/* Same dimming as `.lp-hero__stage` on desktop, so both cubes read alike. */
+@media (min-width: 1201px) {
+  .lp-loader__object {
+    opacity: 0.72;
+  }
+}
+
+/* Hero cube replica (Preloader.astro); timings mirror src/three/objects/dishubCore.ts. */
+@property --b { syntax: "<number>"; inherits: true; initial-value: 1; }
+@property --lit { syntax: "<number>"; inherits: true; initial-value: 0; }
+@property --pop { syntax: "<number>"; inherits: true; initial-value: 0; }
+
+.lp-loader__frame {
   position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.lp-loader__plate {
+  fill: #0f1a26;
+  opacity: 0.55;
+}
+
+.lp-loader__ring {
+  fill: none;
+  stroke: var(--lp-teal);
+  opacity: 0.22;
+}
+
+.lp-loader__edge {
+  fill: none;
+  stroke: var(--lp-teal-light);
+  opacity: 0.55;
+  animation: lpFrameIn 2s ease-in-out 0.3s both;
+}
+
+.lp-loader__sway-x,
+.lp-loader__sway-y,
+.lp-loader__cube,
+.lp-loader__brick,
+.lp-loader__pop {
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.lp-loader__sway-x {
   top: 50%;
   left: 50%;
-  width: 84px;
-  height: 84px;
-  margin: -42px 0 0 -42px;
-  border: 1px solid rgb(79 216 216 / 0.8);
-  background: rgb(2 178 178 / 0.08);
-  box-shadow: 0 0 30px rgb(2 178 178 / 0.18);
-  transform: rotateX(60deg) rotateZ(45deg) translateZ(calc((var(--i) - 1.5) * 22px));
-  animation: lpLoaderSlab 2.4s var(--lp-ease) infinite;
-  animation-delay: calc(var(--i) * 0.12s);
+  animation: lpSwayX 36.96s linear infinite;
 }
 
-.lp-loader__object span:nth-child(1) { --i: 0; }
-.lp-loader__object span:nth-child(2) { --i: 1; border-color: rgb(66 201 255 / 0.8); }
-.lp-loader__object span:nth-child(3) { --i: 2; }
-.lp-loader__object span:nth-child(4) { --i: 3; border-color: rgb(66 201 255 / 0.8); }
+.lp-loader__sway-y {
+  animation: lpSwayY 28.56s linear infinite;
+}
+
+.lp-loader__cube {
+  transform: rotateX(-35.264deg) rotateY(45deg);
+}
+
+.lp-loader__brick {
+  transform: var(--home);
+  animation:
+    lpBrickBuild 0.9s cubic-bezier(0.33, 1, 0.68, 1) var(--delay) both,
+    lpBrickWave 10s linear var(--wave-delay) infinite;
+}
+
+.lp-loader__pop {
+  animation-duration: 1s;
+}
+
+/* Three.js multiplies colours in linear space, hence the gamma on the brightness factor. */
+.lp-loader__side {
+  --k: pow(calc(var(--b) + var(--lit) + var(--pop)), 0.4545);
+  position: absolute;
+  top: -8.4px;
+  left: -8.4px;
+  box-sizing: border-box;
+  width: 16.8px;
+  height: 16.8px;
+  border: 1px solid rgb(79 216 216 / 0.25);
+  background: var(--tone);
+  background: rgb(from var(--tone) calc(r * var(--k)) calc(g * var(--k)) calc(b * var(--k)));
+}
+
+.lp-loader__side--left { --tone: #3a9fa1; transform: rotateY(-90deg) translateZ(8.4px); }
+.lp-loader__side--top { --tone: #7adcd9; transform: rotateX(90deg) translateZ(8.4px); }
+.lp-loader__side--right { --tone: #1f6a6d; transform: translateZ(8.4px); }
 
 .lp-loader__meta {
   display: flex;
@@ -545,27 +621,42 @@
   transform-origin: left;
 }
 
-.lp-loader__foot {
-  position: absolute;
-  bottom: 32px;
-  left: 50%;
-  margin: 0;
-  color: rgb(176 196 212 / 0.6);
-  font-family: var(--font-ui);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  transform: translateX(-50%);
-}
-
 @keyframes lpLoaderIn {
   from { opacity: 0; transform: translate3d(0, 16px, 0); }
 }
 
-@keyframes lpLoaderSlab {
-  0%, 100% { transform: rotateX(60deg) rotateZ(45deg) translateZ(calc((var(--i) - 1.5) * 22px)); }
-  50% { transform: rotateX(60deg) rotateZ(135deg) translateZ(calc((var(--i) - 1.5) * 34px)); }
+@keyframes lpFrameIn {
+  from { opacity: 0.2; }
+}
+
+@keyframes lpBrickBuild {
+  from { transform: var(--from) scale3d(0.25, 0.25, 0.25); --b: 0.55; }
+  to { transform: var(--home) scale3d(1, 1, 1); --b: 1; }
+}
+
+/* Light wave climbing the layers: lit = max(0, 1 - |wave - layer - 0.5| * 1.4) * 0.28. */
+@keyframes lpBrickWave {
+  0%, 23.8%, 100% { --lit: 0; }
+  11.9% { --lit: 0.28; }
+}
+
+/* sin(pi * t) along the brick normal. */
+@keyframes lpBrickPop {
+  0% { transform: translate3d(0, 0, 0); --pop: 0; animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1); }
+  50% { transform: var(--out); --pop: 0.35; animation-timing-function: cubic-bezier(0.12, 0, 0.39, 0); }
+  100% { transform: translate3d(0, 0, 0); --pop: 0; }
+}
+
+@keyframes lpSwayX {
+  0%, 50%, 100% { transform: rotateX(0deg); animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1); }
+  25% { transform: rotateX(-2.29deg); animation-timing-function: cubic-bezier(0.12, 0, 0.39, 0); }
+  75% { transform: rotateX(2.29deg); animation-timing-function: cubic-bezier(0.12, 0, 0.39, 0); }
+}
+
+@keyframes lpSwayY {
+  0%, 50%, 100% { transform: rotateY(0deg); animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1); }
+  25% { transform: rotateY(4.01deg); animation-timing-function: cubic-bezier(0.12, 0, 0.39, 0); }
+  75% { transform: rotateY(-4.01deg); animation-timing-function: cubic-bezier(0.12, 0, 0.39, 0); }
 }
 
 @keyframes lpTicker {
@@ -607,7 +698,12 @@
     transform: scaleX(1);
   }
 
-  .lp-ticker__track {
+  .lp-ticker__track,
+  .lp-loader__edge,
+  .lp-loader__sway-x,
+  .lp-loader__sway-y,
+  .lp-loader__brick,
+  .lp-loader__pop {
     animation: none;
   }
 }
