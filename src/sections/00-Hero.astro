@@ -1,0 +1,88 @@
+---
+import SplitLines from "../components/landing/SplitLines.astro";
+import ThreeStage from "../components/landing/ThreeStage.astro";
+import { SITE } from "../constants/content";
+
+const PILLARS = [
+  {
+    label: "Estrategia ejecutiva",
+    title: "Un Chief AI Transformation Officer Residente",
+    description: "Nos integramos con tu directiva para diagnosticar dónde la IA mueve indicadores reales (no dónde luce en una demo) y trazar una ruta ejecutable."
+  },
+  {
+    label: "Misión crítica",
+    title: "IA para industrias sin margen de error",
+    description: "Desplegamos arquitecturas a la medida (on-premise o nube privada) con reglas explícitas, datos protegidos y trazabilidad total para auditorías desde el primer día."
+  },
+  {
+    label: "Ejecución en campo",
+    title: "Metodología BrickFlow e Ingeniería Desplegada",
+    description: "Nuestros equipos se integran en tu operación para conectar datos, arquitecturas y agentes sobre tus sistemas centrales, garantizando adopción y gobierno de IA."
+  }
+];
+---
+
+<section id="inicio" class="lp-hero" data-screen-label="Portada" aria-labelledby="hero-title">
+  <ThreeStage
+    class="lp-hero__stage"
+    label="El símbolo de disHub en 3D: un cubo de bloques dentro de un hexágono que recibe flujos de datos y se abre para revelar un núcleo de IA."
+  />
+  <div class="lp-hero__veil" aria-hidden="true" />
+
+  <div class="lp-container lp-hero__content">
+    <h1 id="hero-title" class="lp-hero__title" data-reveal="lines">
+      <SplitLines lines={["El socio para llevar la IA", "a la práctica."]} accent={[1]} />
+    </h1>
+    <h2 class="lp-hero__subtitle" data-reveal style="--d: 2">
+      Transformamos tecnología de frontera en resultados reales de negocio.
+    </h2>
+    <p class="lp-hero__lead" data-reveal style="--d: 4">
+      Integramos IA y tecnologías disruptivas desde la raíz de tu operación para resolver problemas complejos y dejar sistemas reales funcionando en producción.
+    </p>
+    <div class="lp-hero__actions" data-reveal style="--d: 6">
+      <a class="lp-btn lp-btn--primary" href={SITE.bookingUrl} target="_blank" rel="noopener noreferrer">
+        INICIAR TRANSFORMACIÓN
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="lp-container lp-hero__footer">
+    <ul class="lp-hero__pillars" aria-label="Pilares de Brickflow">
+      {PILLARS.map((pillar, index) => (
+        <li data-reveal style={`--d: ${index}`}>
+          <small>{pillar.label}</small>
+          <strong>{pillar.title}</strong>
+          <span>{pillar.description}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<script>
+  import { onAbort, onPageLoad } from "../lib/lifecycle";
+  import { initThreeStage } from "../three/lazyStage";
+  import { dishubCore } from "../three/objects/dishubCore";
+
+  onPageLoad((signal) => {
+    const stage = document.querySelector<HTMLElement>(".lp-hero__stage");
+    if (!stage) return;
+    const scene = initThreeStage(stage, dishubCore, { signal });
+
+    // The cube assembles once the preloader releases the page (LandingLayout clears aria-busy).
+    const main = document.getElementById("contenido");
+    const isBusy = () => main?.getAttribute("aria-busy") === "true";
+    if (!isBusy()) {
+      scene.setState("ready", 1);
+      return;
+    }
+    const observer = new MutationObserver(() => {
+      if (isBusy()) return;
+      observer.disconnect();
+      scene.setState("ready", 1);
+    });
+    observer.observe(main!, { attributes: true, attributeFilter: ["aria-busy"] });
+    onAbort(signal, () => observer.disconnect());
+  });
+</script>

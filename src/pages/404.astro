@@ -1,0 +1,13 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Unknown routes go back to the home page, as the former single-page app did.
+---
+
+<BaseLayout title="disHub | Página no encontrada" description="La página solicitada no existe.">
+  <meta slot="head" name="robots" content="noindex" />
+  <meta slot="head" http-equiv="refresh" content="0; url=/" />
+  <main style="min-height: 100vh; display: grid; place-items: center; padding: 24px; text-align: center">
+    <p>Redirigiendo al <a href="/">inicio</a>…</p>
+  </main>
+</BaseLayout>

@@ -1,0 +1,34 @@
+---
+import SplitLines from "./SplitLines.astro";
+
+interface Props {
+  index?: string;
+  eyebrow: string;
+  title: string[];
+  titleId: string;
+  accent?: number[];
+  /** Plain-text lead; use the `lead` slot when it needs markup. */
+  lead?: string;
+  align?: "start" | "center";
+  class?: string;
+}
+
+const { index, eyebrow, title, titleId, accent, lead, align = "start", class: className } = Astro.props;
+const hasLead = Boolean(lead) || Astro.slots.has("lead");
+---
+
+<header class:list={["lp-heading", align === "center" && "lp-heading--center", className]}>
+  <p class="lp-eyebrow" data-reveal>
+    {index && <span class="lp-eyebrow__index">{index}</span>}
+    <span class="lp-eyebrow__rule" aria-hidden="true" />
+    {eyebrow}
+  </p>
+  <h2 id={titleId} class="lp-title" data-reveal="lines">
+    <SplitLines lines={title} accent={accent} />
+  </h2>
+  {hasLead && (
+    <p class="lp-lead" data-reveal style="--d: 3">
+      {lead}<slot name="lead" />
+    </p>
+  )}
+</header>

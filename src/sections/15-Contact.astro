@@ -1,0 +1,65 @@
+---
+import SectionHeading from "../components/landing/SectionHeading.astro";
+import { CONTACT_DETAILS, SITE } from "../constants/content";
+import ContactForm from "../components/landing/ContactForm.astro";
+
+const CHANNELS = [
+  { label: "Correo", value: CONTACT_DETAILS.email, href: `mailto:${CONTACT_DETAILS.email}`, icon: "M3 5h18v14H3zM3 6l9 7 9-7" },
+  {
+    label: "Teléfono",
+    value: CONTACT_DETAILS.phone,
+    href: `tel:${CONTACT_DETAILS.phone.replace(/\s/g, "")}`,
+    icon: "M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.79a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.89.34 1.83.58 2.79.7A2 2 0 0 1 22 16.92z"
+  },
+  {
+    label: "Oficina",
+    value: CONTACT_DETAILS.address,
+    href: `https://maps.google.com/?q=${encodeURIComponent(CONTACT_DETAILS.address)}`,
+    icon: "M12 22s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12zM12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"
+  }
+];
+---
+
+<section id="contacto" class="lp-section lp-panel lp-tone-final lp-contact" data-screen-label="16 Contacto" aria-labelledby="contacto-title">
+  <div class="lp-container">
+    <SectionHeading class="lp-contact__head" index="16" eyebrow="Contacto" titleId="contacto-title" title={["Cuéntanos el reto operativo", "que quieres resolver."]} accent={[1]} />
+
+    <div class="lp-contact__grid">
+      <div class="lp-contact__copy">
+        <p class="lp-lead" data-reveal style="--d: 3">
+          En una sesión de trabajo de 30 minutos analizamos tu contexto e identificamos la ruta de mayor impacto: un diagnóstico enfocado, el despliegue de una de nuestras soluciones en producción o una arquitectura a la medida. Si prefieres escribirnos por el formulario, nuestro equipo te responderá en menos de 24 horas.
+        </p>
+        <div class="lp-contact__actions" data-reveal style="--d: 4">
+          <a class="lp-btn lp-btn--primary lp-btn--xl" href={SITE.bookingUrl} target="_blank" rel="noopener noreferrer">
+            Iniciar transformación
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+          </a>
+          <p class="lp-contact__duration"><strong>30</strong> min · sesión de trabajo</p>
+        </div>
+        <ul class="lp-contact__channels" aria-label="Canales de contacto">
+          {CHANNELS.map((channel, index) => (
+            <li data-reveal style={`--d: ${5 + index}`}>
+              <a class="lp-channel" href={channel.href} target={channel.href.startsWith("http") ? "_blank" : undefined} rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined}>
+                <span class="lp-channel__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d={channel.icon} /></svg>
+                </span>
+                <span class="lp-channel__text">
+                  <span class="lp-channel__label">{channel.label}</span>
+                  <span class="lp-channel__value">{channel.value}</span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="lp-contact__card" data-reveal="scale">
+        <div class="lp-contact__card-head">
+          <p class="lp-contact__card-title">Formulario de contacto</p>
+          <p class="lp-contact__badge"><span class="lp-contact__badge-dot" aria-hidden="true" />Respuesta en menos de 24 h</p>
+        </div>
+        <ContactForm />
+      </div>
+    </div>
+  </div>
+</section>

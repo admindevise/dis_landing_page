@@ -1,0 +1,46 @@
+---
+import Ticker from "../components/landing/Ticker.astro";
+import { KEYWORDS } from "../constants/content";
+
+interface Props {
+  id: string;
+  index: string;
+  tone: "teal" | "ink";
+  eyebrow: string;
+  statement: string;
+  detail: string;
+  actionLead: string;
+  actionHref: string;
+  actionLabel: string;
+}
+
+/** Full-bleed, high-contrast interlude whose words light up as the reader scrolls. */
+const { id, index, tone, eyebrow, statement, detail, actionLead, actionHref, actionLabel } = Astro.props;
+const words = statement.split(" ");
+---
+
+<section id={id} class:list={["lp-section lp-panel lp-band", `lp-tone-${tone}`]} aria-labelledby={`${id}-title`}>
+  <div class="lp-container lp-band__inner">
+    <p class="lp-eyebrow" data-reveal>
+      <span class="lp-eyebrow__index">{index}</span>
+      <span class="lp-eyebrow__rule" aria-hidden="true" />
+      {eyebrow}
+    </p>
+    <h2 id={`${id}-title`} class="lp-band__statement" style={`--n: ${words.length}`}>
+      {words.map((word, wordIndex) => (
+        <span class="lp-band__word" style={`--i: ${wordIndex}`}>{`${word} `}</span>
+      ))}
+    </h2>
+    <div class="lp-band__foot">
+      <p class="lp-band__detail" data-reveal>{detail}</p>
+      <div class="lp-band__action-block" data-reveal style="--d: 2">
+        <p>{actionLead}</p>
+        <a class="lp-btn lp-btn--primary lp-band__action" href={actionHref}>
+          {actionLabel}
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <Ticker items={KEYWORDS} />
+</section>

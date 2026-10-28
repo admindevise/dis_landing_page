@@ -1,0 +1,270 @@
+---
+import { NAV, SITE } from "../../constants/content";
+
+interface Props {
+  activeSection: string;
+}
+
+const { activeSection } = Astro.props;
+---
+
+<header class="dis-large-header header">
+  <div data-glass="" class="dis-large-header-inner header-inner">
+    <a href="/" aria-label="disHub, ir al inicio" class="brand">
+      <img src="/DIS.svg" alt="" width="110" height="37" />
+    </a>
+
+    <nav class="nav">
+      {NAV.map(([id, label]) => (
+        <a href={`/${id}`} class="nav-link" aria-current={activeSection === id ? "location" : undefined}>
+          {label}
+          <span class="nav-underline" />
+        </a>
+      ))}
+    </nav>
+
+    <div class="actions">
+      <a class="dis-header-booking booking" href={SITE.bookingUrl} target="_blank" rel="noopener noreferrer" aria-label="Iniciar transformación">
+        <span class="dis-booking-label-long">Iniciar transformación</span>
+        <span class="dis-booking-label-short" aria-hidden="true">Iniciar</span>
+      </a>
+
+      <button type="button" class="icon-button menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-movil">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <line x1="3" y1="6" x2="21" y2="6" stroke-width="2" />
+          <line x1="3" y1="12" x2="21" y2="12" stroke-width="2" />
+          <line x1="3" y1="18" x2="21" y2="18" stroke-width="2" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+{/* Mobile menu */}
+<div id="menu-movil" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú" hidden>
+  <div class="mobile-menu-top">
+    <button type="button" class="icon-button menu-close" aria-label="Cerrar menú">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <line x1="18" y1="6" x2="6" y2="18" stroke-width="2" />
+        <line x1="6" y1="6" x2="18" y2="18" stroke-width="2" />
+      </svg>
+    </button>
+  </div>
+
+  {NAV.map(([id, label]) => (
+    <a href={`/${id}`} class="mobile-link">{label}</a>
+  ))}
+</div>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    padding: 20px 16px;
+    transition: padding 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .header.is-scrolled {
+    padding: 10px 16px;
+  }
+
+  .header-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 10px 12px 10px 20px;
+    border-radius: 18px;
+    background: rgb(15 28 39 / 0.55);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid rgb(255 255 255 / 0.1);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08), 0 16px 40px -20px rgb(0 0 0 / 0.7);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    min-height: 44px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 20px;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .brand img {
+    display: block;
+    object-fit: contain;
+  }
+
+  .nav {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .nav-link {
+    position: relative;
+    color: #B0C4D4;
+    padding: 12px 14px;
+    font-size: 15px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    transition: color 200ms;
+    text-decoration: none;
+  }
+
+  .nav-link:hover,
+  .nav-link[aria-current] {
+    color: #fff;
+  }
+
+  .nav-underline {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 6px;
+    height: 2px;
+    border-radius: 2px;
+    background: #02B2B2;
+    opacity: 0;
+    transition: opacity 200ms;
+  }
+
+  .nav-link[aria-current] .nav-underline {
+    opacity: 1;
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .booking {
+    gap: 8px;
+    padding: 0 18px;
+    border-radius: 12px;
+    background: #02B2B2;
+    color: #0F1C27;
+    font-size: 15px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    transition: background 200ms;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.3);
+  }
+
+  .booking:hover {
+    background: #4FD8D8;
+    color: #0F1C27;
+  }
+
+  .icon-button {
+    background: rgb(255 255 255 / 0.06);
+    border: 1px solid rgb(255 255 255 / 0.16);
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+  }
+
+  @media (min-width: 1080px) {
+    .menu-toggle {
+      display: none;
+    }
+  }
+
+  @media (max-width: 1079px) {
+    .nav {
+      display: none;
+    }
+  }
+
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    background: rgb(15 28 39 / 0.92);
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mobile-menu-top {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 24px;
+  }
+
+  .mobile-link {
+    color: #fff;
+    padding: 16px 8px;
+    font-size: 28px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    border-bottom: 1px solid rgb(255 255 255 / 0.08);
+  }
+</style>
+
+<script>
+  import { onPageLoad } from "../../lib/lifecycle";
+
+  onPageLoad((signal) => {
+    const header = document.querySelector<HTMLElement>(".dis-large-header");
+    const menu = document.getElementById("menu-movil");
+    if (!header || !menu) return;
+    const toggle = header.querySelector<HTMLButtonElement>(".menu-toggle")!;
+    const focusable = Array.from(menu.querySelectorAll<HTMLElement>("a, button"));
+
+    const handleScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 24);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true, signal });
+
+    // Escape closes the open menu and Tab cycles inside it.
+    const trapFocus = (event: KeyboardEvent) => {
+      if (menu.hidden) return;
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        return;
+      }
+      if (event.key !== "Tab" || focusable.length === 0) return;
+      if (event.shiftKey && document.activeElement === focusable[0]) {
+        event.preventDefault();
+        focusable[focusable.length - 1].focus();
+      } else if (!event.shiftKey && document.activeElement === focusable[focusable.length - 1]) {
+        event.preventDefault();
+        focusable[0].focus();
+      }
+    };
+
+    function setMenuOpen(open: boolean) {
+      menu!.hidden = !open;
+      toggle.setAttribute("aria-expanded", String(open));
+      if (open) focusable[0]?.focus();
+      else toggle.focus();
+    }
+
+    document.addEventListener("keydown", trapFocus, { signal });
+
+    toggle.addEventListener("click", () => setMenuOpen(menu.hidden));
+    menu.querySelector(".menu-close")!.addEventListener("click", () => setMenuOpen(false));
+    menu.querySelectorAll(".mobile-link").forEach((link) => link.addEventListener("click", () => setMenuOpen(false)));
+  });
+</script>

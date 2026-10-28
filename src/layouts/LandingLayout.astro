@@ -1,0 +1,73 @@
+---
+import Footer from "../components/global/Footer.astro";
+import Header from "../components/global/Header.astro";
+import Preloader from "../components/landing/Preloader.astro";
+import ContinueJourney from "../components/landing/ContinueJourney.astro";
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  /** First path segment of the page; drives the active nav link and the journey footer. */
+  section: string;
+}
+
+const { section } = Astro.props;
+---
+
+<BaseLayout
+  title="disHub | Metodología Brickflow para IA en producción"
+  description="disHub, de Digital Investment Systems, despliega ingenieros y líderes de transformación para llevar IA a producción con trazabilidad, cumplimiento y adopción en equipos regulados."
+>
+  <div class="lp dis-page relative min-h-screen overflow-x-clip">
+    <a href="#contenido" class="lp-skip">Saltar al contenido</a>
+
+    <Preloader />
+
+    {/* Background grid and orbs */}
+    <div class="lp-ambient" aria-hidden="true">
+      <div class="lp-ambient__stain" />
+      <div class="dis-orb--a absolute right-[-12vw] top-[-12vh] h-[64vw] w-[64vw] rounded-full blur-[110px] motion-safe:animate-[orbA_28s_ease-in-out_infinite]" />
+      <div class="dis-orb--b absolute bottom-[-24vh] left-[-18vw] h-[72vw] w-[72vw] rounded-full blur-[120px] motion-safe:animate-[orbB_34s_ease-in-out_infinite]" />
+      <div class="dis-orb--c absolute left-[38vw] top-[34vh] h-[28vw] w-[28vw] rounded-full blur-[100px] motion-safe:animate-[orbA_40s_ease-in-out_infinite_reverse]" />
+      <div class="dis-grid-lines absolute inset-0 z-2" />
+    </div>
+
+    <div class="lp-progress" aria-hidden="true" />
+
+    <Header activeSection={section} />
+
+    <main id="contenido" class="lp-main" aria-busy="true">
+      <slot />
+      <ContinueJourney current={section} />
+    </main>
+
+    <Footer />
+  </div>
+</BaseLayout>
+
+<script>
+  import { onPageLoad } from "../lib/lifecycle";
+  import { startLandingMotion } from "../scripts/landing-motion";
+  import { runPreloader } from "../scripts/preloader";
+
+  onPageLoad((signal) => {
+    const root = document.querySelector<HTMLElement>(".lp");
+    if (!root) return;
+    const progress = root.querySelector<HTMLElement>(".lp-progress")!;
+    const main = document.getElementById("contenido")!;
+    // Only present on the initial page load (BaseLayout removes it from client-side navigations).
+    const loader = root.querySelector<HTMLElement>(".lp-loader");
+    const ready = loader ? runPreloader(loader) : Promise.resolve();
+
+    ready.then(() => {
+      if (signal.aborted) return;
+      main.setAttribute("aria-busy", "false");
+      startLandingMotion(root, progress, signal);
+      if (!loader) return;
+
+      // Client-side navigations scroll to the hash themselves.
+      const targetId = location.hash.slice(1);
+      const target = targetId ? document.getElementById(decodeURIComponent(targetId)) : null;
+      target?.scrollIntoView({ behavior: "instant", block: "start" });
+    });
+  });
+</script>

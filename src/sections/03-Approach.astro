@@ -1,0 +1,415 @@
+---
+import PlusMinus from "../components/landing/brickflow/PlusMinus.astro";
+import StageIcon from "../components/landing/brickflow/StageIcon.astro";
+import TowerLayer from "../components/landing/brickflow/TowerLayer.astro";
+import TowerScaffold from "../components/landing/brickflow/TowerScaffold.astro";
+import SectionHeading from "../components/landing/SectionHeading.astro";
+import { STEPS } from "../constants/content";
+import { CALLOUTS, CANVAS_WIDTH, DELIVERABLE_PULSES, DIRECTION_LEADS, LAYER_TOPS, MAP_COLUMNS, MOBILE_CALLOUTS, MOBILE_CANVAS_WIDTH, MOBILE_LAYER_TOPS } from "../constants/brickflow";
+import { pad } from "../lib/tabs";
+
+// Server render shows the first stage of the desktop composition; the script measures and takes over.
+const stage = 0;
+const step = STEPS[stage];
+const pos = CALLOUTS[stage];
+const stageLabel = `Capa ${pad(stage + 1)} / 04 · ${step.layer}`;
+---
+
+{/* Compact and desktop compositions are both rendered; the script shows one through `data-when`. */}
+<section id="proceso" class="lp-section lp-tone-navy bf bf-method" data-screen-label="03 Metodología Brickflow" aria-labelledby="enfoque-title">
+  <div class="lp-container">
+    <div class="bf-method__head">
+      <SectionHeading
+        index="03"
+        eyebrow="Metodología Brickflow"
+        titleId="enfoque-title"
+        title={["Del ladrillo al flujo financiero;", "del diagnóstico a la capacidad instalada."]}
+        accent={[1]}
+      />
+      <button class="bf-pill" type="button" aria-expanded="false" aria-controls="brickflow-intro" data-reveal>
+        <PlusMinus />
+        ¿Por qué Brickflow?
+      </button>
+      <p id="brickflow-intro" class="lp-lead bf-in" hidden>
+        Nuestro nombre nace de nuestra propia historia: entendemos los negocios de punta a punta, desde la realidad física del ladrillo inmobiliario hasta la complejidad de los flujos financieros. Aplicamos esa misma disciplina constructiva a la inteligencia artificial: levantamos cada solución capa por capa, pasando de cimientos estratégicos sólidos a flujos operativos continuos gobernados por tu propio equipo.
+      </p>
+    </div>
+
+    <div class="bf-tower" aria-label="La torre Brickflow, capa por capa" role="group" data-reveal>
+      <p class="bf-tower__label">{stageLabel}</p>
+
+      {/* Compact composition */}
+      <div class="bf-canvas" data-when="compact" data-canvas="mobile" style="height: 300px" hidden>
+        <div class="bf-canvas__inner" style={`width: ${MOBILE_CANVAS_WIDTH}px; height: 300px; --s: 1`}>
+          <span class="bf-tower__glow" style="left: 79px; top: 252px; width: 200px; height: 46px" aria-hidden="true" />
+          <div class="bf-abs" style="left: 79px; top: 78px; width: 200px; height: 196px"><TowerScaffold /></div>
+          {MOBILE_LAYER_TOPS.map((top, index) => (
+            <div class="bf-course bf-drop bf-drop--short" style={`left: 79px; top: ${top}px; width: 200px; height: 124px`} hidden={index > stage}>
+              <TowerLayer active={index === stage} />
+            </div>
+          ))}
+          <span class="bf-tower__stem" style={`left: 178px; top: ${MOBILE_CALLOUTS[stage].fl}px; height: 12px`} aria-hidden="true" />
+          <div class="bf-deliverable bf-deliverable--compact" style={`left: 29px; top: ${MOBILE_CALLOUTS[stage].f}px`}>
+            <span class="bf-diamond" aria-hidden="true" />
+            <span class="bf-deliverable__text"><span class="bf-tag">Entregable</span>{step.out}</span>
+          </div>
+        </div>
+      </div>
+      <div class="bf-partners" data-when="compact" hidden>
+        <p class="bf-callout bf-callout--dis"><span class="bf-tag">Equipo DIS</span>{step.lead}</p>
+        <svg class="bf-partners__swap" width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 3.5 H14 M11 1 L14 3.5 L11 6 M15 8.5 H2 M5 6 L2 8.5 L5 11" /></svg>
+        <p class="bf-callout bf-callout--client"><span class="bf-tag">Contraparte cliente</span>{step.counterpart}</p>
+      </div>
+
+      {/* Desktop composition */}
+      <div class="bf-canvas" data-when="wide" data-canvas="tower" style="height: 450px">
+        <div class="bf-canvas__inner" style={`width: ${CANVAS_WIDTH}px; height: 450px; --s: 1`}>
+          <span class="bf-tower__glow" style="left: 428px; top: 372px; width: 360px; height: 80px" aria-hidden="true" />
+          <div class="bf-abs" style="left: 458px; top: 116px; width: 300px; height: 294px"><TowerScaffold /></div>
+          {LAYER_TOPS.map((top, index) => (
+            <div class="bf-course bf-drop" style={`left: 458px; top: ${top}px; width: 300px; height: 186px`} hidden={index > stage}>
+              <TowerLayer active={index === stage} />
+            </div>
+          ))}
+          <span class="bf-tower__stem" style={`left: 607px; top: ${pos.fl}px; height: 22px`} aria-hidden="true" />
+          <div class="bf-deliverable" style={`left: 438px; top: ${pos.f}px`}>
+            <span class="bf-diamond" aria-hidden="true" />
+            <span class="bf-deliverable__text"><span class="bf-tag">Entregable</span>{step.out}</span>
+          </div>
+          <span class="bf-lead bf-lead--dis" style={`left: 320px; top: ${pos.l}px`} aria-hidden="true" />
+          <span class="bf-lead bf-lead--client" style={`left: 696px; top: ${pos.l}px`} aria-hidden="true" />
+          <span class="bf-lead-dot" style={`left: 515px; top: ${pos.d}px`} aria-hidden="true" />
+          <span class="bf-lead-dot" style={`left: 691px; top: ${pos.d}px`} aria-hidden="true" />
+          <p class="bf-callout bf-callout--dis bf-callout--side" style={`left: 40px; top: ${pos.m}px`}>
+            <span class="bf-tag">Equipo DIS</span>{step.lead}
+          </p>
+          <p class="bf-callout bf-callout--client bf-callout--side" style={`left: 896px; top: ${pos.m}px`}>
+            <span class="bf-tag">Contraparte cliente</span>{step.counterpart}
+          </p>
+        </div>
+      </div>
+
+      {[true, false].map((compact) => (
+        <div class:list={["bf-stepper", compact && "bf-stepper--compact"]} data-when={compact ? "compact" : "wide"} hidden={compact}>
+          <ol class="bf-stepper__steps" aria-label="Etapas de Brickflow" style="--progress: 0%">
+            {STEPS.map((item, index) => (
+              <li class:list={[index === stage && "is-current"]}>
+                <button type="button" aria-current={index === stage ? "step" : undefined} aria-label={compact ? `Capa ${pad(index + 1)}, ${item.t}` : undefined} data-stage={index}>
+                  <span class="bf-stepper__dot">{compact ? pad(index + 1) : <StageIcon index={index} />}</span>
+                  {!compact && <span class="bf-stepper__name"><span>{pad(index + 1)}</span>{item.t}</span>}
+                </button>
+              </li>
+            ))}
+          </ol>
+          <button class="bf-play" type="button" aria-label="Pausar recorrido">
+            <svg class="bf-play__ring" viewBox="0 0 48 48" aria-hidden="true" style="display: none">
+              <circle cx="24" cy="24" r="23" pathLength="1" />
+            </svg>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <rect data-icon="pause" x="3.5" y="2.5" width="3" height="11" rx="1" />
+              <rect data-icon="pause" x="9.5" y="2.5" width="3" height="11" rx="1" />
+              <path data-icon="play" d="M4.5 2.5 L13 8 L4.5 13.5 Z" style="display: none" />
+            </svg>
+          </button>
+        </div>
+      ))}
+      <p class="bf-stepper__current" data-when="compact" hidden>{step.t}</p>
+      <p class="sr-only" aria-live="polite" />
+
+      <button class="bf-map-toggle" type="button" aria-expanded="false" aria-controls="brickflow-map">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="3" width="16" height="4" rx="1" />
+          <rect x="2" y="9" width="16" height="4" rx="1" />
+          <path d="M2 16 H18" stroke-dasharray="2 2.5" />
+        </svg>
+        Ver el flujo completo
+        <svg class="bf-map-toggle__chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5 L7 9 L11 5" /></svg>
+      </button>
+    </div>
+
+    <div id="brickflow-map" class="bf-map bf-in" hidden>
+      {/* Compact map */}
+      <div class="bf-map-list" data-when="compact" hidden>
+        <span class="bf-map-list__rail" aria-hidden="true" />
+        <span class="bf-map-list__packet" aria-hidden="true" />
+        <ol aria-label="Flujo completo por etapa">
+          {STEPS.map((item, index) => (
+            <li class:list={["bf-map-card", index === stage && "is-current"]}>
+              <span class="bf-diamond bf-map-card__node" aria-hidden="true" />
+              <button class="bf-map-card__head" type="button" aria-pressed={index === stage} data-stage={index}>
+                <StageIcon index={index} />
+                <span><span class="bf-tag">Capa {pad(index + 1)} / 04</span>{item.t}</span>
+              </button>
+              <p class:list={["bf-role", DIRECTION_LEADS[index] && "bf-role--direction"]}>
+                <span class="bf-tag">{DIRECTION_LEADS[index] ? "Dirección · lidera" : "Operación · lidera"}</span>
+                {item.lead}
+              </p>
+              <p class="bf-map-card__deliverable"><span class="bf-diamond" aria-hidden="true" /><span><span class="bf-tag">Entregable</span>{item.out}</span></p>
+              <p class="bf-map-card__counterpart"><span class="bf-tag">Contraparte</span>{item.counterpart}</p>
+              <p class="bf-map-card__text bf-in" hidden>{item.d}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      {/* Desktop map */}
+      <div class="bf-canvas" data-when="wide" data-canvas="map" style="height: 680px">
+        <div class="bf-canvas__inner bf-flowmap bf-reveal" style={`width: ${CANVAS_WIDTH}px; height: 680px; --s: 1`}>
+          <span class="bf-flowmap__band" style="top: 152px; height: 104px" aria-hidden="true" />
+          <span class="bf-flowmap__band" style="top: 264px; height: 104px" aria-hidden="true" />
+          <span class="bf-flowmap__band bf-flowmap__band--deliverables" style="top: 384px; height: 132px" aria-hidden="true" />
+          <span class="bf-flowmap__band bf-flowmap__band--client" style="top: 532px; height: 140px" aria-hidden="true" />
+          <span class="bf-flowmap__highlight" style={`left: ${MAP_COLUMNS[stage]}px`} aria-hidden="true" />
+
+          <p class="bf-flowmap__row" style="top: 182px"><span class="bf-tag">Equipo DIS</span>Dirección · FDT</p>
+          <p class="bf-flowmap__row" style="top: 294px"><span class="bf-tag">Equipo DIS</span>Operación · FDE</p>
+          <p class="bf-flowmap__row" style="top: 428px"><span class="bf-tag">Flujo</span>Entregables</p>
+          <p class="bf-flowmap__row bf-flowmap__row--client" style="top: 580px"><span class="bf-tag">Cliente</span>Contraparte</p>
+
+          {STEPS.map((item, index) => (
+            <button class="bf-flowmap__column" type="button" style={`left: ${MAP_COLUMNS[index]}px`} aria-pressed={index === stage} data-stage={index}>
+              <StageIcon index={index} filled />
+              <span class="bf-tag">Capa {pad(index + 1)} / 04</span>
+              <strong>{item.t}</strong>
+            </button>
+          ))}
+
+          <svg class="bf-flowmap__arrows" viewBox="0 0 1216 680" aria-hidden="true">
+            <defs>
+              <marker id="bf-map-arrow" viewBox="0 0 4 4" refX="2" refY="2" markerWidth="5" markerHeight="5" orient="auto" overflow="visible">
+                <path d="M0 0 L4 2 L0 4 Z" />
+              </marker>
+            </defs>
+            <path class="bf-flowmap__relay" d="M406 204 H566 V273" marker-end="url(#bf-map-arrow)" />
+            <path class="bf-flowmap__relay" d="M666 316 H721" marker-end="url(#bf-map-arrow)" />
+            <path class="bf-flowmap__relay" d="M926 316 H1086 V245" marker-end="url(#bf-map-arrow)" />
+            <path class="bf-flow bf-flowmap__support" d="M306 240 V278" />
+            <path class="bf-flow bf-flowmap__spine" d="M190 450 H1200" />
+            {MAP_COLUMNS.map((x) => <path class="bf-flow bf-flowmap__drop" d={`M${x + 120} 500 V548`} />)}
+          </svg>
+          <span class="bf-packet" style="offset-path: path('M 406 204 L 566 204 L 566 316 L 926 316 L 1086 316 L 1086 240'); animation-duration: 6s" aria-hidden="true" />
+          <span class="bf-packet" style="offset-path: path('M 190 450 L 1200 450'); animation-duration: 8s" aria-hidden="true" />
+
+          {MAP_COLUMNS.map((x, index) => (
+            <>
+              {DIRECTION_LEADS[index] && (
+                <p class="bf-role bf-role--direction bf-flowmap__cell" style={`left: ${x + 20}px; top: 168px; height: 72px`}><span class="bf-tag">Lidera</span>Director de Transformación (FDT)</p>
+              )}
+              {index === 0 && (
+                <p class="bf-role bf-role--support bf-flowmap__cell" style={`left: ${x + 20}px; top: 278px; height: 76px`}><span class="bf-tag">Apoyo</span>FDE</p>
+              )}
+              {(index === 1 || index === 2) && (
+                <p class="bf-role bf-flowmap__cell" style={`left: ${x + 20}px; top: 278px; height: 76px`}><span class="bf-tag">Lidera</span>Ingeniero Desplegado en Campo (FDE)</p>
+              )}
+              <p class="bf-flowmap__deliverable" style={`left: ${x + 20}px`}>
+                <span class="bf-diamond bf-hit" style={`animation-delay: ${DELIVERABLE_PULSES[index]}s`} aria-hidden="true" />
+                <span><span class="bf-tag">Entregable</span>{STEPS[index].out}</span>
+              </p>
+              <p class="bf-flowmap__counterpart" style={`left: ${x + 10}px`}>
+                <span class="bf-tag">Contraparte</span>{STEPS[index].counterpart}
+              </p>
+            </>
+          ))}
+        </div>
+      </div>
+      <div class="bf-map__detail" data-when="wide">
+        <span class="bf-tag">{stageLabel}</span>
+        <p>{step.d}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { STEPS } from "../constants/content";
+  import { CALLOUTS, CANVAS_WIDTH, MAP_COLUMNS, MIN_DESKTOP_SCALE, MOBILE_CALLOUTS, MOBILE_CANVAS_WIDTH, OWNER, STEP_MS } from "../constants/brickflow";
+  import { fitScale, observeWidth, replay, setOwnText } from "../lib/dom";
+  import { onAbort, onPageLoad } from "../lib/lifecycle";
+  import { pad } from "../lib/tabs";
+
+  onPageLoad((signal) => {
+    const section = document.getElementById("proceso");
+    if (section) initApproach(section, signal);
+  });
+
+  function initApproach(section: HTMLElement, signal: AbortSignal) {
+    const tower = section.querySelector<HTMLElement>(".bf-tower")!;
+    const intro = section.querySelector<HTMLElement>("#brickflow-intro")!;
+    const introButton = section.querySelector<HTMLButtonElement>(".bf-pill")!;
+    const map = section.querySelector<HTMLElement>("#brickflow-map")!;
+    const mapToggle = section.querySelector<HTMLButtonElement>(".bf-map-toggle")!;
+    const announcer = tower.querySelector<HTMLElement>(".sr-only")!;
+    const canvases = {
+      tower: section.querySelector<HTMLElement>('[data-canvas="tower"]')!,
+      mobile: section.querySelector<HTMLElement>('[data-canvas="mobile"]')!,
+      map: section.querySelector<HTMLElement>('[data-canvas="map"]')!
+    };
+    const all = <T extends Element = HTMLElement>(selector: string, scope: ParentNode = section) => Array.from(scope.querySelectorAll<T>(selector));
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    let stage = 0;
+    let playChoice: boolean | null = null;
+    let inView = false;
+    let introOpen = false;
+    let mapOpen = false;
+    let compact: boolean | null = null;
+    let timer = 0;
+    let ringKey = -1;
+
+    // Until the visitor chooses, the tour plays unless reduced motion is requested.
+    const playing = () => playChoice ?? !reducedMotion.matches;
+    // The tour only runs while the tower is on screen.
+    const running = () => playing() && inView;
+
+    function sizeCanvas(canvas: HTMLElement, baseWidth: number, baseHeight: number, width: number) {
+      const scale = fitScale(width, baseWidth);
+      canvas.style.height = `${baseHeight * scale}px`;
+      canvas.querySelector<HTMLElement>(".bf-canvas__inner")!.style.setProperty("--s", String(scale));
+    }
+
+    function layout(width: number) {
+      sizeCanvas(canvases.tower, CANVAS_WIDTH, 450, width);
+      sizeCanvas(canvases.map, CANVAS_WIDTH, 680, width);
+      sizeCanvas(canvases.mobile, MOBILE_CANVAS_WIDTH, 300, width);
+      const nextCompact = fitScale(width, CANVAS_WIDTH) < MIN_DESKTOP_SCALE;
+      if (nextCompact === compact) return;
+      compact = nextCompact;
+      all('[data-when="compact"]').forEach((element) => { element.hidden = !nextCompact; });
+      all('[data-when="wide"]').forEach((element) => { element.hidden = nextCompact; });
+    }
+
+    function renderCanvas(canvas: HTMLElement, callouts: { f: number; fl: number }) {
+      all(".bf-course", canvas).forEach((course, index) => {
+        course.hidden = index > stage;
+        const layer = course.querySelector("svg")!;
+        layer.classList.toggle("is-active", index === stage);
+        layer.classList.toggle("is-built", index !== stage);
+      });
+      canvas.querySelector<HTMLElement>(".bf-tower__stem")!.style.top = `${callouts.fl}px`;
+      const deliverable = canvas.querySelector<HTMLElement>(".bf-deliverable")!;
+      deliverable.style.top = `${callouts.f}px`;
+      setOwnText(deliverable.querySelector(".bf-deliverable__text")!, STEPS[stage].out);
+    }
+
+    function render() {
+      const step = STEPS[stage];
+      const pos = CALLOUTS[stage];
+      const owned = stage === OWNER;
+      const stageLabel = `Capa ${pad(stage + 1)} / 04 · ${step.layer}`;
+      const isPlaying = playing();
+
+      tower.querySelector(".bf-tower__label")!.textContent = stageLabel;
+
+      // Desktop tower.
+      renderCanvas(canvases.tower, pos);
+      const inner = canvases.tower.querySelector<HTMLElement>(".bf-canvas__inner")!;
+      inner.toggleAttribute("data-owned", owned);
+      all(".bf-lead", inner).forEach((lead) => { lead.style.top = `${pos.l}px`; });
+      all(".bf-lead-dot", inner).forEach((dot) => { dot.style.top = `${pos.d}px`; });
+      all(".bf-callout--side", inner).forEach((callout) => { callout.style.top = `${pos.m}px`; });
+      all(".bf-callout--dis").forEach((callout) => setOwnText(callout, step.lead));
+      all(".bf-callout--client").forEach((callout) => setOwnText(callout, step.counterpart));
+
+      // Compact tower.
+      renderCanvas(canvases.mobile, MOBILE_CALLOUTS[stage]);
+      section.querySelector(".bf-partners")!.toggleAttribute("data-owned", owned);
+      section.querySelector(".bf-stepper__current")!.textContent = step.t;
+
+      // Steppers and play buttons.
+      all(".bf-stepper__steps").forEach((steps) => {
+        steps.style.setProperty("--progress", `${stage * 25}%`);
+        all("li", steps).forEach((item, index) => {
+          item.classList.toggle("is-current", index === stage);
+          item.classList.toggle("is-done", index < stage);
+          const button = item.querySelector("button")!;
+          if (index === stage) button.setAttribute("aria-current", "step");
+          else button.removeAttribute("aria-current");
+        });
+      });
+      all(".bf-play").forEach((button) => {
+        button.setAttribute("aria-label", isPlaying ? "Pausar recorrido" : "Reproducir recorrido");
+        all<SVGElement>('[data-icon="pause"]', button).forEach((icon) => { icon.style.display = isPlaying ? "" : "none"; });
+        button.querySelector<SVGElement>('[data-icon="play"]')!.style.display = isPlaying ? "none" : "";
+      });
+      // The countdown ring restarts with every stage while the tour runs.
+      const nextRingKey = running() ? stage : -1;
+      if (nextRingKey !== ringKey) {
+        ringKey = nextRingKey;
+        all<SVGElement>(".bf-play__ring").forEach((ring) => {
+          if (nextRingKey === -1) ring.style.display = "none";
+          else replay(ring);
+        });
+      }
+
+      // Flow map.
+      all(".bf-map-card").forEach((card, index) => {
+        const current = index === stage;
+        card.classList.toggle("is-current", current);
+        card.querySelector(".bf-map-card__head")!.setAttribute("aria-pressed", String(current));
+        card.querySelector(".bf-map-card__counterpart")!.classList.toggle("is-owned", index === OWNER && owned);
+        card.querySelector<HTMLElement>(".bf-map-card__text")!.hidden = !(current && !isPlaying);
+      });
+      section.querySelector<HTMLElement>(".bf-flowmap__highlight")!.style.left = `${MAP_COLUMNS[stage]}px`;
+      all(".bf-flowmap__column").forEach((column, index) => column.setAttribute("aria-pressed", String(index === stage)));
+      all(".bf-flowmap__counterpart").forEach((counterpart, index) => counterpart.classList.toggle("is-owned", index === OWNER && owned));
+      const detail = section.querySelector(".bf-map__detail")!;
+      detail.querySelector(".bf-tag")!.textContent = stageLabel;
+      detail.querySelector("p")!.textContent = step.d;
+    }
+
+    function update() {
+      render();
+      window.clearTimeout(timer);
+      if (running()) {
+        timer = window.setTimeout(() => {
+          stage = (stage + 1) % STEPS.length;
+          update();
+        }, STEP_MS);
+      }
+    }
+
+    const pick = (index: number) => {
+      stage = index;
+      playChoice = false;
+      announcer.textContent = `Capa ${pad(index + 1)} de 04 · ${STEPS[index].layer}`;
+      update();
+    };
+
+    introButton.addEventListener("click", () => {
+      introOpen = !introOpen;
+      intro.hidden = !introOpen;
+      introButton.setAttribute("aria-expanded", String(introOpen));
+      introButton.querySelector(".bf-plus-minus__v")!.setAttribute("opacity", introOpen ? "0" : "1");
+      setOwnText(introButton, introOpen ? "Ocultar" : "¿Por qué Brickflow?");
+    });
+
+    mapToggle.addEventListener("click", () => {
+      mapOpen = !mapOpen;
+      map.hidden = !mapOpen;
+      mapToggle.setAttribute("aria-expanded", String(mapOpen));
+      setOwnText(mapToggle, mapOpen ? "Ocultar el flujo completo" : "Ver el flujo completo");
+      playChoice = false;
+      update();
+    });
+
+    all("[data-stage]").forEach((button) => button.addEventListener("click", () => pick(Number(button.dataset.stage))));
+    all(".bf-play").forEach((button) => button.addEventListener("click", () => {
+      playChoice = !playing();
+      update();
+    }));
+
+    const towerObserver = new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting;
+      update();
+    }, { threshold: 0.3 });
+    towerObserver.observe(tower);
+    reducedMotion.addEventListener("change", update, { signal });
+    onAbort(signal, () => {
+      towerObserver.disconnect();
+      window.clearTimeout(timer);
+    });
+
+    observeWidth(tower, layout, signal);
+    update();
+  }
+</script>

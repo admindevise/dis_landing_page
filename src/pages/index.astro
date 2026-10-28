@@ -1,0 +1,19 @@
+---
+import { HOME_STATEMENT } from "../constants/content";
+import LandingLayout from "../layouts/LandingLayout.astro";
+import Hero from "../sections/00-Hero.astro";
+import About from "../sections/01-About.astro";
+import StatementBand from "../sections/02-StatementBand.astro";
+---
+
+<LandingLayout section="nosotros">
+  <Hero />
+  <About />
+  <StatementBand
+    id="lectura"
+    index="02"
+    tone="teal"
+    {...HOME_STATEMENT}
+    actionHref="/metodologia#proceso"
+  />
+</LandingLayout>

@@ -1,0 +1,14 @@
+---
+interface Props {
+  class?: string;
+}
+
+/** Dotted outline of the full four-course tower: future layers only exist as scaffolding. */
+const { class: className } = Astro.props;
+---
+
+<svg class:list={["bf-scaffold", className]} viewBox="0 0 300 294" aria-hidden="true">
+  <path d="M150 0 L300 75 L300 219 L150 294 L0 219 L0 75 Z" />
+  <path d="M0 75 L150 150 L300 75 M150 150 V294" />
+  <path d="M0 111 L150 186 L300 111 M0 147 L150 222 L300 147 M0 183 L150 258 L300 183" />
+</svg>

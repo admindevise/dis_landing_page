@@ -1,0 +1,201 @@
+---
+import FdtCycle from "../components/landing/brickflow/FdtCycle.astro";
+import PlusMinus from "../components/landing/brickflow/PlusMinus.astro";
+import { BF_ROLE_COPY } from "../constants/content";
+import { pad } from "../lib/tabs";
+
+const FDE_PRINCIPLES = [
+  "Desde principios fundamentales",
+  "Junto al experto de dominio",
+  "Velocidad e impacto temprano",
+  "Sistemas duraderos a escala"
+];
+
+const FDE_STEPS = ["Problema Específico y Ambigüedad", "Impacto Validado en Producción", "Patrones que Escalan"];
+
+// Read clockwise from the left node; the mobile legend uses the same order.
+const FDT_NODES = [
+  { tag: "", t: "Construir desde principios fundamentales" },
+  { tag: "FDT + Comité", t: "Gobierno, Riesgo y Priorización" },
+  { tag: "", t: "Co-diseño con expertos de dominio" },
+  { tag: "FDE + TI", t: "Valor temprano e iteración a escala" }
+];
+
+const FDE_PACKETS = ["M 28 60 L 352 60 L 496 20", "M 28 60 L 352 60 L 496 60", "M 28 60 L 352 60 L 496 100"];
+const FDE_NODES = [[346, 54], [490, 14], [490, 54], [490, 94]];
+const ROLES = ["fde", "fdt"] as const;
+---
+
+{/* Both roles (and both diagram sizes) are rendered; the script shows one. */}
+<section id="roles" class="lp-section bf bf-continue bf-roles" data-screen-label={`${BF_ROLE_COPY.fde.index} ${BF_ROLE_COPY.fde.eyebrow}`} aria-label="Equipos FDE y FDT">
+  <div class="lp-container">
+    <div class="bf-segment" role="group" aria-label="Rol" data-reveal>
+      <button type="button" aria-pressed="true" data-role="fde">FDE · Ingeniero Desplegado</button>
+      <button type="button" aria-pressed="false" data-role="fdt">FDT · Director de Transformación</button>
+    </div>
+
+    <article class="bf-role-card" data-reveal>
+      {ROLES.map((role) => {
+        const copy = BF_ROLE_COPY[role];
+        return (
+          <div class="bf-role-card__copy bf-in" data-role={role} hidden={role !== "fde"}>
+            <p class="lp-eyebrow">
+              <span class="lp-eyebrow__index">{copy.index}</span>
+              <span class="lp-eyebrow__rule" aria-hidden="true" />
+              {copy.eyebrow}
+            </p>
+            <h2 class="bf-role-card__title">{copy.title}</h2>
+            <button class="bf-more" type="button" aria-expanded="false" aria-controls={`role-more-${role}`}>
+              <PlusMinus />
+              Leer más
+            </button>
+            <p id={`role-more-${role}`} class="bf-role-card__body bf-in" hidden>{copy.body}</p>
+          </div>
+        );
+      })}
+      <div class="bf-role-card__diagram">
+        <div class="bf-in" data-role="fde">
+          <div class="bf-fde-v" data-when="compact" hidden>
+            <div class="bf-fde-v__track">
+              <span class="bf-fde-v__rail" aria-hidden="true" />
+              <span class="bf-fde-v__packet" aria-hidden="true" />
+              <ol>
+                {FDE_STEPS.map((label, index) => (
+                  <li class:list={["bf-fde-v__step", index === 0 && "is-start"]}>
+                    <span class="bf-fde-v__node" aria-hidden="true" />
+                    <span><span class="bf-tag">{pad(index + 1)}</span>{label}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <svg class="bf-fde-v__fan" viewBox="0 0 282 60" aria-hidden="true">
+              <path class="bf-flow" d="M20 4 L60 56" />
+              <path class="bf-flow" d="M20 4 L141 56" />
+              <path class="bf-flow" d="M20 4 L222 56" />
+            </svg>
+          </div>
+
+          <div class="bf-canvas" data-when="wide" data-base-height="190" style="height: 190px">
+            <div class="bf-canvas__inner bf-fde" style="width: 512px; height: 190px; --s: 1" aria-hidden="true">
+              <svg class="bf-fde__lines" viewBox="0 0 512 190">
+                <defs>
+                  <marker id="bf-fde-arrow" viewBox="0 0 4 4" refX="2" refY="2" markerWidth="5" markerHeight="5" orient="auto" overflow="visible">
+                    <path d="M0 0 L4 2 L0 4 Z" />
+                  </marker>
+                </defs>
+                <path class="bf-fde__solid" d="M56 60 H171" marker-end="url(#bf-fde-arrow)" />
+                <path class="bf-flow" d="M204 60 H352" />
+                <path class="bf-flow" d="M352 60 L490 20" />
+                <path class="bf-flow" d="M352 60 H490" />
+                <path class="bf-flow" d="M352 60 L490 100" />
+              </svg>
+              {FDE_PACKETS.map((path) => (
+                <span class="bf-packet bf-packet--small" style={`offset-path: path('${path}'); animation-duration: 4s`} />
+              ))}
+              <span class="bf-fde__start bf-pulse">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.6" /><circle cx="11" cy="11" r="2.5" fill="currentColor" /></svg>
+              </span>
+              <span class="bf-fde__check">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2 L5 8.5 L9.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </span>
+              {FDE_NODES.map(([left, top]) => <span class="bf-fde__node" style={`left: ${left}px; top: ${top}px`} />)}
+              {FDE_STEPS.map((label, index) => (
+                <p class="bf-fde__label" style={`left: ${index * 176}px`}><span class="bf-tag">{pad(index + 1)}</span>{label}</p>
+              ))}
+            </div>
+            <ol class="sr-only">
+              {FDE_STEPS.map((label) => <li>{label}</li>)}
+            </ol>
+          </div>
+        </div>
+
+        <div class="bf-in" data-role="fdt" hidden>
+          <div class="bf-fdt-v" data-when="compact" hidden>
+            <div class="bf-fdt-v__cycle" aria-hidden="true"><FdtCycle numbered /></div>
+            <ol class="bf-fdt-v__legend">
+              {FDT_NODES.map((node, index) => (
+                <li>
+                  <span class="bf-fdt-v__num" aria-hidden="true">{index + 1}</span>
+                  <span>{node.tag && <span class="bf-tag">{node.tag}</span>}{node.t}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div class="bf-canvas" data-when="wide" data-base-height="384" style="height: 384px">
+            <div class="bf-canvas__inner bf-fdt" style="width: 512px; height: 384px; --s: 1">
+              <div class="bf-fdt__cycle" aria-hidden="true"><FdtCycle /></div>
+              <p class="bf-fdt__label bf-fdt__label--top"><span class="bf-tag">{FDT_NODES[1].tag}</span>{FDT_NODES[1].t}</p>
+              <p class="bf-fdt__label bf-fdt__label--left">{FDT_NODES[0].t}</p>
+              <p class="bf-fdt__label bf-fdt__label--right">{FDT_NODES[2].t}</p>
+              <p class="bf-fdt__label bf-fdt__label--bottom"><span class="bf-tag">{FDT_NODES[3].tag}</span>{FDT_NODES[3].t}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <div class="bf-principles" data-reveal>
+      <h3>Cómo trabaja</h3>
+      <ul>
+        {FDE_PRINCIPLES.map((principle, index) => (
+          <li><span>{pad(index + 1)}</span>{principle}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { BF_ROLE_COPY } from "../constants/content";
+  import { fitScale, observeWidth, pressOnly, setOwnText } from "../lib/dom";
+  import { onPageLoad } from "../lib/lifecycle";
+
+  type Role = keyof typeof BF_ROLE_COPY;
+
+  onPageLoad((signal) => {
+    const section = document.getElementById("roles");
+    if (section) initRoles(section, signal);
+  });
+
+  function initRoles(section: HTMLElement, signal: AbortSignal) {
+    const segment = Array.from(section.querySelectorAll<HTMLButtonElement>(".bf-segment button"));
+    const roleViews = Array.from(section.querySelectorAll<HTMLElement>(".bf-role-card [data-role]"));
+    const diagram = section.querySelector<HTMLElement>(".bf-role-card__diagram")!;
+    let compact: boolean | null = null;
+
+    function setMoreOpen(copy: HTMLElement, open: boolean) {
+      const button = copy.querySelector<HTMLButtonElement>(".bf-more")!;
+      copy.querySelector<HTMLElement>(".bf-role-card__body")!.hidden = !open;
+      button.setAttribute("aria-expanded", String(open));
+      button.querySelector(".bf-plus-minus__v")!.setAttribute("opacity", open ? "0" : "1");
+      setOwnText(button, open ? "Leer menos" : "Leer más");
+    }
+
+    function selectRole(role: Role) {
+      const copy = BF_ROLE_COPY[role];
+      section.dataset.screenLabel = `${copy.index} ${copy.eyebrow}`;
+      pressOnly(segment, segment.findIndex((button) => button.dataset.role === role));
+      roleViews.forEach((view) => { view.hidden = view.dataset.role !== role; });
+      section.querySelectorAll<HTMLElement>(".bf-role-card__copy").forEach((view) => setMoreOpen(view, false));
+    }
+
+    segment.forEach((button) => button.addEventListener("click", () => selectRole(button.dataset.role as Role)));
+    section.querySelectorAll<HTMLElement>(".bf-role-card__copy").forEach((copy) => {
+      copy.querySelector(".bf-more")!.addEventListener("click", () => setMoreOpen(copy, copy.querySelector<HTMLElement>(".bf-role-card__body")!.hidden));
+    });
+
+    observeWidth(diagram, (width) => {
+      const scale = fitScale(width, 512);
+      diagram.querySelectorAll<HTMLElement>(".bf-canvas").forEach((canvas) => {
+        canvas.style.height = `${Number(canvas.dataset.baseHeight) * scale}px`;
+        canvas.querySelector<HTMLElement>(".bf-canvas__inner")!.style.setProperty("--s", String(scale));
+      });
+      const nextCompact = scale < 0.8;
+      if (nextCompact === compact) return;
+      compact = nextCompact;
+      diagram.querySelectorAll<HTMLElement>('[data-when="compact"]').forEach((element) => { element.hidden = !nextCompact; });
+      diagram.querySelectorAll<HTMLElement>('[data-when="wide"]').forEach((element) => { element.hidden = nextCompact; });
+    }, signal);
+  }
+</script>

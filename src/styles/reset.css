@@ -1,0 +1,35 @@
+/*
+ * Global reset for the document and body.
+ * It loads last: it overrides the body background and line height set in global.css.
+ */
+html {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  text-size-adjust: 100%;
+}
+
+*, ::before, ::after {
+  box-sizing: inherit;
+}
+
+strong, b {
+  font-weight: 700;
+}
+
+body {
+  margin: 0;
+  color: #fff;
+  font-weight: 400;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  background-color: #192B3B;
+}
+
+@media print {
+  body { background-color: #fff; }
+}
+
+body::backdrop {
+  background-color: #192B3B;
+}

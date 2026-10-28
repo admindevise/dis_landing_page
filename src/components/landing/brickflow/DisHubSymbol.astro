@@ -1,0 +1,15 @@
+---
+interface Props {
+  class?: string;
+}
+
+/** disHub cube-in-hexagon symbol, drawn with the landing palette. */
+const { class: className } = Astro.props;
+---
+
+<svg class:list={["bf-symbol", className]} viewBox="0 0 26 28" aria-hidden="true">
+  <path class="bf-symbol__hex" d="M13 1 L25 7.5 V20.5 L13 27 L1 20.5 V7.5 Z" />
+  <path class="bf-symbol__top" d="M13 7 L19 10.5 L13 14 L7 10.5 Z" />
+  <path class="bf-symbol__left" d="M7 10.5 V17.5 L13 21 V14 Z" />
+  <path class="bf-symbol__right" d="M19 10.5 V17.5 L13 21 V14 Z" />
+</svg>

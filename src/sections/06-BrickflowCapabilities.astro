@@ -1,0 +1,65 @@
+---
+import CapabilityIcon from "../components/landing/brickflow/CapabilityIcon.astro";
+import SectionHeading from "../components/landing/SectionHeading.astro";
+import { BF_CAPABILITIES } from "../constants/content";
+import { pad } from "../lib/tabs";
+---
+
+<section id="capacidades" class="lp-section bf bf-continue bf-caps-section" data-screen-label="06 Capacidades" aria-labelledby="bf-cap-title">
+  <div class="lp-container">
+    <SectionHeading index="06" eyebrow="Capacidades integradas" titleId="bf-cap-title" title={["Tecnología al servicio", "de la operación."]} accent={[1]} />
+    <div class="bf-caps" role="tablist" aria-label="Capacidades">
+      {BF_CAPABILITIES.map((cap, index) => (
+        <button
+          id={`cap-tab-${index}`}
+          class="bf-cap"
+          type="button"
+          role="tab"
+          aria-selected={index === 0}
+          aria-controls="cap-panel"
+          tabindex={index === 0 ? 0 : -1}
+          data-reveal
+          style={`--d: ${index}`}
+        >
+          <CapabilityIcon index={index} class="bf-cap__piece bf-bob" />
+          <span class="bf-cap__shadow" aria-hidden="true" />
+          <span class="bf-tag">CAP-{pad(index + 1)}</span>
+          <strong>{cap.t}</strong>
+        </button>
+      ))}
+    </div>
+    <div id="cap-panel" class="bf-cap-panel" role="tabpanel" aria-labelledby="cap-tab-0">
+      {BF_CAPABILITIES.map((cap, index) => (
+        <ul class="bf-in" hidden={index !== 0}>
+          {cap.items.map((item) => <li>{item}</li>)}
+        </ul>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { showOnly } from "../lib/dom";
+  import { onPageLoad } from "../lib/lifecycle";
+  import { handleTabKeys, selectTab } from "../lib/tabs";
+
+  onPageLoad(() => {
+    const section = document.getElementById("capacidades");
+    if (!section) return;
+    const tablist = section.querySelector<HTMLElement>(".bf-caps")!;
+    const tabs = tablist.querySelectorAll<HTMLButtonElement>(".bf-cap");
+    const panel = section.querySelector<HTMLElement>("#cap-panel")!;
+    let active = 0;
+
+    function setActive(index: number) {
+      if (index === active) return;
+      active = index;
+      selectTab(tabs, index);
+      panel.setAttribute("aria-labelledby", `cap-tab-${index}`);
+      showOnly(panel.querySelectorAll("ul"), index);
+    }
+
+    tabs.forEach((tab, index) => tab.addEventListener("click", () => setActive(index)));
+    tablist.addEventListener("keydown", (event) => handleTabKeys(event, active, tabs.length, setActive, "cap-tab"));
+  });
+</script>

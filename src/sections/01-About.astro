@@ -1,0 +1,155 @@
+---
+import SectionHeading from "../components/landing/SectionHeading.astro";
+import ThreeStage from "../components/landing/ThreeStage.astro";
+import { ABOUT_LAYERS } from "../constants/content";
+import { pad } from "../lib/tabs";
+
+const activeLayer = 1;
+const activeContent = ABOUT_LAYERS[activeLayer - 1];
+---
+
+<section id="nosotros" class="lp-section lp-tone-navy lp-about" data-screen-label="01 Quiénes somos" aria-labelledby="nosotros-title">
+  <div class="lp-container lp-about__grid">
+    <div class="lp-about__visual" data-reveal="scale">
+      <ThreeStage
+        class="lp-about__stage"
+        label="Partículas de datos que atraviesan tres planos (negocio, metodología y tecnología) y pasan de un estado disperso a un flujo ordenado."
+        selectable
+      >
+        <div class="lp-about__fallback" aria-label="Planos de negocio, metodología y tecnología">
+          {ABOUT_LAYERS.map((layer, index) => (
+            <button
+              class="lp-about__fallback-plane"
+              type="button"
+              aria-label={`Seleccionar plano ${pad(layer.id)} ${layer.title}`}
+              aria-pressed={activeLayer === layer.id}
+              style={`--plane-index: ${index}`}
+              data-layer={layer.id}
+            >
+              <span>{pad(layer.id)} {layer.title.toUpperCase()}</span>
+            </button>
+          ))}
+        </div>
+      </ThreeStage>
+      <ol class="lp-about__legend" aria-label="Seleccionar plano">
+        {ABOUT_LAYERS.map((layer) => (
+          <li>
+            <button type="button" aria-pressed={activeLayer === layer.id} data-layer={layer.id}>
+              <span>{pad(layer.id)}</span>{layer.title}
+            </button>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <div class="lp-about__copy">
+      <SectionHeading
+        index="01"
+        eyebrow="Quiénes somos"
+        titleId="nosotros-title"
+        title={["Un equipo para comprender,", "construir y escalar", "operaciones."]}
+        accent={[3]}
+      />
+      <p class="lp-lead lp-about__lead" data-reveal>
+        Partimos de la necesidad operativa, no de la tecnología. <strong>Nacimos con ADN de banca de inversión e inmobiliario</strong>: entendemos cómo se estructuran activos, cómo se mide el riesgo y dónde se genera valor en industrias reguladas. Y acompañamos a tu equipo de punta a punta, desde la hoja de ruta hasta la gestión del cambio.
+      </p>
+      <div class="lp-about__tabs" role="tablist" aria-label="Capas de disHub">
+        {ABOUT_LAYERS.map((layer) => (
+          <button
+            id={`about-tab-${layer.id}`}
+            class="lp-about__tab"
+            type="button"
+            role="tab"
+            aria-selected={activeLayer === layer.id}
+            aria-controls="about-layer-panel"
+            tabindex={activeLayer === layer.id ? 0 : -1}
+            data-layer={layer.id}
+          >
+            <span>{pad(layer.id)}</span>{layer.title}
+          </button>
+        ))}
+      </div>
+      <div id="about-layer-panel" class="lp-about__panel" role="tabpanel" aria-labelledby={`about-tab-${activeLayer}`} tabindex="0">
+        <h3>{activeContent.subtitle}</h3>
+        <p>{activeContent.body}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { ABOUT_LAYERS } from "../constants/content";
+  import { pressOnly } from "../lib/dom";
+  import { onAbort, onPageLoad } from "../lib/lifecycle";
+  import { selectTab } from "../lib/tabs";
+  import { initThreeStage } from "../three/lazyStage";
+  import { dataFlow } from "../three/objects/dataFlow";
+
+  onPageLoad((signal) => {
+    const section = document.getElementById("nosotros");
+    if (!section) return;
+    const tabs = section.querySelectorAll<HTMLButtonElement>(".lp-about__tab");
+    const panel = section.querySelector<HTMLElement>("#about-layer-panel")!;
+    const planeButtons = [
+      section.querySelectorAll<HTMLButtonElement>(".lp-about__fallback-plane"),
+      section.querySelectorAll<HTMLButtonElement>(".lp-about__legend button")
+    ];
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let activeLayer = 1;
+    let autoRotate = true;
+    let timer = 0;
+
+    const stage = initThreeStage(section.querySelector<HTMLElement>(".lp-about__stage")!, dataFlow, { signal, onLayerSelect: selectLayer });
+    stage.setState("activeLayer", activeLayer);
+
+    function render() {
+      const content = ABOUT_LAYERS[activeLayer - 1];
+      stage.setState("activeLayer", activeLayer);
+      planeButtons.forEach((buttons) => pressOnly(buttons, activeLayer - 1));
+      selectTab(tabs, activeLayer - 1);
+      panel.setAttribute("aria-labelledby", `about-tab-${activeLayer}`);
+      panel.querySelector("h3")!.textContent = content.subtitle;
+      panel.querySelector("p")!.textContent = content.body;
+    }
+
+    function selectLayer(layer: number) {
+      autoRotate = false;
+      syncRotation();
+      activeLayer = layer;
+      render();
+    }
+
+    // Rotate through the layers until the visitor picks one.
+    function syncRotation() {
+      window.clearInterval(timer);
+      if (!autoRotate || reducedMotion.matches) return;
+      timer = window.setInterval(() => {
+        activeLayer = activeLayer % ABOUT_LAYERS.length + 1;
+        render();
+      }, 6500);
+    }
+    syncRotation();
+    reducedMotion.addEventListener("change", syncRotation, { signal });
+    onAbort(signal, () => window.clearInterval(timer));
+
+    planeButtons.forEach((buttons) => buttons.forEach((button) => {
+      button.addEventListener("click", () => selectLayer(Number(button.dataset.layer)));
+    }));
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => selectLayer(Number(tab.dataset.layer)));
+      tab.addEventListener("keydown", (event) => {
+        let nextIndex: number | null = null;
+        if (event.key === "ArrowRight" || event.key === "ArrowDown") nextIndex = (index + 1) % ABOUT_LAYERS.length;
+        if (event.key === "ArrowLeft" || event.key === "ArrowUp") nextIndex = (index - 1 + ABOUT_LAYERS.length) % ABOUT_LAYERS.length;
+        if (event.key === "Home") nextIndex = 0;
+        if (event.key === "End") nextIndex = ABOUT_LAYERS.length - 1;
+        if (nextIndex === null) return;
+
+        event.preventDefault();
+        selectLayer(ABOUT_LAYERS[nextIndex].id);
+        tabs[nextIndex].focus();
+      });
+    });
+  });
+</script>

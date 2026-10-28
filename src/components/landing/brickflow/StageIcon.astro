@@ -1,0 +1,31 @@
+---
+interface Props {
+  index: number;
+  filled?: boolean;
+  class?: string;
+}
+
+// Per stage: the stroked outline and the face that gets a soft fill when `filled`.
+const STAGE_ICONS: { lines: string[]; face: string; dashed?: string; link?: boolean }[] = [
+  { lines: ["M7 22.5 L24 31 L41 22.5", "M7 29.5 L24 38 L41 29.5"], face: "M24 7 L41 15.5 L24 24 L7 15.5 Z" },
+  { lines: ["M14 10 V22 L24 27 L34 22 V10 M24 15 V27"], face: "M24 5 L34 10 L24 15 L14 10 Z", dashed: "M24 26 L44 36 L24 46 L4 36 Z" },
+  { lines: ["M12 24 L19 27.5 L12 31 L5 27.5 Z M5 27.5 V35.5 L12 39 L19 35.5 V27.5 M12 31 V39", "M29 11.5 V19.5 L36 23 L43 19.5 V11.5 M36 15 V23"], face: "M36 8 L43 11.5 L36 15 L29 11.5 Z", link: true },
+  { lines: ["M10 26 L17 29.5 L10 33 L3 29.5 Z M3 29.5 V37.5 L10 41 L17 37.5 V29.5 M10 33 V41", "M24 18 L31 21.5 L24 25 L17 21.5 Z M17 21.5 V29.5 L24 33 L31 29.5 V21.5 M24 25 V33", "M31 13.5 V21.5 L38 25 L45 21.5 V13.5 M38 17 V25"], face: "M38 10 L45 13.5 L38 17 L31 13.5 Z" }
+];
+
+/** Line icon for each of the four stages (and the matching capability piece when `filled`). */
+const { index, filled = false, class: className } = Astro.props;
+const icon = STAGE_ICONS[index];
+---
+
+<svg class:list={["bf-icon", filled && "bf-icon--filled", className]} viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
+  <path class="bf-icon__face" d={icon.face} />
+  {icon.lines.map((d) => <path d={d} />)}
+  {icon.dashed && <path d={icon.dashed} stroke-dasharray="1.5 3" />}
+  {icon.link && (
+    <>
+      <path d="M19.5 30 L28.5 20" stroke-dasharray="2 3" />
+      {filled && <circle cx="24" cy="25" r="2" fill="currentColor" stroke="none" />}
+    </>
+  )}
+</svg>

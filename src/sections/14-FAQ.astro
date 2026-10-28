@@ -1,0 +1,73 @@
+---
+import SectionHeading from "../components/landing/SectionHeading.astro";
+import { BF_FAQS, CONTACT_DETAILS } from "../constants/content";
+import { pad } from "../lib/tabs";
+
+const openIndex = 0;
+---
+
+<section id="preguntas" class="lp-section lp-tone-ink lp-faq" data-screen-label="15 FAQ" aria-labelledby="preguntas-title">
+  <div class="lp-container lp-faq__grid">
+    <div class="lp-faq__aside">
+      <div class="lp-faq__sticky">
+        <SectionHeading
+          index="15"
+          eyebrow="Preguntas frecuentes"
+          titleId="preguntas-title"
+          title={["Información relevante", "antes de iniciar."]}
+        >
+          <Fragment slot="lead">Para consultas adicionales, escríbenos a <a href={`mailto:${CONTACT_DETAILS.email}`}>{CONTACT_DETAILS.email}</a>.</Fragment>
+        </SectionHeading>
+        <p class="lp-faq__count" data-reveal>{pad(BF_FAQS.length)} <span>preguntas</span></p>
+      </div>
+    </div>
+
+    <div class="lp-faq__list">
+      {BF_FAQS.map((faq, index) => {
+        const open = openIndex === index;
+        return (
+          <div class:list={["lp-faq__item", open && "is-open"]} data-reveal style={`--d: ${index}`}>
+            <h3 class="lp-faq__question">
+              <button
+                type="button"
+                id={`faq-b-${index}`}
+                aria-expanded={open}
+                aria-controls={`faq-p-${index}`}
+              >
+                <span class="lp-faq__num" aria-hidden="true">{pad(index + 1)}</span>
+                <span class="lp-faq__text">{faq.q}</span>
+                <span class="lp-faq__icon" aria-hidden="true" />
+              </button>
+            </h3>
+            <div id={`faq-p-${index}`} role="region" aria-labelledby={`faq-b-${index}`} class="lp-faq__panel">
+              <div>
+                <p>{faq.a}</p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { onPageLoad } from "../lib/lifecycle";
+
+  onPageLoad(() => {
+    const items = Array.from(document.querySelectorAll<HTMLElement>("#preguntas .lp-faq__item"));
+
+    items.forEach((item) => {
+      const button = item.querySelector<HTMLButtonElement>(".lp-faq__question button")!;
+      button.addEventListener("click", () => {
+        const open = !item.classList.contains("is-open");
+        // Only one answer stays open at a time.
+        items.forEach((other) => {
+          const isOpen = open && other === item;
+          other.classList.toggle("is-open", isOpen);
+          other.querySelector(".lp-faq__question button")!.setAttribute("aria-expanded", String(isOpen));
+        });
+      });
+    });
+  });
+</script>

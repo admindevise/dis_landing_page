@@ -1,0 +1,50 @@
+---
+interface Props {
+  index: number;
+  class?: string;
+}
+
+const { index, class: className } = Astro.props;
+---
+
+<svg class:list={["bf-icon", "bf-icon--filled", className]} viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
+  {index === 0 && (
+    <>
+      <path d="M17 10 V8 L33 16 V39 L29 37" />
+      <path class="bf-icon__face" d="M11 12 L27 20 V43 L11 35 Z" />
+      <path d="M14 19 L24 24 M14 24.5 L24 29.5 M14 30 L20 33" />
+      <path d="M5 25 L33 39" stroke-dasharray="1.5 3" />
+    </>
+  )}
+  {index === 1 && (
+    <>
+      <path d="M8 10 L18 21 M40 10 L30 21 M24 6 V19" stroke-dasharray="1.5 3" />
+      <circle cx="8" cy="10" r="2.5" />
+      <circle cx="40" cy="10" r="2.5" />
+      <circle cx="24" cy="6" r="2.5" />
+      <path class="bf-icon__face" d="M24 20 L38 27 L24 34 L10 27 Z" />
+      <path d="M10 27 V31 L24 38 L38 31 V27 M24 34 V38" />
+      <path d="M19.5 27 L23 28.5 L28.5 25" />
+    </>
+  )}
+  {index === 2 && (
+    <>
+      <path class="bf-icon__face" d="M22 28 L38 36 L22 44 L6 36 Z" />
+      <path d="M6 36 V38.5 L22 46.5 L38 38.5 V36 M22 44 V46.5" />
+      <circle class="bf-icon__face" cx="29" cy="15" r="9" />
+      <path d="M22.6 21.4 L16 28" />
+      <path d="M25 15 L28 18 L33 12" />
+    </>
+  )}
+  {index === 3 && (
+    <>
+      <path class="bf-icon__face" d="M17 5 L29 11 L17 17 L5 11 Z" />
+      <path d="M5 11 V35 L17 41 L29 35 V11 M17 17 V41" />
+      <path d="M8 19 L14 22 M8 26 L14 29 M8 33 L14 36" />
+      <circle cx="23" cy="22" r=".9" fill="currentColor" stroke="none" />
+      <circle cx="23" cy="29" r=".9" fill="currentColor" stroke="none" />
+      <rect class="bf-icon__face" x="31" y="27" width="13" height="11" rx="2" />
+      <path d="M34 27 V24 A3.5 3.5 0 0 1 41 24 V27 M37.5 31 V34" />
+    </>
+  )}
+</svg>

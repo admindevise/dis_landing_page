@@ -1,63 +1,64 @@
 # GUIA DEL PROYECTO DISHUB
 
 ## Objetivo
-Este proyecto es una web corporativa de DISHUB construida con React + TypeScript + Vite.
-Su objetivo es presentar las soluciones, rutas comerciales y secciones informativas de la marca.
+Este proyecto es la web corporativa de disHub construida con Astro + TypeScript.
+Presenta la metodología Brickflow, las soluciones, la trayectoria y los canales de contacto de la marca.
 
 ## Stack principal
-- React 19
+- Astro 7 (salida estática, sin framework de UI)
 - TypeScript 5
-- Vite 8
-- React Router DOM 7
-- Material UI 7
 - Tailwind CSS 4
+- Three.js
 
 ## Scripts de trabajo
 - `pnpm dev`: inicia entorno local.
-- `pnpm build`: genera build de produccion.
+- `pnpm build`: revisa tipos con `astro check` y genera el build de produccion.
 - `pnpm preview`: previsualiza el build.
 - `pnpm lint`: ejecuta validaciones de ESLint.
 
 ## Flujo recomendado de desarrollo
 1. Instalar dependencias con `pnpm install`.
 2. Levantar local con `pnpm dev`.
-3. Implementar cambios en componentes/paginas.
+3. Implementar cambios en componentes, secciones o paginas.
 4. Validar con `pnpm lint`.
 5. Generar build con `pnpm build` antes de publicar.
 
 ## Estructura del proyecto
-- `src/`: codigo principal de la aplicacion.
+- `src/`: codigo principal del sitio.
 - `public/`: assets estaticos y archivos publicos.
 - `docs/`: documentacion tecnica y funcional.
 
 ## Organizacion interna de `src/`
-- `components/global`: componentes compartidos como headers, footer, SEO y controles reutilizables.
-- `pages`: pantallas asociadas a rutas.
-- `sections/home`: secciones de la pagina principal.
-- `sections/devise-business`, `sections/devise-marketplace`, `sections/valuo`, `sections/consulting`: secciones aisladas por pagina de producto.
-- `hooks`: hooks compartidos de React.
-- `constants`: contenido y constantes de la aplicacion.
-- `lib/`: utilidades generales.
-- `theme/`: configuraciones de tema.
+- `pages/`: una pagina `.astro` por ruta. Es la carpeta de rutas de Astro (obligatoria): cada archivo genera una URL.
+- `layouts/`: plantillas de pagina de Astro. `BaseLayout` (documento HTML, metadatos, estilos globales y router) y `LandingLayout` (header, preloader, fondo, footer).
+- `sections/`: solo secciones de la landing, en orden editorial (ver `sections/README.md`).
+- `components/global`: header, footer y cursor.
+- `components/landing`: piezas compartidas de la landing (titulos, preloader, contenedor 3D, formulario de contacto, navegacion entre paginas).
+- `components/landing/brickflow`: ilustraciones SVG de la metodologia.
+- `scripts/`: comportamiento global del cliente (preloader y animaciones de scroll).
+- `lib/`: utilidades genericas (DOM, pestañas accesibles, ciclo de vida de los scripts).
+- `three/`: escenas Three.js y montaje diferido.
+- `constants/`: `content.ts` (contenido del sitio) y `brickflow.ts` (geometria de la torre Brickflow).
+- `styles/`: `global.css` (Tailwind, fuentes y fondo), hojas de la landing y `reset.css`, que se carga al final.
+
+## Como funciona la interactividad
+Cada seccion renderiza en el build todo su marcado (incluidas las variantes de cada pestaña) y un `<script>` en TypeScript agrega el comportamiento: muestra u oculta paneles con `hidden`, actualiza atributos ARIA y textos. Mostrar un panel oculto reinicia sus animaciones CSS de entrada.
+
+La navegacion interna usa el `ClientRouter` de Astro: solo la primera visita (o una recarga) descarga la pagina completa y muestra el preloader; los enlaces internos reemplazan el contenido sin recargar. Por eso cada script se inicializa con `onPageLoad` (`src/lib/lifecycle.ts`), sale si su seccion no esta en la pagina actual y usa la señal que recibe para quitar listeners de `window`/`document`, detener temporizadores y observers y liberar las escenas 3D al cambiar de pagina.
 
 ## Rutas principales
-- `/`
-- `/nosotros`
+- `/` y `/nosotros`
+- `/metodologia`
 - `/soluciones`
+- `/historia`
 - `/contacto`
-- `/devise/devise-business`
-- `/devise/devise-marketplace`
-- `/valuo`
-- `/consulting`
-
-## Nota tecnica actual
-Actualmente conviven archivos `.tsx` y `.js` paralelos en parte del proyecto.
-Se recomienda consolidar gradualmente en TypeScript para reducir deuda tecnica y simplificar mantenimiento.
+- `/desafio`
+- `/politica-privacidad`
 
 ## Convenciones sugeridas
-- Priorizar nuevos cambios en `.tsx`.
+- Mantener el contenido en `src/constants/content.ts`.
 - Mantener componentes pequenos y reutilizables.
-- Evitar logica de negocio compleja dentro de vistas.
+- Usar los tokens de espaciado de `src/styles/landing-base.css` (ver `CLAUDE.md`).
 - Centralizar helpers compartidos en `src/lib/`.
 
 ## Checklist antes de merge/deploy

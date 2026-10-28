@@ -2,12 +2,11 @@
 
 ## Raiz
 - `package.json`: dependencias y scripts del proyecto.
-- `vite.config.ts`: configuracion de Vite.
-- `tailwind.config.js`: configuracion de Tailwind.
+- `astro.config.mjs`: configuracion de Astro (salida, redirecciones, Tailwind y servidor local).
 - `eslint.config.js`: reglas de lint.
-- `tsconfig.json`, `tsconfig.app.json`, `tsconfig.node.json`: configuraciones TypeScript.
-- `index.html`: plantilla HTML principal.
-- `README.md`: guia general y notas de mantenimiento.
+- `tsconfig.json`: configuracion TypeScript (extiende `astro/tsconfigs/strict`).
+- `Dockerfile`, `nginx.conf`, `railway.toml`: despliegue.
+- `README.md`: guia general.
 
 ## Carpeta `public/`
 - `robots.txt`: reglas para crawlers.
@@ -15,39 +14,39 @@
 - `images/`: imagenes usadas por la web (backgrounds, logos, iconos, etc.).
 - `videos/`: recursos de video estaticos.
 
-## Carpeta `src/`
-- `main.tsx` / `main.js`: entrypoint de la app.
-- `App.tsx` / `App.js`: raiz de la aplicacion y ruteo principal.
-- `index.css`: estilos globales.
-- `global.d.ts`: declaraciones de tipos globales.
-
-## `src/components/global`
-Componentes compartidos entre paginas.
-- `Header.tsx`, `HeaderDevise.tsx`, `HeaderValuo.tsx`: variantes de header.
-- `Footer.tsx`, `SEO.tsx`, `Loading.tsx`: estructura y estados comunes.
-- `PlatformModules.tsx`, `SolutionTabs.tsx`: controles reutilizables.
-
 ## `src/pages`
-Paginas asociadas a rutas.
-- `Home.tsx`, `Nosotros.tsx`, `Soluciones.tsx`, `Contact.tsx`.
-- `DeviseBusiness.tsx`, `DeviseMarketplace.tsx`.
-- `Valuo.tsx`, `Consulting.tsx`.
-- `NotFound.tsx`.
+- `index.astro`, `nosotros.astro`: inicio.
+- `metodologia.astro`, `soluciones.astro`, `historia.astro`, `contacto.astro`, `desafio.astro`.
+- `politica-privacidad.astro`: politica de datos personales.
+- `404.astro`: redirige al inicio.
+
+## `src/layouts`
+- `BaseLayout.astro`: documento HTML, metadatos, estilos globales y cursor.
+- `LandingLayout.astro`: estructura de la landing y arranque del preloader y las animaciones.
 
 ## `src/sections`
-Secciones organizadas por pagina o producto.
-- `home/`: `Hero`, `Challenge`, `Solutions`, `CTA`, `BenefitsSection` y demas secciones del inicio.
-- `devise-business/`, `devise-marketplace/`, `valuo/`, `consulting/`: bloques propios de cada pagina.
+Secciones de la landing en orden editorial (ver `src/sections/README.md`).
 
-## `src/hooks`, `src/constants` y `src/lib`
-Capas aisladas para hooks de React, constantes/contenido y utilidades generales.
+## `src/components`
+- `global/`: `Header.astro` (incluye menu movil), `Footer.astro`, `CursorEffect.astro`.
+- `landing/`: `SectionHeading`, `SplitLines`, `Ticker`, `Preloader`, `ThreeStage`, `ContactForm` (validacion en el cliente) y `ContinueJourney` (navegacion al final de cada pagina).
+- `landing/brickflow/`: ilustraciones SVG de la metodologia (torre, iconos de etapa, ciclo FDT).
+
+## `src/scripts`
+- `preloader.ts`: progreso de carga y salida del preloader.
+- `landing-motion.ts`: revelado al hacer scroll, secciones activas y barra de progreso.
+
+## `src/lib`
+- `dom.ts`: escalado de lienzos, visibilidad de paneles y textos.
+- `lifecycle.ts`: `onPageLoad`, inicializacion y limpieza de scripts en cada navegacion.
+- `tabs.ts`: pestañas accesibles con teclado.
+
+## `src/three`
+- `stage.ts`: montaje de una escena Three.js.
+- `lazyStage.ts`: monta la escena cuando se acerca al viewport y la desactiva en pantallas angostas.
+- `objects/`, `solutions/`: escenas de cada seccion.
 
 ## Soporte
-- `src/constants/content.ts`: contenido y constantes de la aplicacion.
-- `src/lib/utils.ts`: utilidades varias.
-- `src/theme/theme.ts`: configuracion de tema visual.
-
-## Nota de mantenimiento
-En varios modulos existen pares `.js` y `.tsx`.
-Si se elimina un archivo `.js`, verificar imports y rutas para no romper el build.
-Priorizar mantener una sola version por modulo en TypeScript.
+- `src/constants/content.ts`: contenido centralizado del sitio.
+- `src/constants/brickflow.ts`: geometria compartida de la torre Brickflow.
+- `src/styles/`: `global.css` (Tailwind, fuentes, fondo y header), `landing-*.css` (secciones) y `reset.css` (reset global, se carga al final).

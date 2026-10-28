@@ -1,4 +1,17 @@
-// Contenido centralizado del landing page
+// Contenido centralizado de la landing.
+// Índice:
+// Identidad y navegación: ICON, SITE, NAV
+// Inicio: ABOUT_LAYERS, HOME_STATEMENT
+// Soluciones: SOLUTIONS, SOLUTION_FLOWS
+// Reto y seguridad: PROBLEMS, SECURITY_CONTROLS
+// Audiencia: KEYWORDS
+// Sectores y cultura: SECTORS, VALUES
+// Contacto: CONTACT_DETAILS
+// Metodología Brickflow: STEPS, BF_*
+// Trayectoria: ERAS, IMPACT_KPIS
+// Formulario de contacto: FIELDS, FormData
+
+// #region Identidad y navegación
 
 export const ICON = {
   file: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M16 13H8M16 17H8",
@@ -19,13 +32,10 @@ export const ICON = {
   cpu: "M5 5h14v14H5zM9 9h6v6H9zM9 1v4M15 1v4M9 19v4M15 19v4M1 9h4M1 15h4M19 9h4M19 15h4",
   db: "M12 2c4.4 0 8 1.3 8 3s-3.6 3-8 3-8-1.3-8-3 3.6-3 8-3zM4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3",
   flow: "M3 3h7v7H3zM14 14h7v7h-7zM10 6.5h4a3 3 0 0 1 3 3V14",
-  merge: "M6 3v12M18 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 9a9 9 0 0 1-9 9"
-};
-
-export const MARK = {
-  devise: "M6 4h16c11 0 20 9 20 20s-9 20-20 20H6V30h8v6h8a12 12 0 0 0 0-24H14v6H6zM16 22h6v14h-6zM24 18h4v18h-4z",
-  valuo: "M24 2a20 20 0 1 0 0 40 20 20 0 0 0 0-40zm0 8a9 9 0 0 1 9 9c0 6.5-9 15-9 15s-9-8.5-9-15a9 9 0 0 1 9-9zm0 5.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z",
-  brick: "M4 30h18v10H4zM26 30h18v10H26zM15 18h18v10H15zM26 6h18v10H26z"
+  merge: "M6 3v12M18 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 9a9 9 0 0 1-9 9",
+  flask: "M10 2v7.5L4.7 20.5A1 1 0 0 0 5.6 22h12.8a1 1 0 0 0 .9-1.5L14 9.5V2M8.5 2h7M7 16h10",
+  house: "M3 10.5 12 3l9 7.5V21H3zM9 21v-7h6v7",
+  zap: "M13 2 3 14h9l-1 8 10-12h-9l1-8z"
 };
 
 export const SITE = {
@@ -45,17 +55,53 @@ export const NAV = [
   ["nosotros", "Nosotros"],
   // ["desafio", "Desafío"],
   ["metodologia", "Metodología Brickflow"],
-  ["soluciones", "Soluciones"],
+  ["soluciones", "Casos de estudio"],
   ["historia", "Trayectoria"],
   ["contacto", "Contacto"]
 ];
+
+// #endregion
+
+// #region Inicio
+
+export const ABOUT_LAYERS = [
+  {
+    id: 1,
+    title: "Negocio",
+    subtitle: "Producción, no pruebas de concepto.",
+    body: "Diseñamos sistemas duraderos que escalan con tu negocio, evolucionan con los nuevos modelos y mueven indicadores financieros reales, protegiendo tu inversión de capital."
+  },
+  {
+    id: 2,
+    title: "Metodología",
+    subtitle: "Transformación de punta a punta con BrickFlow.",
+    body: "Nuestros ingenieros trabajan junto a tus líderes y operadores para conectar modelos con tus datos, controles y procesos centrales en el trabajo diario."
+  },
+  {
+    id: 3,
+    title: "Tecnología",
+    subtitle: "Ingeniería de élite y línea directa a la frontera.",
+    body: "Desplegamos arquitecturas seguras, auditables y listas para producción sobre tus sistemas centrales desde el primer día."
+  }
+];
+
+export const HOME_STATEMENT = {
+  eyebrow: "Nuestro propósito",
+  statement: "La ventaja no está en tener IA, sino en desplegarla en los flujos que mueven tu operación.",
+  detail: "Partimos de un diagnóstico enfocado donde con tecnología adecuada se mueve indicadores reales. Nos integramos con tus líderes y operadores para repensar flujos desde cero, conectando modelos avanzados con tus datos y controles para potenciar el trabajo diario.",
+  actionLead: "Del diagnóstico enfocado a la capacidad instalada en 4 etapas.",
+  actionLabel: "Conocer la metodología BrickFlow"
+};
+
+// #endregion
+
+// #region Soluciones
 
 export const SOLUTIONS = [
   {
     key: "business",
     name: "Devise Trust",
     kind: "IA agéntica y control transversal · Vehículos de inversión",
-    mark: MARK.devise,
     tagline: "Copiloto operativo con 5 agentes de IA que cruzan contratos, contabilidad y reglas de negocio sin tocar tus sistemas centrales.",
     desc: "Crea el gemelo digital (Expediente Vivo) de cada vehículo o negocio administrado. Sus cinco agentes de IA contrastan contratos sin formato estándar contra tu contabilidad en modo solo lectura, alertando fugas de ingresos y vencimientos con evidencia exacta.",
     points: [
@@ -75,7 +121,6 @@ export const SOLUTIONS = [
     key: "marketplace",
     name: "Devise Marketplace",
     kind: "Infraestructura y distribución B2B2C",
-    mark: MARK.devise,
     tagline: "Distribuye vehículos de inversión directamente en las billeteras digitales y canales masivos donde ya existe la liquidez.",
     desc: "Capa de interconexión (API) que despliega tus vehículos de inversión y activos fraccionados en billeteras digitales y plataformas reguladas sin costos de adquisición minorista, automatizando en segundo plano la conciliación de micro-transacciones, el control contractual y la dispersión de giros.",
     points: [
@@ -95,7 +140,6 @@ export const SOLUTIONS = [
     key: "hospitality",
     name: "Devise Pulse",
     kind: "IA operativa y control financiero en vivo",
-    mark: MARK.devise,
     tagline: "Tu agente CFO con IA que conecta la gerencia con la primera línea operativa vía WhatsApp.",
     desc: "Agente de inteligencia artificial que monitorea el pulso financiero y operativo de la empresa en tiempo real y traduce cada desviación en instrucciones inmediatas para el personal de campo por WhatsApp, sin portales nuevos, reportes estáticos ni comités.",
     points: [
@@ -115,7 +159,6 @@ export const SOLUTIONS = [
     key: "tokenize",
     name: "Devise Tokenize",
     kind: "Infraestructura blockchain",
-    mark: MARK.devise,
     tagline: "Tokenización de activos de inversión, fondos y vehículos estructurados con cumplimiento programable.",
     desc: "Infraestructura blockchain que transforma participaciones tradicionales en activos digitales programables, integrando reglas normativas, límites de tenencia, dispersión de giros y liquidación automática en mercado secundario directamente desde el código.",
     points: [
@@ -135,7 +178,6 @@ export const SOLUTIONS = [
     key: "valuo",
     name: "Valuo",
     kind: "IA y modelos de valoración inmobiliaria",
-    mark: MARK.valuo,
     tagline: "Modelos de IA para avalúos precisos a partir de datos dinámicos de mercado.",
     desc: "Procesa mediante inteligencia artificial y modelos estadísticos miles de comparables, tendencias y mapas de calor por zona para estimar el valor de un inmueble con precisión y respaldar decisiones de compra, venta o financiación.",
     points: [
@@ -155,9 +197,8 @@ export const SOLUTIONS = [
     key: "ai",
     name: "Transformación tecnológica",
     kind: "Consultoría · BrickFlow",
-    mark: MARK.brick,
     tagline: "Nuestra metodología aplicada a los procesos de su organización.",
-    desc: "Acompañamos a su organización en la identificación de las oportunidades en las que la tecnología genera valor —automatización, datos, inteligencia artificial o nuevas plataformas—, en el diseño de la hoja de ruta, en su ejecución y en la preparación de los equipos para sostener el cambio.",
+    desc: "Acompañamos a su organización en la identificación de las oportunidades en las que la tecnología genera valor (automatización, datos, inteligencia artificial o nuevas plataformas), en el diseño de la hoja de ruta, en su ejecución y en la preparación de los equipos para sostener el cambio.",
     points: ["Diagnóstico de procesos", "Hoja de ruta tecnológica", "Implementación y adopción"],
     hint: "Pase el cursor para ordenar el flujo",
     demo: [
@@ -214,6 +255,10 @@ export const SOLUTION_FLOWS = {
   ]
 };
 
+// #endregion
+
+// #region Reto y seguridad
+
 export const PROBLEMS = [
   {
     icon: ICON.file,
@@ -260,6 +305,10 @@ export const SECURITY_CONTROLS = [
   { icon: ICON.lock, title: "Protección y soberanía de datos", desc: "Tratamiento alineado con la Ley 1581 e ISO/IEC 27001. Tus datos permanecen dentro de tu perímetro y nunca entrenan modelos de terceros." }
 ];
 
+// #endregion
+
+// #region Audiencia
+
 export const KEYWORDS = [
   "Fiduciarias",
   "Banca de Inversión",
@@ -272,32 +321,9 @@ export const KEYWORDS = [
   "Operaciones Reguladas"
 ];
 
-export const CLIENT_SLOTS = [
-  "[[LOGO_CLIENTE_1]]",
-  "[[LOGO_CLIENTE_2]]",
-  "[[LOGO_CLIENTE_3]]",
-  "[[LOGO_ALIADO_1]]",
-  "[[LOGO_ALIADO_2]]"
-];
+// #endregion
 
-export const PROOFS = [
-  "Tecnología propia desde 2023",
-  "Especialización en el negocio fiduciario e inmobiliario",
-  "Equipo en Bogotá, Colombia"
-];
-
-export const PILLARS = [
-  { t: "Negocio", d: "Conocimiento del sector financiero, fiduciario e inmobiliario." },
-  { t: "Metodología", d: "Diagnóstico riguroso previo a toda propuesta." },
-  { t: "Tecnología", d: "IA, datos y automatización fintech y proptech donde el caso lo justifica." }
-];
-
-export const METRICS = [
-  { v: "[[CIFRA_1]]", l: "Procesos operativos automatizados" },
-  { v: "[[CIFRA_2]]", l: "Activos gestionados en nuestras plataformas" },
-  { v: "[[CIFRA_3]]", l: "Reducción del tiempo operativo" },
-  { v: "[[CIFRA_4]]", l: "Entidades que usan nuestras soluciones" }
-];
+// #region Sectores y cultura
 
 export const SECTORS = [
   { icon: ICON.landmark, t: "Sociedades fiduciarias y banca", d: "Digitalizan la gestión de fideicomisos y vehículos, automatizan conciliaciones sobre sistemas centrales y fortalecen la trazabilidad ante entes de control." },
@@ -307,33 +333,28 @@ export const SECTORS = [
   { icon: ICON.trend, t: "Grupos corporativos e industria", d: "Conectan la estrategia financiera con la ejecución en campo (vía agentes y WhatsApp) y modernizan procesos críticos con trazabilidad total." }
 ];
 
-export const CAPABILITIES = [
-  { icon: ICON.flow, t: "Rediseño y automatización de procesos", d: "Eliminamos tareas manuales y repetitivas en conciliación, generación de reportes y comunicaciones." },
-  { icon: ICON.db, t: "Datos y analítica", d: "Integramos la información y la convertimos en indicadores para la toma de decisiones." },
-  { icon: ICON.cpu, t: "Inteligencia artificial", d: "Modelos que clasifican, concilian y detectan hallazgos, cuando el caso lo justifica." },
-  { icon: ICON.layers, t: "Plataformas e integraciones", d: "Productos propios o integración con los sistemas existentes, según lo requiera cada caso." }
-];
-
 export const VALUES = [
   { n: "01", t: "De «funciona» a «factura»", d: "El código no sirve si no genera valor monetizable en producción." },
   { n: "02", t: "IA en el P&L", d: "La innovación debe verse en el estado de resultados o en eficiencia operativa real." },
   { n: "03", t: "Profundidad radical", d: "Perfeccionamos y rentabilizamos al máximo lo que ya existe en tu operación." },
   { n: "04", t: "Dueños del problema", d: "El mismo equipo que escucha en la primera línea es quien construye la solución." },
-  { n: "05", t: "Acción–reacción", d: "Entendemos la necesidad y entregamos la solución de inmediato, sin burocracia." },
+  { n: "05", t: "Acción y reacción", d: "Entendemos la necesidad y entregamos la solución de inmediato, sin burocracia." },
   { n: "06", t: "Work as a Service", d: "No entregamos software vacío; nuestra tecnología asume la carga operativa desde el día uno." }
 ];
 
-export const TESTIMONIALS = [
-  { q: "Con DIS dejamos de perseguir la información en hojas de cálculo. Hoy nuestro equipo toma decisiones con una visión clara de cada activo y cada operación.", a: "Mariana Torres", r: "Directora de Operaciones · Horizonte Fiduciaria" },
-  { q: "El acompañamiento del equipo fue clave para convertir un proceso complejo en una experiencia simple para nuestros inversionistas, sin perder control ni trazabilidad.", a: "Andrés Velasco", r: "Gerente de Transformación · Capitalia" },
-  { q: "Encontramos un aliado que entiende el negocio y sabe qué tecnología aplicar. La solución se adaptó a nuestra operación y empezó a generar valor desde el primer ciclo.", a: "Laura Méndez", r: "Líder de Producto · Urbana Activos" }
-];
+// #endregion
+
+// #region Contacto
 
 export const CONTACT_DETAILS = {
   email: "contactenos@gruposantarosa.co",
   phone: "+57 311 489 65 08",
   address: "Ak 15 #93a-84, Oficina 506, Edificio Business 93, Bogotá, Colombia"
 };
+
+// #endregion
+
+// #region Metodología Brickflow
 
 export const STEPS = [
   {
@@ -370,12 +391,20 @@ export const STEPS = [
   }
 ];
 
-export const BF_COMMITMENTS = [
-  { t: "Su dato vive donde su política lo permita", d: "On-premise, nube privada o proveedor comercial: la arquitectura se elige por caso, no por defecto." },
-  { t: "Trazabilidad de cada decisión", d: "Fuente, regla aplicada y aprobación quedan registradas y son exportables." },
-  { t: "Despliegue en semanas, no trimestres", d: "Partimos de un caso priorizado y de sus sistemas actuales, sin rehacer su arquitectura." },
-  { t: "IA en la operación, no en un piloto", d: "El objetivo es un proceso en producción con dueño interno, no una demostración." }
-];
+export const BF_ROLE_COPY = {
+  fde: {
+    index: "04",
+    eyebrow: "Ingeniería desplegada en campo (FDE)",
+    title: "¿Qué es un FDE (Ingeniero Desplegado)?",
+    body: "Es la forma en que llevamos la IA a producción en entornos reales de alta complejidad donde los enfoques de software tradicional fallan. En lugar de llegar con un producto genérico, nuestros ingenieros se integran en tu operación para resolver un problema específico desde principios fundamentales, validar su impacto en terreno e identificar patrones escalables."
+  },
+  fdt: {
+    index: "05",
+    eyebrow: "Transformación desplegada (FDT)",
+    title: "El FDT: tu Director de Transformación IA Residente.",
+    body: "Mientras el FDE construye en el terreno operativo, el FDT actúa como tu contraparte estratégica ante la presidencia y el comité directivo. Su objetivo es asegurar que la velocidad técnica se traduzca en retorno financiero, gobierno corporativo y adopción real en toda la organización."
+  }
+};
 
 export const BF_CAPABILITIES = [
   {
@@ -441,41 +470,45 @@ export const BF_FAQS = [
   { q: "¿Necesitamos un equipo de datos o de IA para empezar?", a: "No. El diagnóstico parte de tus procesos y sistemas tal como operan hoy. Nosotros ponemos la ingeniería de principio a fin desde el día uno y formamos a tus perfiles internos por rol durante la implementación." }
 ];
 
+// #endregion
+
+// #region Trayectoria
+
 export const ERAS = [
   {
-    year: "2003–2020",
+    year: "2003 a 2020",
     title: "Origen en el negocio",
     items: [
-      { k: "Experiencia", v: "+20 años estructurando proyectos y operaciones complejas en Santa Rosa." },
-      { k: "El dolor real", v: "Vivimos en carne propia la conciliación manual y las contabilidades espejo." },
-      { k: "El aprendizaje", v: "Entendimos que la escala exige conectar datos y reglas, no sumar planillas." }
+      { icon: ICON.building, k: "Experiencia", v: "+20 años estructurando proyectos y operaciones complejas en Santa Rosa." },
+      { icon: ICON.swap, k: "El dolor real", v: "Vivimos en carne propia la conciliación manual y las contabilidades espejo." },
+      { icon: ICON.merge, k: "El aprendizaje", v: "Entendimos que la escala exige conectar datos y reglas, no sumar planillas." }
     ]
   },
   {
-    year: "2021–2023",
+    year: "2021 a 2023",
     title: "Incubación e I+D",
     items: [
-      { k: "Laboratorio", v: "I+D interno para automatizar procesos operativos, contables y de negocio." },
-      { k: "Arquitectura", v: "Primeros motores propios para centralizar datos dispersos y eliminar fricción." },
-      { k: "En casa", v: "Validamos cada desarrollo en nuestra propia operación antes de llevarlo al mercado." }
+      { icon: ICON.flask, k: "Laboratorio", v: "I+D interno para automatizar procesos operativos, contables y de negocio." },
+      { icon: ICON.db, k: "Arquitectura", v: "Primeros motores propios para centralizar datos dispersos y eliminar fricción." },
+      { icon: ICON.house, k: "En casa", v: "Validamos cada desarrollo en nuestra propia operación antes de llevarlo al mercado." }
     ]
   },
   {
-    year: "2024–2025",
+    year: "2024 a 2025",
     title: "Spin-off y salto a IA",
     items: [
-      { k: "Spin-off", v: "Constitución formal de DIS como firma de ingeniería y transformación." },
-      { k: "IA agéntica", v: "Evolución hacia una capa transversal en modo solo lectura sobre tus sistemas." },
-      { k: "Modelo WaaS", v: "Sistemas que asumen la fuerza bruta operativa desde el primer día." }
+      { icon: ICON.briefcase, k: "Spin-off", v: "Constitución formal de DIS como firma de ingeniería y transformación." },
+      { icon: ICON.cpu, k: "IA agéntica", v: "Evolución hacia una capa transversal en modo solo lectura sobre tus sistemas." },
+      { icon: ICON.zap, k: "Modelo WaaS", v: "Sistemas que asumen la fuerza bruta operativa desde el primer día." }
     ]
   },
   {
     year: "2026 en adelante",
     title: "Resultados en operación",
     items: [
-      { k: "Implementación", v: "Soluciones en producción operando en entidades reales con impactos medibles." },
-      { k: "BrickFlow", v: "Ingeniería desplegada (FDE + FDT) para construir sistemas duraderos a la medida." },
-      { k: "Resultados", v: "Eficiencias directas y retorno financiero desde las primeras semanas." }
+      { icon: ICON.server, k: "Implementación", v: "Soluciones en producción operando en entidades reales con impactos medibles." },
+      { icon: ICON.usercheck, k: "BrickFlow", v: "Ingeniería desplegada (FDE + FDT) para construir sistemas duraderos a la medida." },
+      { icon: ICON.trend, k: "Resultados", v: "Eficiencias directas y retorno financiero desde las primeras semanas." }
     ]
   }
 ];
@@ -483,36 +516,13 @@ export const ERAS = [
 export const IMPACT_KPIS = [
   { v: "2x", l: "Capacidad operativa por persona sin ampliar nómina." },
   { v: "-85%", l: "Tiempo en conciliación, cruces manuales y reportes." },
-  { v: "24–48 h", l: "Para estructurar y activar el gemelo digital." },
+  { v: "24 a 48 h", l: "Para estructurar y activar el gemelo digital." },
   { v: "100% ROI", l: "Sistemas que se pagan solos en operación." }
 ];
 
-export const FAQS = [
-  {
-    q: "¿disHub es una empresa de desarrollo de software?",
-    a: "No. Somos un laboratorio de innovación enfocado en resolver retos operativos. La tecnología, propia o de terceros, es un medio; en algunos casos la solución consiste en un ajuste de procesos o de datos, sin necesidad de desarrollo a la medida."
-  },
-  {
-    q: "¿Qué tipo de organizaciones atienden?",
-    a: "Sociedades fiduciarias, gestores de activos y fondos, operadores y desarrolladores inmobiliarios, grupos corporativos con operación inmobiliaria e inversionistas."
-  },
-  {
-    q: "¿Es necesario adoptar uno de sus productos?",
-    a: "No. Si alguna de nuestras soluciones atiende su necesidad, la proponemos; de lo contrario, diseñamos la respuesta adecuada con la misma metodología."
-  },
-  {
-    q: "¿La solución se integra con nuestros sistemas actuales?",
-    a: "Sí. Durante el diagnóstico revisamos sus sistemas contables, financieros y de gestión, y diseñamos la solución sobre ellos para evitar reprocesos y duplicidad de información."
-  },
-  {
-    q: "¿Cómo protegen la información de nuestros clientes?",
-    a: "Aplicamos control de acceso por roles, registro auditable de las operaciones y tratamiento de datos personales conforme a la Ley 1581 de 2012. Los detalles de infraestructura se comparten durante la etapa de diagnóstico."
-  },
-  {
-    q: "¿Cuál es la duración del proceso?",
-    a: "Depende del alcance de cada caso. El diagnóstico tiene un plazo definido y, a su cierre, se establecen el alcance del piloto y el cronograma de escalamiento."
-  }
-];
+// #endregion
+
+// #region Formulario de contacto
 
 export const FIELDS = [
   { name: "nombre", label: "Nombre completo", type: "text", ac: "name", max: 80 },
@@ -532,13 +542,4 @@ export interface FormData {
   web: string;
 }
 
-export const EMPTY_FORM: FormData = {
-  nombre: "",
-  empresa: "",
-  email: "",
-  telefono: "",
-  interes: "",
-  mensaje: "",
-  consent: false,
-  web: ""
-};
+// #endregion

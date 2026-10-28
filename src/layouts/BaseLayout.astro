@@ -1,0 +1,45 @@
+---
+import { ClientRouter } from "astro:transitions";
+import CursorEffect from "../components/global/CursorEffect.astro";
+import "../styles/global.css";
+import "../styles/landing-base.css";
+import "../styles/landing-sections.css";
+import "../styles/landing-brickflow.css";
+import "../styles/reset.css";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+{/* Internal links navigate client-side and swap the page instantly, without a full reload. */}
+<html lang="es" transition:animate="none">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/DIS.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0F1C27" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Digital Investment Systems S.A.S." />
+    <ClientRouter />
+    <slot name="head" />
+  </head>
+  <body>
+    <div class="site">
+      <CursorEffect />
+      <slot />
+    </div>
+  </body>
+</html>
+
+<script>
+  // The landing preloader only plays on the initial (full) page load: drop it from pages reached client-side.
+  document.addEventListener("astro:before-swap", (event) => {
+    event.newDocument.querySelector(".lp-loader")?.remove();
+  });
+</script>

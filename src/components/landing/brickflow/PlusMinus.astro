@@ -1,0 +1,14 @@
+---
+interface Props {
+  open?: boolean;
+}
+
+/** Expand icon; scripts toggle the vertical stroke through `.bf-plus-minus__v`. */
+const { open = false } = Astro.props;
+---
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+  <circle cx="8" cy="8" r="7" />
+  <path d="M5 8 H11" />
+  <path class="bf-plus-minus__v" d="M8 5 V11" opacity={open ? 0 : 1} />
+</svg>

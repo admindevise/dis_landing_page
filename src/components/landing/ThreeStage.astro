@@ -1,0 +1,18 @@
+---
+interface Props {
+  label: string;
+  class?: string;
+  /** Set when a click on the scene selects a layer (`initThreeStage` with `onLayerSelect`). */
+  selectable?: boolean;
+}
+
+/**
+ * Container for a lazily mounted Three.js scene. The section's script mounts it with
+ * `initThreeStage` (src/three/lazyStage.ts), which also manages `data-status` and the fallback.
+ */
+const { label, class: className, selectable = false } = Astro.props;
+---
+
+<div class:list={["lp-stage", className]} data-status="idle" role={selectable ? "group" : "img"} aria-label={label}>
+  <slot />
+</div>

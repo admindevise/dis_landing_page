@@ -10,6 +10,9 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+
+# Astro generated types
+.astro
 *.local
 
 # TypeScript build output

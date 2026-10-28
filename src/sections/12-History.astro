@@ -1,0 +1,187 @@
+---
+import SectionHeading from "../components/landing/SectionHeading.astro";
+import { ERAS, IMPACT_KPIS } from "../constants/content";
+
+const selected = ERAS.length - 1;
+---
+
+<section id="historia" class="lp-section lp-tone-ink lp-history" data-screen-label="13 Trayectoria" aria-labelledby="historia-title">
+  <div class="lp-container">
+    <SectionHeading index="13" eyebrow="Trayectoria" titleId="historia-title" title={["Cada caso resuelto", "fortalece nuestra metodología."]} accent={[1]} />
+
+    <div
+      class="lp-history__timeline"
+      role="tablist"
+      aria-label="Etapas de la trayectoria"
+      data-reveal
+      style={`--fill: ${selected / (ERAS.length - 1)}`}
+    >
+      <span class="lp-history__track" aria-hidden="true" />
+      {ERAS.map((item, index) => (
+        <button
+          id={`era-tab-${index}`}
+          type="button"
+          role="tab"
+          aria-selected={selected === index}
+          aria-controls="era-panel"
+          tabindex={selected === index ? 0 : -1}
+          class:list={["lp-era-tab", index <= selected && "is-reached"]}
+        >
+          <span class="lp-era-tab__dot" aria-hidden="true" />
+          <span class="lp-era-tab__year">{item.year}</span>
+          <span class="lp-era-tab__title">{item.title}</span>
+        </button>
+      ))}
+    </div>
+
+    <div id="era-panel" role="tabpanel" aria-labelledby={`era-tab-${selected}`} class="lp-history__panel">
+      {ERAS.map((era, index) => (
+        <div class="lp-history__panel-inner" hidden={index !== selected}>
+          <p class="lp-history__year" aria-hidden="true">{era.year.slice(0, 4)}</p>
+          <h3 class="lp-history__title">{era.title}</h3>
+          <dl class="lp-history__items">
+            {era.items.map((item, itemIndex) => (
+              <div style={`--i: ${itemIndex}`}>
+                <dt>
+                  <span class="lp-history__icon" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d={item.icon} /></svg>
+                  </span>
+                  {item.k}
+                </dt>
+                <dd>{item.v}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      ))}
+    </div>
+
+    <dl class="lp-history__kpis">
+      {IMPACT_KPIS.map((kpi, index) => (
+        <div data-reveal="scale" style={`--d: ${index}`}>
+          <dt>{kpi.l}</dt>
+          <dd>{kpi.v}</dd>
+        </div>
+      ))}
+    </dl>
+    <p class="lp-history__source">Impacto comprobado en despliegues de producción del ecosistema DIS.</p>
+  </div>
+</section>
+
+<script>
+  import { showOnly } from "../lib/dom";
+  import { onAbort, onPageLoad } from "../lib/lifecycle";
+  import { handleTabKeys, selectTab } from "../lib/tabs";
+
+  // Time spent on each era while the timeline plays by itself.
+  const ERA_MS = 2000;
+  // Matches the track's CSS transition, used when the loop rewinds to the first era.
+  const REWIND_MS = 800;
+
+  onPageLoad((signal) => {
+    const section = document.getElementById("historia");
+    if (!section) return;
+    const timeline = section.querySelector<HTMLElement>(".lp-history__timeline")!;
+    const tabs = timeline.querySelectorAll<HTMLButtonElement>(".lp-era-tab");
+    const panel = section.querySelector<HTMLElement>("#era-panel")!;
+    const last = tabs.length - 1;
+    let selected = last;
+
+    function setSelected(index: number) {
+      timeline.style.setProperty("--fill", String(index / last));
+      if (index === selected) return;
+      selected = index;
+      selectTab(tabs, index);
+      tabs.forEach((tab, tabIndex) => tab.classList.toggle("is-reached", tabIndex <= index));
+      panel.setAttribute("aria-labelledby", `era-tab-${index}`);
+      showOnly(panel.querySelectorAll<HTMLElement>(".lp-history__panel-inner"), index);
+
+      // On narrow screens the timeline scrolls sideways: keep the selected era in view.
+      if (timeline.scrollWidth > timeline.clientWidth) {
+        timeline.scrollTo({ left: tabs[index].offsetLeft, behavior: "smooth" });
+      }
+    }
+
+    // Autoplay: loop through the eras while the timeline is on screen, drawing the track toward the
+    // next milestone. Hover or focus pauses it; choosing an era ends it.
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let playing = !reducedMotion.matches;
+    let visible = false;
+    let hovered = false;
+    let focused = false;
+    let progress = 0;
+    let frame = 0;
+    let lastTime = 0;
+    let rewindUntil = 0;
+
+    function tick(now: number) {
+      // Clamp the step so a backgrounded tab does not skip eras when it comes back.
+      const step = Math.min(now - lastTime, 100);
+      lastTime = now;
+      // After the present, the track eases back to the start (CSS transition) before drawing again.
+      if (now < rewindUntil) {
+        frame = requestAnimationFrame(tick);
+        return;
+      }
+      timeline.classList.add("is-playing");
+      progress += step / ERA_MS;
+      if (progress >= 1) {
+        progress = 0;
+        if (selected === last) {
+          timeline.classList.remove("is-playing");
+          rewindUntil = now + REWIND_MS;
+          setSelected(0);
+          frame = requestAnimationFrame(tick);
+          return;
+        }
+        setSelected(selected + 1);
+      }
+      // The last era holds a full track; the others draw toward the next milestone.
+      timeline.style.setProperty("--fill", String(selected === last ? 1 : (selected + progress) / last));
+      frame = requestAnimationFrame(tick);
+    }
+
+    function sync() {
+      cancelAnimationFrame(frame);
+      if (!playing || !visible || hovered || focused) return;
+      lastTime = performance.now();
+      frame = requestAnimationFrame(tick);
+    }
+
+    function stop() {
+      playing = false;
+      cancelAnimationFrame(frame);
+      timeline.classList.remove("is-playing");
+    }
+
+    function choose(index: number) {
+      stop();
+      setSelected(index);
+    }
+
+    tabs.forEach((tab, index) => tab.addEventListener("click", () => choose(index)));
+    timeline.addEventListener("keydown", (event) => handleTabKeys(event, selected, tabs.length, choose, "era-tab"));
+
+    if (!playing) return;
+    timeline.classList.add("is-playing");
+    setSelected(0);
+
+    [timeline, panel].forEach((element) => {
+      element.addEventListener("mouseenter", () => { hovered = true; sync(); });
+      element.addEventListener("mouseleave", () => { hovered = false; sync(); });
+    });
+    timeline.addEventListener("focusin", () => { focused = true; sync(); });
+    timeline.addEventListener("focusout", () => { focused = false; sync(); });
+    reducedMotion.addEventListener("change", () => { if (reducedMotion.matches && playing) choose(last); }, { signal });
+
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      sync();
+    }, { threshold: 0.6 });
+    observer.observe(timeline);
+    onAbort(signal, () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    });
+  });
+</script>

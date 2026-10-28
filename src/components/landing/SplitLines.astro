@@ -1,0 +1,15 @@
+---
+interface Props {
+  lines: string[];
+  accent?: number[];
+}
+
+/** Title lines with controlled breaks, revealed with a staggered mask by `[data-reveal="lines"]`. */
+const { lines, accent = [] } = Astro.props;
+---
+
+{lines.map((line, index) => (
+  <span class="lp-line">
+    <span class={accent.includes(index) ? "lp-line__text lp-accent" : "lp-line__text"} style={`--d: ${index}`}>{`${line} `}</span>
+  </span>
+))}

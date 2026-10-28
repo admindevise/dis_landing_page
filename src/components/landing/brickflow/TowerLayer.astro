@@ -1,0 +1,18 @@
+---
+interface Props {
+  active: boolean;
+  class?: string;
+}
+
+/** One isometric course of the Brickflow tower (300 × 186). Colors come from CSS by state. */
+const { active, class: className } = Astro.props;
+const LAYER_JOINTS = "M0 93 L150 168 L300 93 M50 100 V118 M100 125 V143 M25 105.5 V123.5 M75 130.5 V148.5 M125 155.5 V173.5 M200 125 V143 M250 100 V118 M175 155.5 V173.5 M225 130.5 V148.5 M275 105.5 V123.5";
+---
+
+<svg class:list={["bf-layer", active ? "is-active" : "is-built", className]} viewBox="0 0 300 186" aria-hidden="true">
+  <polygon class="bf-layer__left" points="0,75 150,150 150,186 0,111" />
+  <polygon class="bf-layer__right" points="150,150 300,75 300,111 150,186" />
+  <polygon class="bf-layer__top" points="150,0 300,75 150,150 0,75" />
+  <path class="bf-layer__joint" d={LAYER_JOINTS} />
+  <polygon class="bf-layer__joint" points="150,22 256,75 150,128 44,75" />
+</svg>

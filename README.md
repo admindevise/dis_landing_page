@@ -1,24 +1,22 @@
 # DISHUB Web
 
-Aplicación web corporativa desarrollada con React + TypeScript + Vite para presentar soluciones digitales de DISHUB.
+Sitio corporativo de disHub construido con Astro + TypeScript. Se genera como sitio estático (una página HTML por ruta) y solo envía al navegador el JavaScript de las secciones interactivas, sin framework de UI. Solo la primera visita carga la página completa; la navegación interna usa el `ClientRouter` de Astro y no recarga.
 
 ## Stack
-- React 19
-- TypeScript 5
-- Vite 8
-- React Router DOM 7
-- Material UI 7
-- Tailwind CSS 4
+- Astro 7 (salida estática)
+- TypeScript 5 (modo estricto de Astro)
+- Tailwind CSS 4 (plugin de Vite)
+- Three.js (escenas 3D cargadas bajo demanda)
 
 ## Scripts
-- `pnpm dev`: entorno local.
-- `pnpm build`: build de producción.
+- `pnpm dev`: entorno local en `http://localhost:5174`.
+- `pnpm build`: revisión de tipos (`astro check`) y build de producción en `dist/`.
 - `pnpm preview`: previsualización del build.
-- `pnpm lint`: validación ESLint.
+- `pnpm lint`: validación ESLint de los archivos `.ts`.
 
 ## Despliegue en Railway
 
-El proyecto incluye `Dockerfile`, `nginx.conf` y `railway.toml`. Railway detectará el `Dockerfile`, ejecutará `pnpm build` y servirá `dist` en el puerto `8080`. Nginx también redirige las rutas de React Router a `index.html`.
+El proyecto incluye `Dockerfile`, `nginx.conf` y `railway.toml`. Railway detectará el `Dockerfile`, ejecutará `pnpm build` y servirá `dist` en el puerto `8080`. Nginx resuelve cada ruta con su archivo HTML (`/metodologia` → `metodologia.html`) y responde `404.html` (que redirige al inicio) para rutas desconocidas.
 
 1. Sube el repositorio a GitHub.
 2. En Railway, selecciona **New Project** > **Deploy from GitHub repo** y elige este repositorio.
@@ -36,19 +34,15 @@ Para probar la imagen localmente, inicia Docker Desktop y ejecuta `docker build 
 - Referencia archivo por archivo: [docs/REFERENCIA_ARCHIVOS.md](docs/REFERENCIA_ARCHIVOS.md)
 
 ## Estructura general
-- `src/`: código de la app.
+- `src/`: código del sitio.
 - `public/`: assets estáticos.
 - `docs/`: documentación técnica y funcional.
 
 ## Rutas principales
-- /
-- /nosotros
-- /soluciones
-- /contacto
-- /devise/devise-business
-- /devise/devise-marketplace
-- /valuo
-- /consulting
-
-## Nota de mantenimiento
-Actualmente coexisten archivos `.tsx` y `.js` paralelos en el entrypoint/ruteo. Se recomienda consolidar en TypeScript para reducir deuda técnica.
+- `/` y `/nosotros`
+- `/metodologia` (redirección desde `/enfoque`)
+- `/soluciones` (redirección desde `/seguridad`)
+- `/historia`
+- `/contacto`
+- `/desafio`
+- `/politica-privacidad`

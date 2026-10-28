@@ -1,0 +1,47 @@
+---
+import SectionHeading from "../components/landing/SectionHeading.astro";
+import ThreeStage from "../components/landing/ThreeStage.astro";
+import { VALUES } from "../constants/content";
+---
+
+<section id="valores" class="lp-section lp-tone-deep lp-values" data-screen-label="14 Valores" aria-labelledby="valores-title">
+  <div class="lp-container lp-values__grid">
+    <div class="lp-values__copy">
+      <SectionHeading
+        index="14"
+        eyebrow="Valores y cultura"
+        titleId="valores-title"
+        title={["Los principios", "que orientan", "nuestro trabajo."]}
+        accent={[2]}
+        lead="Construimos la forma en que las empresas crean valor con IA, y la probamos primero en nuestra propia operación."
+      />
+      <ol class="lp-values__list">
+        {VALUES.map((value, index) => (
+          <li data-reveal style={`--d: ${index}`}>
+            <span class="lp-values__num">{value.n}</span>
+            <div>
+              <h3>{value.t}</h3>
+              <p>{value.d}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <ThreeStage
+      class="lp-values__stage"
+      label="Red de inversionistas conectada a tres centros de activos, con pulsos de capital que circulan entre ellos."
+    />
+  </div>
+</section>
+
+<script>
+  import { onPageLoad } from "../lib/lifecycle";
+  import { initThreeStage } from "../three/lazyStage";
+  import { investmentNetwork } from "../three/objects/investmentNetwork";
+
+  onPageLoad((signal) => {
+    const stage = document.querySelector<HTMLElement>(".lp-values__stage");
+    if (stage) initThreeStage(stage, investmentNetwork, { signal });
+  });
+</script>

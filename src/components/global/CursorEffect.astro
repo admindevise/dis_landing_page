@@ -1,0 +1,48 @@
+{/* Persisted across client-side navigations so the cursor keeps its position. */}
+<div class="custom-cursor-ring" aria-hidden="true" transition:persist="cursor-ring" />
+<div class="custom-cursor-dot" aria-hidden="true" transition:persist="cursor-dot" />
+
+<script>
+  const finePointer = window.matchMedia("(pointer: fine)");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const dot = document.querySelector<HTMLElement>(".custom-cursor-dot");
+  const ring = document.querySelector<HTMLElement>(".custom-cursor-ring");
+
+  if (finePointer.matches && !reducedMotion.matches && dot && ring) {
+    const root = document.documentElement;
+    let targetX = -100;
+    let targetY = -100;
+    let currentX = targetX;
+    let currentY = targetY;
+
+    const render = () => {
+      currentX += (targetX - currentX) * 0.18;
+      currentY += (targetY - currentY) * 0.18;
+      dot.style.transform = `translate3d(${targetX}px, ${targetY}px, 0)`;
+      ring.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+      requestAnimationFrame(render);
+    };
+
+    const handlePointerMove = (event: PointerEvent) => {
+      targetX = event.clientX;
+      targetY = event.clientY;
+      root.classList.add("custom-cursor-visible");
+      const interactive = (event.target as HTMLElement).closest(
+        "a, button, [role='button'], input, textarea, select",
+      );
+      root.classList.toggle("custom-cursor-active", Boolean(interactive));
+    };
+
+    const hideCursor = () => root.classList.remove("custom-cursor-visible");
+
+    root.classList.add("custom-cursor-enabled");
+    // Navigations replace the <html> attributes: restore the cursor classes.
+    document.addEventListener("astro:after-swap", () => {
+      root.classList.add("custom-cursor-enabled", "custom-cursor-visible");
+    });
+    window.addEventListener("pointermove", handlePointerMove);
+    window.addEventListener("pointerleave", hideCursor);
+    window.addEventListener("blur", hideCursor);
+    requestAnimationFrame(render);
+  }
+</script>

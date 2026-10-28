@@ -1,5 +1,3 @@
-import type { KeyboardEvent } from "react";
-
 export const pad = (value: number) => String(value).padStart(2, "0");
 
 /** Roving-tabindex keyboard support for WAI-ARIA tablists. */
@@ -13,4 +11,12 @@ export function handleTabKeys(event: KeyboardEvent, current: number, count: numb
   event.preventDefault();
   select(next);
   document.getElementById(`${idPrefix}-${next}`)?.focus();
+}
+
+/** Marks `tabs[index]` as the selected tab (aria-selected plus roving tabindex). */
+export function selectTab(tabs: ArrayLike<HTMLElement>, index: number) {
+  Array.from(tabs).forEach((tab, tabIndex) => {
+    tab.setAttribute("aria-selected", String(tabIndex === index));
+    tab.tabIndex = tabIndex === index ? 0 : -1;
+  });
 }

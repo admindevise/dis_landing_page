@@ -1,0 +1,17 @@
+---
+interface Props {
+  items: string[];
+}
+
+/** Decorative keyword ribbon; content is duplicated for a seamless loop. */
+const { items } = Astro.props;
+const track = [...items, ...items];
+---
+
+<div class="lp-ticker" aria-hidden="true">
+  <div class="lp-ticker__track">
+    {track.map((item) => (
+      <span class="lp-ticker__item">{item}</span>
+    ))}
+  </div>
+</div>

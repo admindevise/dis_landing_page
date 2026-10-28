@@ -1,0 +1,242 @@
+---
+import SectionHeading from "../components/landing/SectionHeading.astro";
+import { SITE, SOLUTION_FLOWS, SOLUTIONS } from "../constants/content";
+
+const SOLUTION_KEYS = ["business", "marketplace", "hospitality", "tokenize", "valuo"] as const;
+type SolutionKey = (typeof SOLUTION_KEYS)[number];
+type DeviseSolutionKey = Exclude<SolutionKey, "valuo">;
+
+const DEVISE_LOGOS: Record<DeviseSolutionKey, { src: string; alt: string }> = {
+  business: { src: "/images/logos/devise-trust-blanco.svg", alt: "Devise Trust" },
+  hospitality: { src: "/images/logos/devise-pulse-blanco.svg", alt: "Devise Pulse" },
+  tokenize: { src: "/images/logos/devise-tokenize-blanco.svg", alt: "Devise Tokenize" },
+  marketplace: { src: "/images/logos/devise-marketplace-blanco.svg", alt: "Devise Marketplace" }
+};
+
+const displayedSolutions = SOLUTION_KEYS.map((key) => ({ ...SOLUTIONS.find((item) => item.key === key)!, key }));
+const solution = displayedSolutions[0];
+
+const solutionUrl = (key: SolutionKey) => {
+  const url = SITE.links[key];
+  return /^https?:\/\//.test(url) && !url.includes("[[") ? url : undefined;
+};
+---
+
+{/* Every solution's copy and steps are rendered; the script shows the selected one. */}
+<section id="soluciones" class="lp-section lp-tone-glass lp-solutions" data-solution={solution.key} data-screen-label="10 Casos de estudio" aria-labelledby="soluciones-title">
+  <div class="lp-container">
+    <div class="lp-solutions__head">
+      <SectionHeading index="10" eyebrow="Casos de estudio" titleId="soluciones-title" title={["Soluciones probadas", "para retos", "recurrentes del sector."]} accent={[2]} />
+      <p class="lp-lead" data-reveal>
+        Cuando un mismo reto se repite en varias organizaciones, lo convertimos en producto aplicando nuestra metodología BrickFlow. Con esa misma metodología construimos soluciones propias y a la medida para los desafíos únicos de tu operación.
+      </p>
+    </div>
+
+    <div role="tablist" aria-label="Casos de estudio" class="lp-solutions__picker" data-reveal>
+      {displayedSolutions.map((item, index) => (
+        <button
+          id={`solution-tab-${index}`}
+          role="tab"
+          type="button"
+          aria-selected={index === 0}
+          aria-controls="solution-panel"
+          tabindex={index === 0 ? 0 : -1}
+          class="lp-solutions__tab"
+          data-solution={item.key}
+        >
+          {item.key === "valuo"
+            ? <span class="lp-solutions__wordmark" aria-label="Valuo">valuo</span>
+            : <img class="lp-solutions__devise-logo" src={DEVISE_LOGOS[item.key].src} alt={DEVISE_LOGOS[item.key].alt} />}
+          <span class="lp-solutions__tab-kind">{item.kind}</span>
+        </button>
+      ))}
+    </div>
+
+    <div
+      id="solution-panel"
+      role="tabpanel"
+      aria-labelledby="solution-tab-0"
+      class="lp-solutions__stage"
+      data-solution={solution.key}
+      data-scene="idle"
+      data-reveal
+    >
+      <div class="lp-solutions__scene" role="img" aria-label={solution.alt} />
+
+      <div class="lp-solutions__body">
+        {displayedSolutions.map((item, index) => {
+          const url = solutionUrl(item.key);
+          return (
+            <div class="lp-solutions__copy" hidden={index !== 0}>
+              <h3 class="lp-solutions__name">{item.name}</h3>
+              <p class="lp-solutions__tagline">{item.tagline}</p>
+              <p class="lp-solutions__desc">{item.desc}</p>
+              {item.points.length > 0 && (
+                <ul class="lp-solutions__points">
+                  {item.points.map((point) => <li>{point}</li>)}
+                </ul>
+              )}
+              {item.demo.length > 0 && (
+                <div class="lp-solutions__figures">
+                  <dl>
+                    {item.demo.map((figure) => (
+                      <div>
+                        <dt>{figure.label}</dt>
+                        <dd>{figure.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <p class="lp-solutions__note">Cifras de ejemplo, con fines ilustrativos.</p>
+                </div>
+              )}
+              <a
+                class="lp-btn lp-solutions__cta"
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-disabled={!url}
+                title={url ? `Abrir la landing de ${item.name}` : "Enlace pendiente de configurar"}
+              >
+                Explorar {item.name}
+                <svg class="lucide lucide-arrow-up-right" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
+              </a>
+            </div>
+          );
+        })}
+        <div class="lp-solutions__anchor" aria-hidden="true" />
+      </div>
+
+      <div class="lp-solutions__flow">
+        <div class="lp-solutions__flow-head">
+          <h4 class="lp-solutions__flow-title">{solution.name} en seis pasos</h4>
+          <p class="lp-solutions__flow-hint">{solution.hint}</p>
+        </div>
+        {displayedSolutions.map((item, index) => (
+          <ol class="lp-solutions__steps" hidden={index !== 0}>
+            {SOLUTION_FLOWS[item.key].map((step, stepIndex) => (
+              <li>
+                <button type="button" class="lp-solutions__step" aria-pressed="false" data-current={index === 0 && stepIndex === 0 ? "true" : undefined}>
+                  <span class="lp-solutions__step-name">{step.name}</span>
+                  <span class="lp-solutions__step-summary">{step.summary}</span>
+                </button>
+              </li>
+            ))}
+          </ol>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { SOLUTION_FLOWS, SOLUTIONS } from "../constants/content";
+  import { showOnly } from "../lib/dom";
+  import { onAbort, onPageLoad } from "../lib/lifecycle";
+  import { handleTabKeys, selectTab } from "../lib/tabs";
+  import type { SolutionScene } from "../three/solutions/engine";
+  import { hasWebGL } from "../three/stage";
+
+  type SolutionKey = keyof typeof SOLUTION_FLOWS;
+
+  onPageLoad((signal) => {
+    const section = document.getElementById("soluciones");
+    if (section) initSolutions(section, signal);
+  });
+
+  function initSolutions(section: HTMLElement, signal: AbortSignal) {
+    const picker = section.querySelector<HTMLElement>(".lp-solutions__picker")!;
+    const tabs = Array.from(picker.querySelectorAll<HTMLButtonElement>(".lp-solutions__tab"));
+    const panel = section.querySelector<HTMLElement>("#solution-panel")!;
+    const scene = panel.querySelector<HTMLElement>(".lp-solutions__scene")!;
+    const anchor = panel.querySelector<HTMLElement>(".lp-solutions__anchor")!;
+    const copies = panel.querySelectorAll<HTMLElement>(".lp-solutions__copy");
+    const stepLists = Array.from(panel.querySelectorAll<HTMLElement>(".lp-solutions__steps"));
+    const keys = tabs.map((tab) => tab.dataset.solution as SolutionKey);
+
+    let selected = 0;
+    let pinned = -1;
+    let engine: SolutionScene | null = null;
+
+    const currentSteps = () => Array.from(stepLists[selected].querySelectorAll<HTMLButtonElement>(".lp-solutions__step"));
+
+    function setStep(index: number) {
+      currentSteps().forEach((step, stepIndex) => {
+        if (stepIndex === index) step.dataset.current = "true";
+        else delete step.dataset.current;
+      });
+    }
+
+    function setPinned(index: number) {
+      pinned = index;
+      currentSteps().forEach((step, stepIndex) => step.setAttribute("aria-pressed", String(stepIndex === index)));
+      engine?.focus(index);
+    }
+
+    function select(index: number) {
+      const key = keys[index];
+      const solution = SOLUTIONS.find((item) => item.key === key)!;
+      if (index !== selected) {
+        selected = index;
+        section.dataset.solution = key;
+        panel.dataset.solution = key;
+        selectTab(tabs, index);
+        panel.setAttribute("aria-labelledby", `solution-tab-${index}`);
+        scene.setAttribute("aria-label", solution.alt);
+        showOnly(copies, index);
+        showOnly(stepLists, index);
+        panel.querySelector(".lp-solutions__flow-title")!.textContent = `${solution.name} en seis pasos`;
+        panel.querySelector(".lp-solutions__flow-hint")!.textContent = solution.hint;
+        engine?.setModel(key, SOLUTION_FLOWS[key]);
+
+        // On narrow screens the picker scrolls sideways: keep the selected product in view.
+        const tab = tabs[index];
+        if (picker.scrollWidth > picker.clientWidth) {
+          picker.scrollTo({ left: tab.offsetLeft - picker.offsetLeft - parseFloat(getComputedStyle(picker).paddingLeft), behavior: "smooth" });
+        }
+      }
+      setStep(0);
+      setPinned(-1);
+    }
+
+    tabs.forEach((tab, index) => tab.addEventListener("click", () => select(index)));
+    picker.addEventListener("keydown", (event) => handleTabKeys(event, selected, tabs.length, select, "solution-tab"));
+
+    stepLists.forEach((list) => {
+      const release = () => engine?.focus(pinned);
+      list.addEventListener("mouseleave", release);
+      list.querySelectorAll<HTMLButtonElement>(".lp-solutions__step").forEach((step, index) => {
+        const preview = () => engine?.focus(index);
+        step.addEventListener("mouseenter", preview);
+        step.addEventListener("focus", preview);
+        step.addEventListener("blur", release);
+        step.addEventListener("click", () => setPinned(pinned === index ? -1 : index));
+      });
+    });
+
+    // Mount the shared WebGL stage lazily, once, when the section approaches the viewport.
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      observer.disconnect();
+      if (!hasWebGL()) {
+        panel.dataset.scene = "unsupported";
+        return;
+      }
+      import("../three/solutions/engine")
+        .then(({ createSolutionScene }) => {
+          if (signal.aborted) return;
+          engine = createSolutionScene(scene, { anchor, onStage: setStep });
+          engine.setModel(keys[selected], SOLUTION_FLOWS[keys[selected]]);
+          panel.dataset.scene = "ready";
+        })
+        .catch(() => {
+          if (!signal.aborted) panel.dataset.scene = "unsupported";
+        });
+    }, { rootMargin: "60% 0px" });
+    observer.observe(scene);
+    onAbort(signal, () => {
+      observer.disconnect();
+      engine?.dispose();
+      engine = null;
+    });
+  }
+</script>
